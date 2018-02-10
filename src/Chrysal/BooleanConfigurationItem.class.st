@@ -15,13 +15,12 @@ BooleanConfigurationItem class >> example [
 		beTrueAsDefault
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'public API' }
 BooleanConfigurationItem >> beFalseAsDefault [
-	"returns a domain object"
 	defaultDomainValue := false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'public API' }
 BooleanConfigurationItem >> beTrueAsDefault [
 
 	defaultDomainValue := true
@@ -29,15 +28,15 @@ BooleanConfigurationItem >> beTrueAsDefault [
 
 { #category : #accessing }
 BooleanConfigurationItem >> defaultDomainValue [
-	^ defaultDomainValue 
+	^ defaultDomainValue ifNil: [ self beTrueAsDefault  ]
 ]
 
 { #category : #accessing }
 BooleanConfigurationItem >> defaultDomainValueString [
-	^ defaultDomainValue asString
+	^ self defaultDomainValue asString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #unused }
 BooleanConfigurationItem >> possibleValuesString [
 	^ #('true' 'false')
 	

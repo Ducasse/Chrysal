@@ -2,7 +2,8 @@ Class {
 	#name : #NewLineConfigurationItem,
 	#superclass : #ConfigurationItem,
 	#instVars : [
-		'defaultDomainObject'
+		'defaultDomainObject',
+		'defaultKey'
 	],
 	#category : #Chrysal
 }
@@ -16,17 +17,28 @@ NewLineConfigurationItem class >> example [
 		defaultIsUnix
 ]
 
-{ #category : #accessing }
+{ #category : #unused }
 NewLineConfigurationItem >> defaultDomainValue [
 	^ defaultDomainObject 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
+NewLineConfigurationItem >> defaultDomainValueString [
+	^ self mapperFromUserToDomainRepresentations at: self defaultKey
+]
+
+{ #category : #'public api' }
 NewLineConfigurationItem >> defaultIsUnix [
+	defaultKey := #unix.
 	defaultDomainObject := self mapperFromUserToDomain at: #unix
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
+NewLineConfigurationItem >> defaultKey [
+	^ defaultKey ifNil: [ defaultKey := #unix ]
+]
+
+{ #category : #'mapping logic' }
 NewLineConfigurationItem >> mapperFromUserToDomain [
 	
 	| fromUserToDomainDictionary|
@@ -37,7 +49,7 @@ NewLineConfigurationItem >> mapperFromUserToDomain [
  	^ fromUserToDomainDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'mapping logic' }
 NewLineConfigurationItem >> mapperFromUserToDomainRepresentations [
 
 	 ^ (Dictionary
@@ -50,7 +62,7 @@ NewLineConfigurationItem >> mapperFromUserToDomainRepresentations [
 				#dos -> 'Win32Platform new lineEnding'})
 ]
 
-{ #category : #accessing }
+{ #category : #unused }
 NewLineConfigurationItem >> possibleValuesString [
 	^ #(#cr #lf  #crlf  #unix  #mac  #dos)
 ]

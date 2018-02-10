@@ -1,3 +1,6 @@
+"
+ConfigurationBuilder new with: ConfigurationDescriptionForXX new
+"
 Class {
 	#name : #ConfigurationBuilder,
 	#superclass : #Object,

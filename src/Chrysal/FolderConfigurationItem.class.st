@@ -18,8 +18,8 @@ FolderConfigurationItem class >> example [
 
 { #category : #accessing }
 FolderConfigurationItem >> default [
-	"normally this value should be the value of the instance for example 'build' "
-	^ default
+
+	^ default ifNil: [ default := 'build' ]
 ]
 
 { #category : #accessing }
@@ -29,26 +29,26 @@ FolderConfigurationItem >> default: aString [
 	default := aString
 ]
 
-{ #category : #accessing }
+{ #category : #unused }
 FolderConfigurationItem >> defaultDomainValue [
 	"'Today is {1}.' format: {Date today}."
-	^ '(FileSystem workingDirectory / ''{1}'')' format: {default}
+	^ '(FileSystem workingDirectory / ''{1}'')' format: {self default}
 ]
 
 { #category : #accessing }
 FolderConfigurationItem >> defaultDomainValueString [
 	"'Today is {1}.' format: {Date today}."
-	^ '(FileSystem workingDirectory / ''{1}'')' format: {default}
+	^ '(FileSystem workingDirectory / ''{1}'')' format: {self default}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #unused }
 FolderConfigurationItem >> defaultValueString [
 	"to be filled up with default value at compilation time."
 	"'Today is {1}.' format: {Date today}."
 	^ (FileSystem workingDirectory / self default) fullName
 ]
 
-{ #category : #accessing }
+{ #category : #unused }
 FolderConfigurationItem >> possibleValuesString [
 	"to be filled up with default value at compilation time."
 	"'Today is {1}.' format: {Date today}."
