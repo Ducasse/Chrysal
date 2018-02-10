@@ -4,6 +4,17 @@ Class {
 	#category : #Chrysal
 }
 
+{ #category : #example }
+StringConfigurationItem class >> example [
+
+	<sampleInstance>
+	
+	^ StringConfigurationItem new
+		propertyName: 'title';
+		default: 'my super cool book';
+		yourself.
+]
+
 { #category : #accessing }
 StringConfigurationItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
