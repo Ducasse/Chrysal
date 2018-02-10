@@ -29,5 +29,5 @@ ConfigurationTest >> sample [
 { #category : #tests }
 ConfigurationTest >> testNewFromStream [
 
-	Configuration newFromStream: self sample.
+	Configuration newFromStream: self sample readStream.
 ]

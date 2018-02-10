@@ -17,23 +17,19 @@ BooleanConfigurationItem class >> example [
 
 { #category : #'public API' }
 BooleanConfigurationItem >> beFalseAsDefault [
-	defaultDomainValue := false
+	default := 'false'
 ]
 
 { #category : #'public API' }
 BooleanConfigurationItem >> beTrueAsDefault [
-
-	defaultDomainValue := true
-]
-
-{ #category : #accessing }
-BooleanConfigurationItem >> defaultDomainValue [
-	^ defaultDomainValue ifNil: [ self beTrueAsDefault  ]
+	default := 'true'
 ]
 
 { #category : #accessing }
 BooleanConfigurationItem >> defaultDomainValueString [
-	^ self defaultDomainValue asString
+	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
+
+	^ self defaultValue
 ]
 
 { #category : #unused }

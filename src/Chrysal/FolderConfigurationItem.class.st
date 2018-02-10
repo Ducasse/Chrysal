@@ -1,9 +1,6 @@
 Class {
 	#name : #FolderConfigurationItem,
 	#superclass : #ConfigurationItem,
-	#instVars : [
-		'default'
-	],
 	#category : #Chrysal
 }
 
@@ -17,41 +14,22 @@ FolderConfigurationItem class >> example [
 ]
 
 { #category : #accessing }
-FolderConfigurationItem >> default [
-
-	^ default ifNil: [ default := 'build' ]
-]
-
-{ #category : #accessing }
-FolderConfigurationItem >> default: aString [
-	"normally this value should be the value of the instance for example 'build' "
-
-	default := aString
-]
-
-{ #category : #unused }
-FolderConfigurationItem >> defaultDomainValue [
-	"'Today is {1}.' format: {Date today}."
-	^ '(FileSystem workingDirectory / ''{1}'')' format: {self default}
-]
-
-{ #category : #accessing }
 FolderConfigurationItem >> defaultDomainValueString [
-	"'Today is {1}.' format: {Date today}."
+	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
+
 	^ '(FileSystem workingDirectory / ''{1}'')' format: {self default}
 ]
 
-{ #category : #unused }
-FolderConfigurationItem >> defaultValueString [
-	"to be filled up with default value at compilation time."
-	"'Today is {1}.' format: {Date today}."
-	^ (FileSystem workingDirectory / self default) fullName
+{ #category : #accessing }
+FolderConfigurationItem >> defaultValue [
+	"in the context of the configuration writer!"
+	^ 'build'
 ]
 
 { #category : #unused }
 FolderConfigurationItem >> possibleValuesString [
 	"to be filled up with default value at compilation time."
-	"'Today is {1}.' format: {Date today}."
+
 
 	^ '(FileSystem workingDirectory / {1} asFileReference)'
 ]

@@ -1,11 +1,21 @@
 "
-ConfigurationBuilder new with: ConfigurationDescriptionForXX new
+I generate mappings based on items in the configurationClass specified. 
 
-ConfigurationBuilder new setterGenerationForItem: BooleanConfigurationItem example
+
+ConfigurationBuilder new 
+	configurationClass: ConfigurationForXX;
+	with: ConfigurationDescriptionForXX new
+
+ConfigurationBuilder new 
+	configurationClass: ConfigurationForXX;
+	setterGenerationForItem: BooleanConfigurationItem example
 "
 Class {
 	#name : #ConfigurationBuilder,
 	#superclass : #Object,
+	#instVars : [
+		'configurationClass'
+	],
 	#category : #Chrysal
 }
 
@@ -28,6 +38,16 @@ ConfigurationBuilder >> accessorGenerationForItem: anItem [
 ]
 
 { #category : #'instance creation' }
+ConfigurationBuilder >> configurationClass [
+	^ configurationClass
+]
+
+{ #category : #'instance creation' }
+ConfigurationBuilder >> configurationClass: aClass [
+	configurationClass := aClass
+]
+
+{ #category : #'instance creation' }
 ConfigurationBuilder >> setterGenerationForItem: anItem [
 	
 	^ String
@@ -44,10 +64,10 @@ ConfigurationBuilder >> setterGenerationForItem: anItem [
 ConfigurationBuilder >> with: aDescription [
 	"self new with: ConfigurationDescriptionForXX new"
 	aDescription items do: [ :each | 
-		ConfigurationForXX 
+		self configurationClass 
 			compile: (self accessorGenerationForItem: each) 	
 			classified: 'accessing'. 
-		ConfigurationForXX 
+		self configurationClass  
 			compile: (self setterGenerationForItem: each) 
 			classified: 'accessing'].
 ]

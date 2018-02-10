@@ -6,6 +6,8 @@ Class {
 
 { #category : #'instance creation' }
 Configuration class >> newFromStream: aStream [
-
+	| stonDictionary |
 	self halt.
+	stonDictionary := (STON fromStream: aStream).
+
 ]

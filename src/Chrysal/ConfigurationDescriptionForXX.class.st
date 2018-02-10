@@ -39,3 +39,10 @@ ConfigurationDescriptionForXX >> separatedOutput [
 		propertyName: 'separateOutputFiles';
 		beTrueAsDefault
 ]
+
+{ #category : #accessing }
+ConfigurationDescriptionForXX >> title [
+	^ StringConfigurationItem new
+		propertyName: 'title';
+		default: 'A super cool title'
+]

@@ -1,33 +1,32 @@
 Class {
 	#name : #FileConfigurationItem,
 	#superclass : #ConfigurationItem,
-	#instVars : [
-		'default'
-	],
 	#category : #Chrysal
 }
 
-{ #category : #accessing }
-FileConfigurationItem >> default [
-
-	^ default ifNil: [ default := 'bookDefaultName' ]
-]
-
-{ #category : #accessing }
-FileConfigurationItem >> default: aString [ 
-	default := aString
+{ #category : #example }
+FileConfigurationItem class >> example [
+	<sampleInstance>
+	
+	^ FileConfigurationItem new
+		propertyName: 'mainDocument';
+		default: 'book'
 ]
 
 { #category : #accessing }
 FileConfigurationItem >> defaultDomainValueString [
+		"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
 	^ '(FileSystem workingDirectory / ''{1}'' asFileReference)' format: {self default}
 ]
 
 { #category : #accessing }
+FileConfigurationItem >> defaultValue [
+	^ 'bookDefaultName'
+]
+
+{ #category : #unused }
 FileConfigurationItem >> possibleValuesString [
 	"to be filled up with default value at compilation time."
-
-	"'Today is {1}.' format: {Date today}."
 
 	^ '(FileSystem workingDirectory / {1} asFileReference)'
 ]

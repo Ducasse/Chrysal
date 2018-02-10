@@ -17,49 +17,48 @@ NewLineConfigurationItem class >> example [
 		defaultIsUnix
 ]
 
-{ #category : #unused }
-NewLineConfigurationItem >> defaultDomainValue [
-	^ defaultDomainObject 
-]
-
 { #category : #accessing }
 NewLineConfigurationItem >> defaultDomainValueString [
-	^ self mapperFromUserToDomainRepresentations at: self defaultKey
+	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
+
+	^ self mapperFromUserToDomainRepresentations at: self default
 ]
 
 { #category : #'public api' }
 NewLineConfigurationItem >> defaultIsUnix [
 	defaultKey := #unix.
-	defaultDomainObject := self mapperFromUserToDomain at: #unix
+	
 ]
 
 { #category : #accessing }
-NewLineConfigurationItem >> defaultKey [
-	^ defaultKey ifNil: [ defaultKey := #unix ]
+NewLineConfigurationItem >> defaultValue [
+	^ #unix
 ]
 
 { #category : #'mapping logic' }
 NewLineConfigurationItem >> mapperFromUserToDomain [
-	
-	| fromUserToDomainDictionary|
-	fromUserToDomainDictionary := self mapperFromUserToDomainRepresentations copy. 
-	fromUserToDomainDictionary keysAndValuesDo: [ :k :v | 
-		fromUserToDomainDictionary at: k put: (fromUserToDomainDictionary at: k put: (Compiler evaluate: v))
-		].
- 	^ fromUserToDomainDictionary
+	"coded this way because we may inline it in configuration class."
+	| fromUserToDomainDictionary |
+	fromUserToDomainDictionary := self mapperFromUserToDomainRepresentations copy.
+	fromUserToDomainDictionary
+		keysAndValuesDo: [ :k :v | 
+			fromUserToDomainDictionary
+				at: k
+				put: (fromUserToDomainDictionary at: k put: (Compiler evaluate: v)) ].
+	^ fromUserToDomainDictionary
 ]
 
 { #category : #'mapping logic' }
 NewLineConfigurationItem >> mapperFromUserToDomainRepresentations [
-
-	 ^ (Dictionary
-			newFrom:
-				{#cr -> 'String cr' .
-				#lf -> 'UnixPlatform new lineEnding'.
-				#crlf -> 'Win32Platform new lineEnding'.
-				#unix -> 'UnixPlatform new lineEnding'.
-				#mac -> 'UnixPlatform new lineEnding'.
-				#dos -> 'Win32Platform new lineEnding'})
+	"coded this way because we may inline it in configuration class."
+	^ Dictionary
+		newFrom:
+			{(#cr -> 'String cr').
+			(#lf -> 'UnixPlatform new lineEnding').
+			(#crlf -> 'Win32Platform new lineEnding').
+			(#unix -> 'UnixPlatform new lineEnding').
+			(#mac -> 'UnixPlatform new lineEnding').
+			(#dos -> 'Win32Platform new lineEnding')}
 ]
 
 { #category : #unused }
