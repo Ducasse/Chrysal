@@ -11,9 +11,21 @@ ConfigurationForXX >> mainDocument [
 ]
 
 { #category : #accessing }
+ConfigurationForXX >> mainDocument: aProperty [
+	"generated code"
+	^ self propertyAt: #mainDocument put: aProperty
+]
+
+{ #category : #accessing }
 ConfigurationForXX >> newline [
 	"generated code"
 	^ self propertyAt: #newline ifAbsent: [UnixPlatform new lineEnding]
+]
+
+{ #category : #accessing }
+ConfigurationForXX >> newline: aProperty [
+	"generated code"
+	^ self propertyAt: #newline put: aProperty
 ]
 
 { #category : #accessing }
@@ -23,7 +35,19 @@ ConfigurationForXX >> outputDirectory [
 ]
 
 { #category : #accessing }
+ConfigurationForXX >> outputDirectory: aProperty [
+	"generated code"
+	^ self propertyAt: #outputDirectory put: aProperty
+]
+
+{ #category : #accessing }
 ConfigurationForXX >> separateOutputFiles [
 	"generated code"
 	^ self propertyAt: #separateOutputFiles ifAbsent: [true]
+]
+
+{ #category : #accessing }
+ConfigurationForXX >> separateOutputFiles: aProperty [
+	"generated code"
+	^ self propertyAt: #separateOutputFiles put: aProperty
 ]

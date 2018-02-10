@@ -1,5 +1,7 @@
 "
 ConfigurationBuilder new with: ConfigurationDescriptionForXX new
+
+ConfigurationBuilder new setterGenerationForItem: BooleanConfigurationItem example
 "
 Class {
 	#name : #ConfigurationBuilder,
@@ -26,8 +28,26 @@ ConfigurationBuilder >> accessorGenerationForItem: anItem [
 ]
 
 { #category : #'instance creation' }
+ConfigurationBuilder >> setterGenerationForItem: anItem [
+	
+	^ String
+		streamContents: [ :str | 
+			str nextPutAll: anItem propertyName, ': aProperty'.
+			str cr; tab.
+			str nextPutAll: '"generated code"'.
+			str cr; tab.
+			str nextPutAll:
+					'^ self propertyAt: #' , anItem propertyName , ' put: aProperty' ]
+]
+
+{ #category : #'instance creation' }
 ConfigurationBuilder >> with: aDescription [
 	"self new with: ConfigurationDescriptionForXX new"
 	aDescription items do: [ :each | 
-		ConfigurationForXX compile: (self accessorGenerationForItem: each) classified: 'accessing'. ].
+		ConfigurationForXX 
+			compile: (self accessorGenerationForItem: each) 	
+			classified: 'accessing'. 
+		ConfigurationForXX 
+			compile: (self setterGenerationForItem: each) 
+			classified: 'accessing'].
 ]
