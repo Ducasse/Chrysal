@@ -17,6 +17,12 @@ NewLineConfigurationItem class >> example [
 		defaultIsUnix
 ]
 
+{ #category : #'mapping logic' }
+NewLineConfigurationItem >> convertToDomainObject: aValue [
+	"not good because I cannot generate it in the configuration class code"
+	^ self mapperFromUserToDomain at: aValue
+]
+
 { #category : #accessing }
 NewLineConfigurationItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."

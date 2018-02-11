@@ -17,16 +17,6 @@ ConfigurationItemTest >> testBooleanConversion [
 ]
 
 { #category : #tests }
-ConfigurationItemTest >> testConvertNewLine [
-	| item |
-	item := NewLineConfigurationItem new
-		propertyName: 'newLine';
-		yourself.
-	self assert: item default equals: #unix.
-
-]
-
-{ #category : #tests }
 ConfigurationItemTest >> testDefaultBoolean [
 	| item |
 	item := StringConfigurationItem new
@@ -50,6 +40,35 @@ ConfigurationItemTest >> testDefaultString [
 	item := StringConfigurationItem new propertyName: 'title' ;yourself.
 	self assert: item default equals: item defaultValue
 	
+]
+
+{ #category : #tests }
+ConfigurationItemTest >> testFileConversion [
+	| item |
+	item := FileConfigurationItem new
+		propertyName: 'mainDocument';
+		yourself.
+	self assert: (item convertToDomainObject: 'mainDocument') equals: FileSystem workingDirectory / 'mainDocument'
+]
+
+{ #category : #tests }
+ConfigurationItemTest >> testNewLineConversion [
+	| item |
+	item := NewLineConfigurationItem new
+		propertyName: 'newLine';
+		yourself.
+	self assert: item default equals: #unix
+]
+
+{ #category : #tests }
+ConfigurationItemTest >> testNewLineDefault [
+	| item |
+	item := NewLineConfigurationItem new
+		propertyName: 'newLine';
+		yourself.
+	self assert: (item convertToDomainObject: #unix) equals: UnixPlatform new lineEnding.
+	self assert: (item convertToDomainObject: #lf) equals: UnixPlatform new lineEnding.
+	self assert: (item convertToDomainObject: #crlf) equals: Win32Platform new lineEnding.
 ]
 
 { #category : #tests }
@@ -80,4 +99,13 @@ ConfigurationItemTest >> testSettingDefaultString [
 		default: 'my super cool book';
 		yourself.
 	self assert: item default equals: 'my super cool book' 
+]
+
+{ #category : #tests }
+ConfigurationItemTest >> testStringConversion [
+	| item |
+	item := StringConfigurationItem new
+		propertyName: 'latexWriter';
+		yourself.
+	self assert: (item convertToDomainObject: #latex:sbabook) equals: #latex:sbabook
 ]
