@@ -1,78 +1,71 @@
-"
-Generated doing....
-
-ConfigurationBuilder new 
-		configurationClass: ConfigurationForXX;
-		with: ConfigurationDescriptionForXX new.
-"
 Class {
-	#name : #ConfigurationForXX,
+	#name : #ConfigurationForPillar,
 	#superclass : #ChrysalConfiguration,
-	#category : #'Chrysal-Tests'
+	#category : #'Chrysal-ToBeMovedElsewhere'
 }
 
 { #category : #accessing }
-ConfigurationForXX >> attribution [
+ConfigurationForPillar >> attribution [
 	"generated code"
 	^ self propertyAt: #attribution ifAbsent: ['me, myself and I']
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> attribution: aProperty [
+ConfigurationForPillar >> attribution: aProperty [
 	"generated code"
 	^ self propertyAt: #attribution put: aProperty
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertAttribution: aValue [
+ConfigurationForPillar >> convertAttribution: aValue [
 	"generated code"
 	^ aValue
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertHtmlChapterTemplate: aValue [
+ConfigurationForPillar >> convertHtmlChapterTemplate: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertHtmlTemplate: aValue [
+ConfigurationForPillar >> convertHtmlTemplate: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertKeywords: aValue [
+ConfigurationForPillar >> convertKeywords: aValue [
 	"generated code"
 	^ aValue
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertLatexChapterTemplate: aValue [
+ConfigurationForPillar >> convertLatexChapterTemplate: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertLatexTemplate: aValue [
+ConfigurationForPillar >> convertLatexTemplate: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertLatexWriter: aValue [
+ConfigurationForPillar >> convertLatexWriter: aValue [
 	"generated code"
 	^ aValue
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertMainDocument: aValue [
+ConfigurationForPillar >> convertMainDocument: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertNewLine: aValue [
+ConfigurationForPillar >> convertNewLine: aValue [
 	"generated code"
 	^ (Dictionary
 			newFrom:
@@ -85,151 +78,151 @@ ConfigurationForXX >> convertNewLine: aValue [
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertOutputDirectory: aValue [
+ConfigurationForPillar >> convertOutputDirectory: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertSeries: aValue [
+ConfigurationForPillar >> convertSeries: aValue [
 	"generated code"
 	^ aValue
 ]
 
 { #category : #conversion }
-ConfigurationForXX >> convertTitle: aValue [
+ConfigurationForPillar >> convertTitle: aValue [
 	"generated code"
 	^ aValue
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> htmlChapterTemplate [
+ConfigurationForPillar >> htmlChapterTemplate [
 	"generated code"
 	^ self propertyAt: #htmlChapterTemplate ifAbsent: [(FileSystem workingDirectory / '_support/templates/html.mustache')]
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> htmlChapterTemplate: aProperty [
+ConfigurationForPillar >> htmlChapterTemplate: aProperty [
 	"generated code"
 	^ self propertyAt: #htmlChapterTemplate put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> htmlTemplate [
+ConfigurationForPillar >> htmlTemplate [
 	"generated code"
 	^ self propertyAt: #htmlTemplate ifAbsent: [(FileSystem workingDirectory / '_support/templates/html.mustache')]
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> htmlTemplate: aProperty [
+ConfigurationForPillar >> htmlTemplate: aProperty [
 	"generated code"
 	^ self propertyAt: #htmlTemplate put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> keywords [
+ConfigurationForPillar >> keywords [
 	"generated code"
 	^ self propertyAt: #keywords ifAbsent: ['Pharo']
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> keywords: aProperty [
+ConfigurationForPillar >> keywords: aProperty [
 	"generated code"
 	^ self propertyAt: #keywords put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> latexChapterTemplate [
+ConfigurationForPillar >> latexChapterTemplate [
 	"generated code"
 	^ self propertyAt: #latexChapterTemplate ifAbsent: [(FileSystem workingDirectory / '_support/templates/chapter.latex.mustache')]
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> latexChapterTemplate: aProperty [
+ConfigurationForPillar >> latexChapterTemplate: aProperty [
 	"generated code"
 	^ self propertyAt: #latexChapterTemplate put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> latexTemplate [
+ConfigurationForPillar >> latexTemplate [
 	"generated code"
 	^ self propertyAt: #latexTemplate ifAbsent: [(FileSystem workingDirectory / '_support/templates/main.latex.mustache')]
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> latexTemplate: aProperty [
+ConfigurationForPillar >> latexTemplate: aProperty [
 	"generated code"
 	^ self propertyAt: #latexTemplate put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> latexWriter [
+ConfigurationForPillar >> latexWriter [
 	"generated code"
-	^ self propertyAt: #latexWriter ifAbsent: [#latex:sbabook]
+	^ self propertyAt: #latexWriter ifAbsent: ['latex:sbabook']
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> latexWriter: aProperty [
+ConfigurationForPillar >> latexWriter: aProperty [
 	"generated code"
 	^ self propertyAt: #latexWriter put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> mainDocument [
+ConfigurationForPillar >> mainDocument [
 	"generated code"
 	^ self propertyAt: #mainDocument ifAbsent: [(FileSystem workingDirectory / 'book')]
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> mainDocument: aProperty [
+ConfigurationForPillar >> mainDocument: aProperty [
 	"generated code"
 	^ self propertyAt: #mainDocument put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> newLine [
+ConfigurationForPillar >> newLine [
 	"generated code"
 	^ self propertyAt: #newLine ifAbsent: [UnixPlatform new lineEnding]
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> newLine: aProperty [
+ConfigurationForPillar >> newLine: aProperty [
 	"generated code"
 	^ self propertyAt: #newLine put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> outputDirectory [
+ConfigurationForPillar >> outputDirectory [
 	"generated code"
 	^ self propertyAt: #outputDirectory ifAbsent: [(FileSystem workingDirectory / 'build')]
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> outputDirectory: aProperty [
+ConfigurationForPillar >> outputDirectory: aProperty [
 	"generated code"
 	^ self propertyAt: #outputDirectory put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> series [
+ConfigurationForPillar >> series [
 	"generated code"
 	^ self propertyAt: #series ifAbsent: ['Square Bracket Associate Collection']
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> series: aProperty [
+ConfigurationForPillar >> series: aProperty [
 	"generated code"
 	^ self propertyAt: #series put: aProperty
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> title [
+ConfigurationForPillar >> title [
 	"generated code"
 	^ self propertyAt: #title ifAbsent: ['my super cool book']
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> title: aProperty [
+ConfigurationForPillar >> title: aProperty [
 	"generated code"
 	^ self propertyAt: #title put: aProperty
 ]

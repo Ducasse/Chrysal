@@ -47,7 +47,7 @@ ConfigurationDescriptionForXX >> initialize [
 	(NewLineConfigurationItem new
 		propertyName: 'newLine';
 		defaultIsUnix).
-	(StringConfigurationItem new
+	(SymbolConfigurationItem new
 		propertyName: 'latexWriter';
 		default: #'latex:sbabook'; 
 		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class"}

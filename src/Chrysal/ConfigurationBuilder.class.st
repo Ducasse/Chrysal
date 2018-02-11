@@ -7,7 +7,7 @@ ConfigurationBuilder new
 	with: ConfigurationDescriptionForPillar new
 	
 ConfigurationBuilder new 
-	defineConfigurationClassNamed: #ConfigurationForPillar packagedIn: 'PillarConfiguration'; 
+	defineConfigurationClassNamed: #ConfigurationForPillar packagedIn: 'Chrysal-ToBeMovedElsewhere'; 
 	with: ConfigurationDescriptionForPillar new
 "
 Class {

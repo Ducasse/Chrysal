@@ -47,10 +47,20 @@ ConfigurationItemTest >> testDefaultString2 [
 	| item |
 	item :=	(StringConfigurationItem new
 		propertyName: 'latexWriter';
-		default: #'latex:sbabook';
+		default: 'latex:sbabook';
 		yourself).
-	self assert: item defaultDomainValueString equals: #'latex:sbabook'
+	self assert: item defaultDomainValueString equals: '''latex:sbabook'''
 	
+]
+
+{ #category : #tests }
+ConfigurationItemTest >> testDefaultSymbol [
+	| item |
+	item := SymbolConfigurationItem new
+		propertyName: 'latexWriter';
+		default: #latex:sbabook;
+		yourself.
+	self assert: item defaultDomainValueString equals: '#latex:sbabook'
 ]
 
 { #category : #tests }

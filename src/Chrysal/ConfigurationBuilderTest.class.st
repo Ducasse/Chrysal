@@ -15,4 +15,13 @@ ConfigurationBuilderTest >> testBuilder [
 	self assert: (ConfigurationForXX selectors includes: #convertAttribution:).
 	self assert: (ConfigurationForXX selectors includes: #attribution:).
 	self assert: (ConfigurationForXX selectors includes: #attribution).
+	
+	self assert: (ConfigurationForXX >> #attribution) sourceCode equals: 'attribution
+	"generated code"
+	^ self propertyAt: #attribution ifAbsent: [''me, myself and I'']'.
+	
+	self assert: (ConfigurationForXX >> #latexWriter) sourceCode equals: 'latexWriter
+	"generated code"
+	^ self propertyAt: #latexWriter ifAbsent: [#latex:sbabook]'
+
 ]

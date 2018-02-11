@@ -1,7 +1,10 @@
+"
+For now like that but after we should get a string based representation so that we can store it with generated class. 
+"
 Class {
 	#name : #ConfigurationDescriptionForPillar,
 	#superclass : #ConfigurationDescription,
-	#category : #Chrysal
+	#category : #'Chrysal-ToBeMovedElsewhere'
 }
 
 { #category : #initialization }
