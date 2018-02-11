@@ -1,7 +1,7 @@
 Class {
 	#name : #ConfigurationTest,
 	#superclass : #TestCase,
-	#category : #Chrysal
+	#category : #'Chrysal-Tests'
 }
 
 { #category : #tests }
@@ -25,6 +25,6 @@ ConfigurationTest >> sample [
 
 { #category : #tests }
 ConfigurationTest >> testNewFromStream [
-	self halt. 
-	Configuration newFromStream: self sample readStream
+
+	ChrysalConfiguration newFromStream: self sample readStream
 ]

@@ -1,19 +1,14 @@
 "
 I generate mappings based on items in the configurationClass specified. 
 
-
-ConfigurationBuilder new 
-	configurationClass: ConfigurationForXX;
-	with: ConfigurationDescriptionForXX new
 	
 ConfigurationBuilder new 
 	configurationClass: ConfigurationForPillar;
 	with: ConfigurationDescriptionForPillar new
 	
-
 ConfigurationBuilder new 
-	configurationClass: ConfigurationForXX;
-	setterGenerationForItem: BooleanConfigurationItem example
+	defineConfigurationClassNamed: #ConfigurationForPillar packagedIn: 'PillarConfiguration'; 
+	with: ConfigurationDescriptionForPillar new
 "
 Class {
 	#name : #ConfigurationBuilder,
@@ -54,8 +49,29 @@ ConfigurationBuilder >> configurationClass: aClass [
 ]
 
 { #category : #configuration }
-ConfigurationBuilder >> importerClass [
-	^ importerClass
+ConfigurationBuilder >> conversionGenerationForItem: anItem [
+	"self new accessorGenerationForItem: FileConfigurationItem example"
+
+	^ String
+		streamContents: [ :str | 
+			str nextPutAll: 'convert', (anItem propertyName) capitalized, ': aValue'.
+			"pay attention aValue is a special argument that domainValueString can use to manipulate the parameter 
+			during conversion"
+			str cr; tab.
+			str nextPutAll: '"generated code"'.
+			str cr; tab.
+			str nextPutAll: ('^ ', anItem domainValueConversionString ) ]
+]
+
+{ #category : #configuration }
+ConfigurationBuilder >> defineConfigurationClassNamed: aString packagedIn: packageName [
+	ChrysalConfiguration
+		subclass: aString asSymbol
+		instanceVariableNames: ''
+		classVariableNames: ''
+		poolDictionaries: ''
+		package: packageName.
+	self configurationClass: (self class environment at: aString asSymbol)
 ]
 
 { #category : #configuration }
@@ -80,5 +96,8 @@ ConfigurationBuilder >> with: aDescription [
 			classified: 'accessing'. 
 		self configurationClass  
 			compile: (self setterGenerationForItem: each) 
-			classified: 'accessing'].
+			classified: 'accessing'.
+		self configurationClass  
+			compile: (self conversionGenerationForItem: each) 
+			classified: 'conversion'].
 ]

@@ -10,5 +10,5 @@ Class {
 { #category : #initialization }
 ConfigurationImporter >> initialize [
 	super initialize.
-	configuration := Configuration new importer: self
+	configuration := ChrysalConfiguration new importer: self
 ]

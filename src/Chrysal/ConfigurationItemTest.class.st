@@ -1,7 +1,7 @@
 Class {
 	#name : #ConfigurationItemTest,
 	#superclass : #TestCase,
-	#category : #Chrysal
+	#category : #'Chrysal-Tests'
 }
 
 { #category : #tests }
@@ -39,6 +39,17 @@ ConfigurationItemTest >> testDefaultString [
 	| item |
 	item := StringConfigurationItem new propertyName: 'title' ;yourself.
 	self assert: item default equals: item defaultValue
+	
+]
+
+{ #category : #tests }
+ConfigurationItemTest >> testDefaultString2 [
+	| item |
+	item :=	(StringConfigurationItem new
+		propertyName: 'latexWriter';
+		default: #'latex:sbabook';
+		yourself).
+	self assert: item defaultDomainValueString equals: #'latex:sbabook'
 	
 ]
 

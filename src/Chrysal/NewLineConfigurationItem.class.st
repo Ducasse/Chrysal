@@ -17,7 +17,7 @@ NewLineConfigurationItem class >> example [
 		defaultIsUnix
 ]
 
-{ #category : #'mapping logic' }
+{ #category : #unused }
 NewLineConfigurationItem >> convertToDomainObject: aValue [
 	"not good because I cannot generate it in the configuration class code"
 	^ self mapperFromUserToDomain at: aValue
@@ -39,6 +39,23 @@ NewLineConfigurationItem >> defaultIsUnix [
 { #category : #accessing }
 NewLineConfigurationItem >> defaultValue [
 	^ #unix
+]
+
+{ #category : #conversion }
+NewLineConfigurationItem >> domainValueConversionString [
+	"Returns a string converting a string as written by in the configuration file to a pharo object. 
+	Note that this method is like the body of a macro that will be expanded in the configuration class: 
+	here aValue is the name of the parameter of the generated method.
+	"
+
+	^ '(Dictionary
+			newFrom:
+				{(#cr -> String cr).
+				(#lf -> UnixPlatform new lineEnding).
+				(#crlf -> Win32Platform new lineEnding).
+				(#unix -> UnixPlatform new lineEnding).
+				(#mac -> UnixPlatform new lineEnding).
+				(#dos -> Win32Platform new lineEnding)}) at: aValue'
 ]
 
 { #category : #'mapping logic' }
