@@ -25,7 +25,7 @@ ConfigurationDescriptionForPillar >> initialize [
 	(FolderConfigurationItem new
 		propertyName: 'outputDirectory';
 		default: 'build').
-	 (FileConfigurationItem new
+	(FileConfigurationItem new
 		propertyName: 'mainDocument';
 		default: 'book').
 	(FileConfigurationItem new
@@ -39,9 +39,13 @@ ConfigurationDescriptionForPillar >> initialize [
 		default: '_support/templates/html.mustache').
 	(FileConfigurationItem new
 		propertyName: 'htmlChapterTemplate';
-		default: '_support/templates/html.mustache').		
+		default: '_support/templates/html.mustache').
 	(NewLineConfigurationItem new
 		propertyName: 'newLine';
-		defaultIsUnix)
+		defaultIsUnix).
+	(StringConfigurationItem new
+		propertyName: 'latexWriter';
+		default: #'latex:sbabook';
+		yourself). "may be we should turn it into a Pillar specific item that convert to a specific class"
 		}
 ]

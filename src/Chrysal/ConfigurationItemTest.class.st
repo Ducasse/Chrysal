@@ -5,6 +5,28 @@ Class {
 }
 
 { #category : #tests }
+ConfigurationItemTest >> testBooleanConversion [
+	| item |
+	item := BooleanConfigurationItem new
+		propertyName: 'verbose';
+		default: 'false';
+		yourself.
+	self assert: (item convertToDomainObject: 'true') equals: true.
+	self assert: (item convertToDomainObject: 'false') equals: false.
+	self assert: (item convertToDomainObject: 'fals') equals: nil.
+]
+
+{ #category : #tests }
+ConfigurationItemTest >> testConvertNewLine [
+	| item |
+	item := NewLineConfigurationItem new
+		propertyName: 'newLine';
+		yourself.
+	self assert: item default equals: #unix.
+
+]
+
+{ #category : #tests }
 ConfigurationItemTest >> testDefaultBoolean [
 	| item |
 	item := StringConfigurationItem new
@@ -33,7 +55,7 @@ ConfigurationItemTest >> testDefaultString [
 { #category : #tests }
 ConfigurationItemTest >> testSettingDefaultBoolean [
 	| item |
-	item := StringConfigurationItem new
+	item := BooleanConfigurationItem new
 		propertyName: 'separateOutputFiles';
 		default: 'false';
 		yourself.

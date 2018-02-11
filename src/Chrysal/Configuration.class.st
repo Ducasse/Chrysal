@@ -1,6 +1,9 @@
 Class {
 	#name : #Configuration,
 	#superclass : #Object,
+	#instVars : [
+		'importer'
+	],
 	#category : #Chrysal
 }
 
@@ -10,4 +13,10 @@ Configuration class >> newFromStream: aStream [
 	self halt.
 	stonDictionary := (STON fromStream: aStream).
 
+]
+
+{ #category : #accessing }
+Configuration >> importer: anImporter [
+
+	importer := anImporter
 ]

@@ -6,9 +6,9 @@ Class {
 
 { #category : #tests }
 ConfigurationTest >> sample [
-
 	^ '{
   "title": "A Little Scheme in Pharo",
+  "verbose":"true",
   "attribution": "Stéphane Ducasse with Guillermo Polito",
   "series": "Square Bracket tutorials",
   "keywords": "project template, Pillar, Pharo, Smalltalk",
@@ -18,9 +18,6 @@ ConfigurationTest >> sample [
   "latexChapterTemplate": "_support/templates/chapter.latex.mustache",
   "htmlTemplate": "_support/templates/html.mustache",
   "htmlChapterTemplate": "_support/templates/html.mustache",
-  "chapters": [ 
-	"Chapters/Scheme"
-	],
   "newLine": #unix,
   "latexWriter": #''latex:sbabook''
 }'
@@ -28,6 +25,6 @@ ConfigurationTest >> sample [
 
 { #category : #tests }
 ConfigurationTest >> testNewFromStream [
-
-	Configuration newFromStream: self sample readStream.
+	self halt. 
+	Configuration newFromStream: self sample readStream
 ]

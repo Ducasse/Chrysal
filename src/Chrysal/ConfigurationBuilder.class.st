@@ -5,6 +5,11 @@ I generate mappings based on items in the configurationClass specified.
 ConfigurationBuilder new 
 	configurationClass: ConfigurationForXX;
 	with: ConfigurationDescriptionForXX new
+	
+ConfigurationBuilder new 
+	configurationClass: ConfigurationForPillar;
+	with: ConfigurationDescriptionForPillar new
+	
 
 ConfigurationBuilder new 
 	configurationClass: ConfigurationForXX;
@@ -14,12 +19,13 @@ Class {
 	#name : #ConfigurationBuilder,
 	#superclass : #Object,
 	#instVars : [
-		'configurationClass'
+		'configurationClass',
+		'importerClass'
 	],
 	#category : #Chrysal
 }
 
-{ #category : #'instance creation' }
+{ #category : #configuration }
 ConfigurationBuilder >> accessorGenerationForItem: anItem [
 	"self new accessorGenerationForItem: BooleanConfigurationItem example"
 	"self new accessorGenerationForItem: NewLineConfigurationItem example"
@@ -37,17 +43,22 @@ ConfigurationBuilder >> accessorGenerationForItem: anItem [
 						, anItem defaultDomainValueString , ']' ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : #configuration }
 ConfigurationBuilder >> configurationClass [
 	^ configurationClass
 ]
 
-{ #category : #'instance creation' }
+{ #category : #configuration }
 ConfigurationBuilder >> configurationClass: aClass [
 	configurationClass := aClass
 ]
 
-{ #category : #'instance creation' }
+{ #category : #configuration }
+ConfigurationBuilder >> importerClass [
+	^ importerClass
+]
+
+{ #category : #configuration }
 ConfigurationBuilder >> setterGenerationForItem: anItem [
 	
 	^ String
@@ -60,7 +71,7 @@ ConfigurationBuilder >> setterGenerationForItem: anItem [
 					'^ self propertyAt: #' , anItem propertyName , ' put: aProperty' ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : #configuration }
 ConfigurationBuilder >> with: aDescription [
 	"self new with: ConfigurationDescriptionForXX new"
 	aDescription items do: [ :each | 

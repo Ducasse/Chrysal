@@ -25,6 +25,12 @@ BooleanConfigurationItem >> beTrueAsDefault [
 	default := 'true'
 ]
 
+{ #category : #'as yet unclassified' }
+BooleanConfigurationItem >> convertToDomainObject: aValue [
+	"self new convertToDomainObject: 'true'"
+	^ Object readFrom: aValue
+]
+
 { #category : #accessing }
 BooleanConfigurationItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
