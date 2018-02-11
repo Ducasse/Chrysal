@@ -102,6 +102,12 @@ ConfigurationForXX >> convertTitle: aValue [
 	^ aValue
 ]
 
+{ #category : #conversion }
+ConfigurationForXX >> convertVerbose: aValue [
+	"generated code"
+	^ Object readFrom: aValue
+]
+
 { #category : #accessing }
 ConfigurationForXX >> htmlChapterTemplate [
 	"generated code"
@@ -232,4 +238,16 @@ ConfigurationForXX >> title [
 ConfigurationForXX >> title: aProperty [
 	"generated code"
 	^ self propertyAt: #title put: aProperty
+]
+
+{ #category : #accessing }
+ConfigurationForXX >> verbose [
+	"generated code"
+	^ self propertyAt: #verbose ifAbsent: [defaultValue]
+]
+
+{ #category : #accessing }
+ConfigurationForXX >> verbose: aProperty [
+	"generated code"
+	^ self propertyAt: #verbose put: aProperty
 ]

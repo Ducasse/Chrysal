@@ -14,6 +14,10 @@ ConfigurationDescriptionForXX >> initialize [
 		propertyName: 'title';
 		default: 'my super cool book';
 		yourself).
+	(BooleanConfigurationItem new
+		propertyName: 'verbose';
+		beTrueAsDefault;
+		yourself).
 	(StringConfigurationItem new
 		propertyName: 'attribution';
 		default: 'me, myself and I';
@@ -49,6 +53,6 @@ ConfigurationDescriptionForXX >> initialize [
 		defaultIsUnix).
 	(SymbolConfigurationItem new
 		propertyName: 'latexWriter';
-		default: #'latex:sbabook'; 
+		default: #latex:sbabook;
 		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class"}
 ]

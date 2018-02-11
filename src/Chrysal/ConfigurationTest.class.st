@@ -25,8 +25,9 @@ ConfigurationTest >> sample [
 
 { #category : #tests }
 ConfigurationTest >> testNewFromStream [
-
-	ConfigurationForXX newFromStream: self sample readStream
+	| conf |
+	conf := ConfigurationForXX newFromStream: self sample readStream.
+	self assert: conf verbose.
 ]
 
 { #category : #tests }
