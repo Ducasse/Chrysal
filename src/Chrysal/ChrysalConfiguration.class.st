@@ -1,14 +1,18 @@
 Class {
 	#name : #ChrysalConfiguration,
-	#superclass : #Object,
+	#superclass : #CTEnvironment,
 	#category : #Chrysal
 }
 
 { #category : #'instance creation' }
 ChrysalConfiguration class >> newFromStream: aStream [
-	| stonDictionary |
-	self halt.
+	| stonDictionary conf |
 	stonDictionary := (STON fromStream: aStream).
+	conf := self new. 
+	stonDictionary associations do: [ :aBinding |
+		conf setConvertedValueOf: aBinding
+		].
+	^ conf
 
 ]
 
@@ -21,5 +25,5 @@ ChrysalConfiguration >> setConvertedValueOf: aBinding [
 	setter := aBinding key capitalized , ':'.
 	converted := self perform: (#convert , setter) asSymbol with: aBinding value.
 	converted ifNil: [ self error: 'aBinding is not correctly spelt ' , aBinding ].
-	self perform: setter asSymbol with: converted
+	self perform: setter uncapitalized asSymbol with: converted
 ]

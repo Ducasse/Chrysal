@@ -26,5 +26,14 @@ ConfigurationTest >> sample [
 { #category : #tests }
 ConfigurationTest >> testNewFromStream [
 
-	ChrysalConfiguration newFromStream: self sample readStream
+	ConfigurationForXX newFromStream: self sample readStream
+]
+
+{ #category : #tests }
+ConfigurationTest >> testSetConvertedValueOf [
+
+	| conf |
+	conf := ConfigurationForXX new. 
+	conf setConvertedValueOf: ('outputDirectory' -> 'build').
+	self assert: conf outputDirectory class equals: FileReference
 ]
