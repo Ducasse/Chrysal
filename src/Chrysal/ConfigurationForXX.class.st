@@ -108,6 +108,12 @@ ConfigurationForXX >> convertVerbose: aValue [
 	^ Object readFrom: aValue
 ]
 
+{ #category : #'declared items' }
+ConfigurationForXX >> declaredItems [
+	"generated code"
+	^ #( #title #verbose #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
+]
+
 { #category : #accessing }
 ConfigurationForXX >> htmlChapterTemplate [
 	"generated code"

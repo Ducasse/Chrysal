@@ -10,6 +10,7 @@ ChrysalConfiguration class >> newFromStream: aStream [
 	stonDictionary := (STON fromStream: aStream).
 	conf := self new. 
 	stonDictionary associations do: [ :aBinding |
+		self halt.
 		conf setConvertedValueOf: aBinding
 		].
 	^ conf
@@ -17,7 +18,25 @@ ChrysalConfiguration class >> newFromStream: aStream [
 ]
 
 { #category : #conversion }
+ChrysalConfiguration >> declaredItems [
+
+	^ #()
+]
+
+{ #category : #conversion }
 ChrysalConfiguration >> setConvertedValueOf: aBinding [
+	"Set the converted value of aBinding value in the correct property of the receiver. aBinding should be property and a raw value as written in the configuration"
+
+	(self declaredItems includes: aBinding key asSymbol)
+		ifTrue: [ self setConvertedValueOfDeclaredProperty: aBinding  ]
+		ifFalse: [ self perform: #propertyAt:put: 
+								with: aBinding key asSymbol 
+								with: aBinding value ]
+	
+]
+
+{ #category : #conversion }
+ChrysalConfiguration >> setConvertedValueOfDeclaredProperty: aBinding [
 	"Set the converted value of aBinding value in the correct property of the receiver. 
 	aBinding should be property and a raw value as written in the configuration"
 

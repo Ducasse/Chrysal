@@ -14,8 +14,7 @@ Class {
 	#name : #ConfigurationBuilder,
 	#superclass : #Object,
 	#instVars : [
-		'configurationClass',
-		'importerClass'
+		'configurationClass'
 	],
 	#category : #Chrysal
 }
@@ -64,6 +63,23 @@ ConfigurationBuilder >> conversionGenerationForItem: anItem [
 ]
 
 { #category : #configuration }
+ConfigurationBuilder >> declaredItems: aDescription [
+
+	
+	^ String
+		streamContents: [ :str | 
+			str nextPutAll: 'declaredItems'.
+			str cr; tab.
+			str nextPutAll: '"generated code"'.
+			str cr; tab.
+			str nextPutAll: '^ #( '.
+			aDescription items
+				do: [:each | str nextPutAll: '#', each propertyName]
+				separatedBy: [str space].
+			str nextPutAll: ' )' ]
+]
+
+{ #category : #configuration }
 ConfigurationBuilder >> defineConfigurationClassNamed: aString packagedIn: packageName [
 	ChrysalConfiguration
 		subclass: aString asSymbol
@@ -100,4 +116,8 @@ ConfigurationBuilder >> with: aDescription [
 		self configurationClass  
 			compile: (self conversionGenerationForItem: each) 
 			classified: 'conversion'].
+	self configurationClass 
+		compile: (self declaredItems: aDescription)
+		classified: 'declared items'
+	
 ]
