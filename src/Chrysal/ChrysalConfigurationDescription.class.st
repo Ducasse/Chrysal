@@ -1,5 +1,5 @@
 Class {
-	#name : #ConfigurationDescription,
+	#name : #ChrysalConfigurationDescription,
 	#superclass : #Object,
 	#instVars : [
 		'items'
@@ -8,6 +8,6 @@ Class {
 }
 
 { #category : #accessing }
-ConfigurationDescription >> items [
+ChrysalConfigurationDescription >> items [
 	^ items
 ]

@@ -3,7 +3,7 @@ For now like that but after we should get a string based representation so that 
 "
 Class {
 	#name : #ConfigurationDescriptionForPillar,
-	#superclass : #ConfigurationDescription,
+	#superclass : #ChrysalConfigurationDescription,
 	#category : #'Chrysal-ToBeMovedElsewhere'
 }
 

@@ -15,7 +15,7 @@ ConfigurationBuilder new
 	with: ConfigurationDescriptionForXX new
 "
 Class {
-	#name : #ConfigurationBuilder,
+	#name : #ChrysalConfigurationBuilder,
 	#superclass : #Object,
 	#instVars : [
 		'configurationClass'
@@ -24,7 +24,7 @@ Class {
 }
 
 { #category : #configuration }
-ConfigurationBuilder >> accessorGenerationForItem: anItem [
+ChrysalConfigurationBuilder >> accessorGenerationForItem: anItem [
 	"self new accessorGenerationForItem: BooleanConfigurationItem example"
 	"self new accessorGenerationForItem: NewLineConfigurationItem example"
 	"self new accessorGenerationForItem: FolderConfigurationItem example"
@@ -42,17 +42,17 @@ ConfigurationBuilder >> accessorGenerationForItem: anItem [
 ]
 
 { #category : #configuration }
-ConfigurationBuilder >> configurationClass [
+ChrysalConfigurationBuilder >> configurationClass [
 	^ configurationClass
 ]
 
 { #category : #configuration }
-ConfigurationBuilder >> configurationClass: aClass [
+ChrysalConfigurationBuilder >> configurationClass: aClass [
 	configurationClass := aClass
 ]
 
 { #category : #configuration }
-ConfigurationBuilder >> conversionGenerationForItem: anItem [
+ChrysalConfigurationBuilder >> conversionGenerationForItem: anItem [
 	"self new accessorGenerationForItem: FileConfigurationItem example"
 
 	^ String
@@ -67,7 +67,7 @@ ConfigurationBuilder >> conversionGenerationForItem: anItem [
 ]
 
 { #category : #configuration }
-ConfigurationBuilder >> declaredItems: aDescription [
+ChrysalConfigurationBuilder >> declaredItems: aDescription [
 
 	
 	^ String
@@ -84,7 +84,7 @@ ConfigurationBuilder >> declaredItems: aDescription [
 ]
 
 { #category : #configuration }
-ConfigurationBuilder >> defineConfigurationClassNamed: aString packagedIn: packageName [
+ChrysalConfigurationBuilder >> defineConfigurationClassNamed: aString packagedIn: packageName [
 	ChrysalConfiguration
 		subclass: aString asSymbol
 		instanceVariableNames: ''
@@ -95,7 +95,7 @@ ConfigurationBuilder >> defineConfigurationClassNamed: aString packagedIn: packa
 ]
 
 { #category : #configuration }
-ConfigurationBuilder >> setterGenerationForItem: anItem [
+ChrysalConfigurationBuilder >> setterGenerationForItem: anItem [
 	
 	^ String
 		streamContents: [ :str | 
@@ -108,7 +108,7 @@ ConfigurationBuilder >> setterGenerationForItem: anItem [
 ]
 
 { #category : #configuration }
-ConfigurationBuilder >> with: aDescription [
+ChrysalConfigurationBuilder >> with: aDescription [
 	"self new with: ConfigurationDescriptionForXX new"
 	aDescription items do: [ :each | 
 		self configurationClass 

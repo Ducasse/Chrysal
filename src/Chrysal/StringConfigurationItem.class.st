@@ -1,6 +1,6 @@
 Class {
 	#name : #StringConfigurationItem,
-	#superclass : #ConfigurationItem,
+	#superclass : #Chrysal,
 	#category : #Chrysal
 }
 

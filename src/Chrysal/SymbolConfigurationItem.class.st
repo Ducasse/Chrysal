@@ -1,6 +1,6 @@
 Class {
 	#name : #SymbolConfigurationItem,
-	#superclass : #ConfigurationItem,
+	#superclass : #Chrysal,
 	#category : #Chrysal
 }
 

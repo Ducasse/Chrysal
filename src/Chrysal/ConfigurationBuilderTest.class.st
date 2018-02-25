@@ -8,7 +8,7 @@ Class {
 ConfigurationBuilderTest >> testBuilder [
 	"this should be probably turned into a resources"
 	
-	ConfigurationBuilder new 
+	ChrysalConfigurationBuilder new 
 		configurationClass: ConfigurationForXX;
 		with: ConfigurationDescriptionForXX new.
 		

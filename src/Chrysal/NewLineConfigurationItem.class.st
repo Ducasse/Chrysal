@@ -1,6 +1,6 @@
 Class {
 	#name : #NewLineConfigurationItem,
-	#superclass : #ConfigurationItem,
+	#superclass : #Chrysal,
 	#instVars : [
 		'defaultDomainObject',
 		'defaultKey'

@@ -1,6 +1,6 @@
 Class {
 	#name : #BooleanConfigurationItem,
-	#superclass : #ConfigurationItem,
+	#superclass : #Chrysal,
 	#instVars : [
 		'defaultDomainValue'
 	],

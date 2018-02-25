@@ -1,5 +1,5 @@
 Class {
-	#name : #ConfigurationItem,
+	#name : #Chrysal,
 	#superclass : #Object,
 	#instVars : [
 		'propertyName',
@@ -9,40 +9,40 @@ Class {
 }
 
 { #category : #accessing }
-ConfigurationItem >> default [
+Chrysal >> default [
 	^ default ifNil: [ default := self defaultValue ]
 ]
 
 { #category : #accessing }
-ConfigurationItem >> default: aString [ 
+Chrysal >> default: aString [ 
 	default := aString
 ]
 
 { #category : #accessing }
-ConfigurationItem >> defaultDomainValueString [
+Chrysal >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-ConfigurationItem >> defaultValue [
+Chrysal >> defaultValue [
 	"Default value is the default value of an item in the domain of the configuration writer and not in the Pharo world."
 	^ 'defaultValue'
 ]
 
 { #category : #unused }
-ConfigurationItem >> possibleValuesString [
+Chrysal >> possibleValuesString [
 	^ ''
 ]
 
 { #category : #accessing }
-ConfigurationItem >> propertyName [
+Chrysal >> propertyName [
 	^ propertyName
 ]
 
 { #category : #accessing }
-ConfigurationItem >> propertyName: aString [
+Chrysal >> propertyName: aString [
 	"property name"
 
 	propertyName := aString

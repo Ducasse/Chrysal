@@ -16,6 +16,11 @@ ChrysalConfiguration class >> newFromStream: aStream [
 
 ]
 
+{ #category : #'instance creation' }
+ChrysalConfiguration class >> newFromString: aString [
+	^ self newFromStream: aString readStream
+]
+
 { #category : #conversion }
 ChrysalConfiguration >> declaredItems [
 

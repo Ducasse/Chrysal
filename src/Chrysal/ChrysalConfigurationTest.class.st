@@ -1,11 +1,11 @@
 Class {
-	#name : #ConfigurationTest,
+	#name : #ChrysalConfigurationTest,
 	#superclass : #TestCase,
 	#category : #'Chrysal-Tests'
 }
 
 { #category : #tests }
-ConfigurationTest >> sample [
+ChrysalConfigurationTest >> sample [
 	^ '{
   "title": "A Little Scheme in Pharo",
   "verbose":"true",
@@ -24,18 +24,33 @@ ConfigurationTest >> sample [
 ]
 
 { #category : #tests }
-ConfigurationTest >> testNewFromStream [
-	| conf |
-	conf := ConfigurationForXX newFromStream: self sample readStream.
-	self assert: conf verbose. 
+ChrysalConfigurationTest >> testImportFromDictionary [
+	
+	| ston conf |
+	ston := '{
+		"array": [  ],
+		"title": "supercool book",
+		"authors":"stef zegreat" }}'.
+	conf := (ChrysalConfiguration newFromString: ston).
+	self assert: (conf propertyAt: 'title') equals: 'supercool book'.
+	self assert: (conf propertyAt: 'array') equals: #().	
+	self assert: (conf propertyAt: 'authors') equals: 'stef zegreat'.
+
 ]
 
 { #category : #tests }
-ConfigurationTest >> testSetConvertedValueOf [
-
+ChrysalConfigurationTest >> testNewFromStream [
 	| conf |
-	conf := ConfigurationForXX new.  
-	conf setConvertedValueOf: ('outputDirectory' -> 'build').
+	conf := ConfigurationForXX newFromStream: self sample readStream.
+	self assert: conf verbose
+]
+
+{ #category : #tests }
+ChrysalConfigurationTest >> testSetConvertedValueOf [
+	| conf |
+	conf := ConfigurationForXX
+		newFromStream: self sample readStream.
+	conf setConvertedValueOf: 'outputDirectory' -> 'build'.
 	self assert: conf outputDirectory class equals: FileReference.
-	self assert: conf verbose class equals: True.
+	self assert: conf verbose class equals: True
 ]

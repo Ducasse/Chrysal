@@ -1,10 +1,11 @@
 "
 I'm a class describing a configuration. 
 In the future we will store only a string that can regenerate itself. 
+I'm storing the definition for ConfigurationForXX used in the tests
 "
 Class {
 	#name : #ConfigurationDescriptionForXX,
-	#superclass : #ConfigurationDescription,
+	#superclass : #ChrysalConfigurationDescription,
 	#category : #'Chrysal-Tests'
 }
 

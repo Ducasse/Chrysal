@@ -1,6 +1,6 @@
 Class {
 	#name : #FolderConfigurationItem,
-	#superclass : #ConfigurationItem,
+	#superclass : #Chrysal,
 	#category : #Chrysal
 }
 
