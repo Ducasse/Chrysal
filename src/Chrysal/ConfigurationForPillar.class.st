@@ -11,9 +11,9 @@ ConfigurationForPillar >> attribution [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> attribution: aProperty [
+ConfigurationForPillar >> attribution: aValue [
 	"generated code"
-	^ self propertyAt: #attribution put: aProperty
+	^ self propertyAt: #attribution put: aValue
 ]
 
 { #category : #conversion }
@@ -95,6 +95,12 @@ ConfigurationForPillar >> convertTitle: aValue [
 	^ aValue
 ]
 
+{ #category : #'declared items' }
+ConfigurationForPillar >> declaredItems [
+	"generated code"
+	^ #( #title #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
+]
+
 { #category : #accessing }
 ConfigurationForPillar >> htmlChapterTemplate [
 	"generated code"
@@ -102,9 +108,9 @@ ConfigurationForPillar >> htmlChapterTemplate [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> htmlChapterTemplate: aProperty [
+ConfigurationForPillar >> htmlChapterTemplate: aValue [
 	"generated code"
-	^ self propertyAt: #htmlChapterTemplate put: aProperty
+	^ self propertyAt: #htmlChapterTemplate put: aValue
 ]
 
 { #category : #accessing }
@@ -114,9 +120,9 @@ ConfigurationForPillar >> htmlTemplate [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> htmlTemplate: aProperty [
+ConfigurationForPillar >> htmlTemplate: aValue [
 	"generated code"
-	^ self propertyAt: #htmlTemplate put: aProperty
+	^ self propertyAt: #htmlTemplate put: aValue
 ]
 
 { #category : #accessing }
@@ -126,9 +132,9 @@ ConfigurationForPillar >> keywords [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> keywords: aProperty [
+ConfigurationForPillar >> keywords: aValue [
 	"generated code"
-	^ self propertyAt: #keywords put: aProperty
+	^ self propertyAt: #keywords put: aValue
 ]
 
 { #category : #accessing }
@@ -138,9 +144,9 @@ ConfigurationForPillar >> latexChapterTemplate [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> latexChapterTemplate: aProperty [
+ConfigurationForPillar >> latexChapterTemplate: aValue [
 	"generated code"
-	^ self propertyAt: #latexChapterTemplate put: aProperty
+	^ self propertyAt: #latexChapterTemplate put: aValue
 ]
 
 { #category : #accessing }
@@ -150,9 +156,9 @@ ConfigurationForPillar >> latexTemplate [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> latexTemplate: aProperty [
+ConfigurationForPillar >> latexTemplate: aValue [
 	"generated code"
-	^ self propertyAt: #latexTemplate put: aProperty
+	^ self propertyAt: #latexTemplate put: aValue
 ]
 
 { #category : #accessing }
@@ -162,9 +168,9 @@ ConfigurationForPillar >> latexWriter [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> latexWriter: aProperty [
+ConfigurationForPillar >> latexWriter: aValue [
 	"generated code"
-	^ self propertyAt: #latexWriter put: aProperty
+	^ self propertyAt: #latexWriter put: aValue
 ]
 
 { #category : #accessing }
@@ -174,9 +180,9 @@ ConfigurationForPillar >> mainDocument [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> mainDocument: aProperty [
+ConfigurationForPillar >> mainDocument: aValue [
 	"generated code"
-	^ self propertyAt: #mainDocument put: aProperty
+	^ self propertyAt: #mainDocument put: aValue
 ]
 
 { #category : #accessing }
@@ -186,9 +192,9 @@ ConfigurationForPillar >> newLine [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> newLine: aProperty [
+ConfigurationForPillar >> newLine: aValue [
 	"generated code"
-	^ self propertyAt: #newLine put: aProperty
+	^ self propertyAt: #newLine put: aValue
 ]
 
 { #category : #accessing }
@@ -198,9 +204,9 @@ ConfigurationForPillar >> outputDirectory [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> outputDirectory: aProperty [
+ConfigurationForPillar >> outputDirectory: aValue [
 	"generated code"
-	^ self propertyAt: #outputDirectory put: aProperty
+	^ self propertyAt: #outputDirectory put: aValue
 ]
 
 { #category : #accessing }
@@ -210,9 +216,9 @@ ConfigurationForPillar >> series [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> series: aProperty [
+ConfigurationForPillar >> series: aValue [
 	"generated code"
-	^ self propertyAt: #series put: aProperty
+	^ self propertyAt: #series put: aValue
 ]
 
 { #category : #accessing }
@@ -222,7 +228,7 @@ ConfigurationForPillar >> title [
 ]
 
 { #category : #accessing }
-ConfigurationForPillar >> title: aProperty [
+ConfigurationForPillar >> title: aValue [
 	"generated code"
-	^ self propertyAt: #title put: aProperty
+	^ self propertyAt: #title put: aValue
 ]

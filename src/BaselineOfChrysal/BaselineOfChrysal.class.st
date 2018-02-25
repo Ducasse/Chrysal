@@ -9,12 +9,11 @@ BaselineOfChrysal >> baseline: spec [
 	<baseline>
 	
 	spec
-		baseline: 'Containers-PropertyEnvironment' 
+		baseline: 'ContainersPropertyEnvironment' 
 		with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment' ].
 		
 	spec 
 		for: #pharo 
 		do: [	spec 
-					package: 'Containers-PropertyEnvironment';
-					package: 'Chrysal' with: [ spec requires: #('Containers-PropertyEnvironment') ] ]
+					package: 'Chrysal' with: [ spec requires: #('ContainersPropertyEnvironment') ] ]
 ]

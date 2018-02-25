@@ -9,6 +9,10 @@ ConfigurationBuilder new
 ConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForPillar packagedIn: 'Chrysal-ToBeMovedElsewhere'; 
 	with: ConfigurationDescriptionForPillar new
+	
+ConfigurationBuilder new 
+	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal'; 
+	with: ConfigurationDescriptionForXX new
 "
 Class {
 	#name : #ConfigurationBuilder,
@@ -95,12 +99,12 @@ ConfigurationBuilder >> setterGenerationForItem: anItem [
 	
 	^ String
 		streamContents: [ :str | 
-			str nextPutAll: anItem propertyName, ': aProperty'.
+			str nextPutAll: anItem propertyName, ': aValue'.
 			str cr; tab.
 			str nextPutAll: '"generated code"'.
 			str cr; tab.
 			str nextPutAll:
-					'^ self propertyAt: #' , anItem propertyName , ' put: aProperty' ]
+					'^ self propertyAt: #' , anItem propertyName , ' put: aValue' ]
 ]
 
 { #category : #configuration }

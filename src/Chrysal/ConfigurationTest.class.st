@@ -27,14 +27,14 @@ ConfigurationTest >> sample [
 ConfigurationTest >> testNewFromStream [
 	| conf |
 	conf := ConfigurationForXX newFromStream: self sample readStream.
-	self assert: conf verbose.
+	self assert: conf verbose. 
 ]
 
 { #category : #tests }
 ConfigurationTest >> testSetConvertedValueOf [
 
 	| conf |
-	conf := ConfigurationForXX new. 
+	conf := ConfigurationForXX new.  
 	conf setConvertedValueOf: ('outputDirectory' -> 'build').
 	self assert: conf outputDirectory class equals: FileReference.
 	self assert: conf verbose class equals: True.

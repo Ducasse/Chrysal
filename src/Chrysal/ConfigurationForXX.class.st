@@ -1,14 +1,7 @@
-"
-Generated doing....
-
-ConfigurationBuilder new 
-		configurationClass: ConfigurationForXX;
-		with: ConfigurationDescriptionForXX new.
-"
 Class {
 	#name : #ConfigurationForXX,
 	#superclass : #ChrysalConfiguration,
-	#category : #'Chrysal-Tests'
+	#category : #Chrysal
 }
 
 { #category : #accessing }
@@ -18,9 +11,9 @@ ConfigurationForXX >> attribution [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> attribution: aProperty [
+ConfigurationForXX >> attribution: aValue [
 	"generated code"
-	^ self propertyAt: #attribution put: aProperty
+	^ self propertyAt: #attribution put: aValue
 ]
 
 { #category : #conversion }
@@ -121,9 +114,9 @@ ConfigurationForXX >> htmlChapterTemplate [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> htmlChapterTemplate: aProperty [
+ConfigurationForXX >> htmlChapterTemplate: aValue [
 	"generated code"
-	^ self propertyAt: #htmlChapterTemplate put: aProperty
+	^ self propertyAt: #htmlChapterTemplate put: aValue
 ]
 
 { #category : #accessing }
@@ -133,9 +126,9 @@ ConfigurationForXX >> htmlTemplate [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> htmlTemplate: aProperty [
+ConfigurationForXX >> htmlTemplate: aValue [
 	"generated code"
-	^ self propertyAt: #htmlTemplate put: aProperty
+	^ self propertyAt: #htmlTemplate put: aValue
 ]
 
 { #category : #accessing }
@@ -145,9 +138,9 @@ ConfigurationForXX >> keywords [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> keywords: aProperty [
+ConfigurationForXX >> keywords: aValue [
 	"generated code"
-	^ self propertyAt: #keywords put: aProperty
+	^ self propertyAt: #keywords put: aValue
 ]
 
 { #category : #accessing }
@@ -157,9 +150,9 @@ ConfigurationForXX >> latexChapterTemplate [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> latexChapterTemplate: aProperty [
+ConfigurationForXX >> latexChapterTemplate: aValue [
 	"generated code"
-	^ self propertyAt: #latexChapterTemplate put: aProperty
+	^ self propertyAt: #latexChapterTemplate put: aValue
 ]
 
 { #category : #accessing }
@@ -169,9 +162,9 @@ ConfigurationForXX >> latexTemplate [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> latexTemplate: aProperty [
+ConfigurationForXX >> latexTemplate: aValue [
 	"generated code"
-	^ self propertyAt: #latexTemplate put: aProperty
+	^ self propertyAt: #latexTemplate put: aValue
 ]
 
 { #category : #accessing }
@@ -181,9 +174,9 @@ ConfigurationForXX >> latexWriter [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> latexWriter: aProperty [
+ConfigurationForXX >> latexWriter: aValue [
 	"generated code"
-	^ self propertyAt: #latexWriter put: aProperty
+	^ self propertyAt: #latexWriter put: aValue
 ]
 
 { #category : #accessing }
@@ -193,9 +186,9 @@ ConfigurationForXX >> mainDocument [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> mainDocument: aProperty [
+ConfigurationForXX >> mainDocument: aValue [
 	"generated code"
-	^ self propertyAt: #mainDocument put: aProperty
+	^ self propertyAt: #mainDocument put: aValue
 ]
 
 { #category : #accessing }
@@ -205,9 +198,9 @@ ConfigurationForXX >> newLine [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> newLine: aProperty [
+ConfigurationForXX >> newLine: aValue [
 	"generated code"
-	^ self propertyAt: #newLine put: aProperty
+	^ self propertyAt: #newLine put: aValue
 ]
 
 { #category : #accessing }
@@ -217,9 +210,9 @@ ConfigurationForXX >> outputDirectory [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> outputDirectory: aProperty [
+ConfigurationForXX >> outputDirectory: aValue [
 	"generated code"
-	^ self propertyAt: #outputDirectory put: aProperty
+	^ self propertyAt: #outputDirectory put: aValue
 ]
 
 { #category : #accessing }
@@ -229,9 +222,9 @@ ConfigurationForXX >> series [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> series: aProperty [
+ConfigurationForXX >> series: aValue [
 	"generated code"
-	^ self propertyAt: #series put: aProperty
+	^ self propertyAt: #series put: aValue
 ]
 
 { #category : #accessing }
@@ -241,9 +234,9 @@ ConfigurationForXX >> title [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> title: aProperty [
+ConfigurationForXX >> title: aValue [
 	"generated code"
-	^ self propertyAt: #title put: aProperty
+	^ self propertyAt: #title put: aValue
 ]
 
 { #category : #accessing }
@@ -253,7 +246,7 @@ ConfigurationForXX >> verbose [
 ]
 
 { #category : #accessing }
-ConfigurationForXX >> verbose: aProperty [
+ConfigurationForXX >> verbose: aValue [
 	"generated code"
-	^ self propertyAt: #verbose put: aProperty
+	^ self propertyAt: #verbose put: aValue
 ]
