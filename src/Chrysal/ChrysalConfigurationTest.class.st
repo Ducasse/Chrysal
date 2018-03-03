@@ -39,6 +39,15 @@ ChrysalConfigurationTest >> testImportFromDictionary [
 ]
 
 { #category : #tests }
+ChrysalConfigurationTest >> testImportFromFile [
+	| config fileSystem |
+	fileSystem := FileSystem memory root.
+	fileSystem / 'test.conf' writeStreamDo: [ :st | st nextPutAll: self sample ].
+	config := ConfigurationForXX newFromFile: fileSystem / 'test.conf'.
+	self assert: (config propertyAt: 'verbose')
+]
+
+{ #category : #tests }
 ChrysalConfigurationTest >> testNewFromStream [
 	| conf |
 	conf := ConfigurationForXX newFromStream: self sample readStream.

@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #'instance creation' }
+ChrysalConfiguration class >> newFromFile: aFile [
+	
+	^ aFile readStreamDo: [ :input | self newFromStream: input ]
+]
+
+{ #category : #'instance creation' }
 ChrysalConfiguration class >> newFromStream: aStream [
 	| stonDictionary conf |
 	stonDictionary := (STON fromStream: aStream).
