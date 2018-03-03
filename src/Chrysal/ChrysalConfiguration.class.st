@@ -5,6 +5,14 @@ Class {
 }
 
 { #category : #'instance creation' }
+ChrysalConfiguration class >> newFromDictionary: stonDictionary [
+	| conf |
+	conf := self new.
+	stonDictionary associations do: [ :aBinding | conf setConvertedValueOf: aBinding ].
+	^ conf
+]
+
+{ #category : #'instance creation' }
 ChrysalConfiguration class >> newFromFile: aFile [
 	
 	^ aFile readStreamDo: [ :input | self newFromStream: input ]
@@ -12,14 +20,8 @@ ChrysalConfiguration class >> newFromFile: aFile [
 
 { #category : #'instance creation' }
 ChrysalConfiguration class >> newFromStream: aStream [
-	| stonDictionary conf |
-	stonDictionary := (STON fromStream: aStream).
-	conf := self new. 
-	stonDictionary associations do: [ :aBinding |
-		conf setConvertedValueOf: aBinding
-		].
-	^ conf
 
+	^ self newFromDictionary: (STON fromStream: aStream)
 ]
 
 { #category : #'instance creation' }

@@ -25,17 +25,23 @@ ChrysalConfigurationTest >> sample [
 
 { #category : #tests }
 ChrysalConfigurationTest >> testImportFromDictionary [
-	
-	| ston conf |
-	ston := '{
-		"array": [  ],
-		"title": "supercool book",
-		"authors":"stef zegreat" }}'.
-	conf := (ChrysalConfiguration newFromString: ston).
+	| conf |
+	conf := ChrysalConfiguration
+		newFromDictionary:
+			{('array' -> #()).
+			('title' -> 'supercool book').
+			('authors' -> 'stef zegreat')} asDictionary.
 	self assert: (conf propertyAt: 'title') equals: 'supercool book'.
-	self assert: (conf propertyAt: 'array') equals: #().	
-	self assert: (conf propertyAt: 'authors') equals: 'stef zegreat'.
+	self assert: (conf propertyAt: 'array') equals: #().
+	self assert: (conf propertyAt: 'authors') equals: 'stef zegreat'
+]
 
+{ #category : #tests }
+ChrysalConfigurationTest >> testImportFromDictionaryWithConversion [
+	| conf |
+	conf := ConfigurationForXX newFromDictionary: {('verbose' -> 'true') . ( 'htmlChapterTemplate' -> '_support/templates/html.mustache')} asDictionary.
+	self assert: (conf propertyAt: 'verbose') equals: true	" and not 'true' ".
+	self assert: (conf propertyAt: 'htmlChapterTemplate') class equals: FileReference
 ]
 
 { #category : #tests }
@@ -45,6 +51,19 @@ ChrysalConfigurationTest >> testImportFromFile [
 	fileSystem / 'test.conf' writeStreamDo: [ :st | st nextPutAll: self sample ].
 	config := ConfigurationForXX newFromFile: fileSystem / 'test.conf'.
 	self assert: (config propertyAt: 'verbose')
+]
+
+{ #category : #tests }
+ChrysalConfigurationTest >> testImportFromString [
+	| ston conf |
+	ston := '{
+		"array": [  ],
+		"title": "supercool book",
+		"authors":"stef zegreat" }}'.
+	conf := ChrysalConfiguration newFromString: ston.
+	self assert: (conf propertyAt: 'title') equals: 'supercool book'.
+	self assert: (conf propertyAt: 'array') equals: #().
+	self assert: (conf propertyAt: 'authors') equals: 'stef zegreat'
 ]
 
 { #category : #tests }
