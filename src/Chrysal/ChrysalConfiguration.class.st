@@ -12,10 +12,19 @@ ChrysalConfiguration class >> newFromDictionary: stonDictionary [
 	^ conf
 ]
 
+{ #category : #'compatible with pillar' }
+ChrysalConfiguration class >> newFromDictionary: aSTONDictionary extendedWith: anotherDictionary [
+]
+
 { #category : #'instance creation' }
 ChrysalConfiguration class >> newFromFile: aFile [
 	
 	^ aFile readStreamDo: [ :input | self newFromStream: input ]
+]
+
+{ #category : #'compatible with pillar' }
+ChrysalConfiguration class >> newFromFile: aFile extendedWith: anotherDictionary [
+	^ aFile readStreamDo: [ :input | self newFromStream: input extendedWith: anotherDictionary ]
 ]
 
 { #category : #'instance creation' }
@@ -24,9 +33,20 @@ ChrysalConfiguration class >> newFromStream: aStream [
 	^ self newFromDictionary: (STON fromStream: aStream)
 ]
 
+{ #category : #'compatible with pillar' }
+ChrysalConfiguration class >> newFromStream: aStream extendedWith: anotherDictionary [
+	^ self newFromDictionary: (STON fromStream: aStream) extendedWith: anotherDictionary
+			
+]
+
 { #category : #'instance creation' }
 ChrysalConfiguration class >> newFromString: aString [
 	^ self newFromStream: aString readStream
+]
+
+{ #category : #'compatible with pillar' }
+ChrysalConfiguration class >> newFromString: aString extendedWith: anotherDictionary [
+	^ self newFromStream: aString readStream extendedWith: anotherDictionary
 ]
 
 { #category : #conversion }
