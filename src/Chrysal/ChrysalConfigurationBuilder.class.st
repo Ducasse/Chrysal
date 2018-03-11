@@ -50,8 +50,8 @@ ChrysalConfigurationBuilder >> accessorGenerationForItem: anItem [
 ]
 
 { #category : #'add configuration accessors' }
-ChrysalConfigurationBuilder >> addAccessorsAndConversionMethodsFrom: aDescription [
-	aDescription items
+ChrysalConfigurationBuilder >> addAccessorsAndConversionMethodsFrom: descriptionItems [
+	descriptionItems
 		do: [ :each | 
 			self configurationClass
 				compile: (self accessorGenerationForItem: each)
@@ -65,9 +65,9 @@ ChrysalConfigurationBuilder >> addAccessorsAndConversionMethodsFrom: aDescriptio
 ]
 
 { #category : #'add configuration accessors' }
-ChrysalConfigurationBuilder >> addDeclaredItemsMethodFrom: aDescription [
+ChrysalConfigurationBuilder >> addDeclaredItemsMethodFrom: descriptionItems [
 	self configurationClass
-		compile: (self declaredItems: aDescription)
+		compile: (self declaredItems: descriptionItems)
 		classified: 'declared items'
 ]
 
@@ -102,7 +102,7 @@ ChrysalConfigurationBuilder >> conversionGenerationForItem: anItem [
 ]
 
 { #category : #'add configuration accessors' }
-ChrysalConfigurationBuilder >> declaredItems: aDescription [
+ChrysalConfigurationBuilder >> declaredItems: descriptionItems [
 
 	
 	^ String
@@ -112,7 +112,7 @@ ChrysalConfigurationBuilder >> declaredItems: aDescription [
 			str nextPutAll: '"generated code"'.
 			str cr; tab.
 			str nextPutAll: '^ #( '.
-			aDescription items
+			descriptionItems
 				do: [:each | str nextPutAll: '#', each propertyName]
 				separatedBy: [str space].
 			str nextPutAll: ' )' ]
@@ -157,12 +157,9 @@ ChrysalConfigurationBuilder >> setterGenerationForItem: anItem [
 ]
 
 { #category : #'public api' }
-ChrysalConfigurationBuilder >> with: aDescription [
-	"self new with: ConfigurationDescriptionForXX new"
+ChrysalConfigurationBuilder >> withDescriptionItems: descriptionItems [
+	"self new with: ConfigurationDescriptionForXX new items"
 
-
-	self addAccessorsAndConversionMethodsFrom: aDescription.
-	self addDeclaredItemsMethodFrom: aDescription.
-	self addUtilityMethods
-	"such methods are necessary to convert items back and forth. These methods are generated to avoid to have configuration being a subclass of a configuration class"
+	self addAccessorsAndConversionMethodsFrom: descriptionItems.
+	self addDeclaredItemsMethodFrom: descriptionItems
 ]
