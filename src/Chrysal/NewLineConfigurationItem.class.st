@@ -5,7 +5,7 @@ Class {
 		'defaultDomainObject',
 		'defaultKey'
 	],
-	#category : #Chrysal
+	#category : #'Chrysal-Model'
 }
 
 { #category : #example }

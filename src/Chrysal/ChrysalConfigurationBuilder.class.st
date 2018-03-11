@@ -1,5 +1,10 @@
 "
-I generate mappings based on items in the configurationClass specified. 
+I generate a configuration class independent from Chrysal objects, but based on them. I'm like a macro expansionNow Chrysal configuration still need to be subclass of ChrysalConfiguration class. 
+
+There are two ways of specify the configuration class: either using ==configurationClass:== or ==defineConfigurationClassNamed:packagedIn:==
+	
+The main public API is the method ==with:==
+
 
 	
 ConfigurationBuilder new 
@@ -9,6 +14,9 @@ ConfigurationBuilder new
 ConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForPillar packagedIn: 'Chrysal-ToBeMovedElsewhere'; 
 	with: ConfigurationDescriptionForPillar new
+	
+	
+	
 	
 ConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal'; 
@@ -20,10 +28,10 @@ Class {
 	#instVars : [
 		'configurationClass'
 	],
-	#category : #Chrysal
+	#category : #'Chrysal-Model'
 }
 
-{ #category : #configuration }
+{ #category : #'add configuration accessors' }
 ChrysalConfigurationBuilder >> accessorGenerationForItem: anItem [
 	"self new accessorGenerationForItem: BooleanConfigurationItem example"
 	"self new accessorGenerationForItem: NewLineConfigurationItem example"
@@ -41,17 +49,44 @@ ChrysalConfigurationBuilder >> accessorGenerationForItem: anItem [
 						, anItem defaultDomainValueString , ']' ]
 ]
 
-{ #category : #configuration }
+{ #category : #'add configuration accessors' }
+ChrysalConfigurationBuilder >> addAccessorsAndConversionMethodsFrom: aDescription [
+	aDescription items
+		do: [ :each | 
+			self configurationClass
+				compile: (self accessorGenerationForItem: each)
+				classified: 'accessing'.
+			self configurationClass
+				compile: (self setterGenerationForItem: each)
+				classified: 'accessing'.
+			self configurationClass
+				compile: (self conversionGenerationForItem: each)
+				classified: 'conversion' ]
+]
+
+{ #category : #'add configuration accessors' }
+ChrysalConfigurationBuilder >> addDeclaredItemsMethodFrom: aDescription [
+	self configurationClass
+		compile: (self declaredItems: aDescription)
+		classified: 'declared items'
+]
+
+{ #category : #'add description' }
+ChrysalConfigurationBuilder >> addDescription: description [
+	self configurationClass class compile: (self descriptionMethodFrom: description) classified: 'description'
+]
+
+{ #category : #accessing }
 ChrysalConfigurationBuilder >> configurationClass [
 	^ configurationClass
 ]
 
-{ #category : #configuration }
+{ #category : #accessing }
 ChrysalConfigurationBuilder >> configurationClass: aClass [
 	configurationClass := aClass
 ]
 
-{ #category : #configuration }
+{ #category : #'add configuration accessors' }
 ChrysalConfigurationBuilder >> conversionGenerationForItem: anItem [
 	"self new accessorGenerationForItem: FileConfigurationItem example"
 
@@ -66,7 +101,7 @@ ChrysalConfigurationBuilder >> conversionGenerationForItem: anItem [
 			str nextPutAll: ('^ ', anItem domainValueConversionString ) ]
 ]
 
-{ #category : #configuration }
+{ #category : #'add configuration accessors' }
 ChrysalConfigurationBuilder >> declaredItems: aDescription [
 
 	
@@ -83,9 +118,14 @@ ChrysalConfigurationBuilder >> declaredItems: aDescription [
 			str nextPutAll: ' )' ]
 ]
 
-{ #category : #configuration }
+{ #category : #'add class definition' }
+ChrysalConfigurationBuilder >> defaultChrysalConfigurationClass [
+	^ ChrysalConfiguration 	
+]
+
+{ #category : #'add class definition' }
 ChrysalConfigurationBuilder >> defineConfigurationClassNamed: aString packagedIn: packageName [
-	ChrysalConfiguration
+	self defaultChrysalConfigurationClass 
 		subclass: aString asSymbol
 		instanceVariableNames: ''
 		classVariableNames: ''
@@ -94,7 +134,16 @@ ChrysalConfigurationBuilder >> defineConfigurationClassNamed: aString packagedIn
 	self configurationClass: (self class environment at: aString asSymbol)
 ]
 
-{ #category : #configuration }
+{ #category : #'add description' }
+ChrysalConfigurationBuilder >> descriptionMethodFrom: description [
+		
+	^ String streamContents: [ :s |
+		s nextPutAll: 'description'; newLine.
+		s nextPutAll: '^ ' 
+		]
+]
+
+{ #category : #'add configuration accessors' }
 ChrysalConfigurationBuilder >> setterGenerationForItem: anItem [
 	
 	^ String
@@ -107,21 +156,13 @@ ChrysalConfigurationBuilder >> setterGenerationForItem: anItem [
 					'^ self propertyAt: #' , anItem propertyName , ' put: aValue' ]
 ]
 
-{ #category : #configuration }
+{ #category : #'public api' }
 ChrysalConfigurationBuilder >> with: aDescription [
 	"self new with: ConfigurationDescriptionForXX new"
-	aDescription items do: [ :each | 
-		self configurationClass 
-			compile: (self accessorGenerationForItem: each) 	
-			classified: 'accessing'. 
-		self configurationClass  
-			compile: (self setterGenerationForItem: each) 
-			classified: 'accessing'.
-		self configurationClass  
-			compile: (self conversionGenerationForItem: each) 
-			classified: 'conversion'].
-	self configurationClass 
-		compile: (self declaredItems: aDescription)
-		classified: 'declared items'
-	
+
+
+	self addAccessorsAndConversionMethodsFrom: aDescription.
+	self addDeclaredItemsMethodFrom: aDescription.
+	self addUtilityMethods
+	"such methods are necessary to convert items back and forth. These methods are generated to avoid to have configuration being a subclass of a configuration class"
 ]

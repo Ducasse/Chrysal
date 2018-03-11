@@ -1,7 +1,7 @@
 Class {
 	#name : #SymbolConfigurationItem,
 	#superclass : #Chrysal,
-	#category : #Chrysal
+	#category : #'Chrysal-Model'
 }
 
 { #category : #unused }

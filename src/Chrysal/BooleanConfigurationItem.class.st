@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'defaultDomainValue'
 	],
-	#category : #Chrysal
+	#category : #'Chrysal-Model'
 }
 
 { #category : #example }

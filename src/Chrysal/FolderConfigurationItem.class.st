@@ -1,7 +1,7 @@
 Class {
 	#name : #FolderConfigurationItem,
 	#superclass : #Chrysal,
-	#category : #Chrysal
+	#category : #'Chrysal-Model'
 }
 
 { #category : #example }

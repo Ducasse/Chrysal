@@ -1,7 +1,7 @@
 Class {
 	#name : #ChrysalConfiguration,
 	#superclass : #CTEnvironment,
-	#category : #Chrysal
+	#category : #'Chrysal-Runtime'
 }
 
 { #category : #'instance creation' }

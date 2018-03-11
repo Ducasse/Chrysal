@@ -1,3 +1,6 @@
+"
+Now introduce Chrysal-Runtime package containing a simple class whose other configurations will be subclass of. 
+"
 Class {
 	#name : #BaselineOfChrysal,
 	#superclass : #BaselineOf,
@@ -7,13 +10,15 @@ Class {
 { #category : #baselines }
 BaselineOfChrysal >> baseline: spec [
 	<baseline>
-	
 	spec
-		baseline: 'ContainersPropertyEnvironment' 
+		baseline: 'ContainersPropertyEnvironment'
 		with: [ spec repository: 'github://Ducasse/Containers-PropertyEnvironment' ].
-		
-	spec 
-		for: #pharo 
-		do: [	spec 
-					package: 'Chrysal' with: [ spec requires: #('ContainersPropertyEnvironment') ] ]
+	spec
+		for: #pharo
+		do: [ 
+			spec
+				package: 'Chrysal-Runtime'.
+			spec
+				package: 'Chrysal'
+				with: [ spec requires: #('ContainersPropertyEnvironment' 'Chrysal-Runtime') ] ]
 ]

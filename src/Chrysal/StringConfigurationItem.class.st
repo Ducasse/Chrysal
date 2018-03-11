@@ -1,7 +1,7 @@
 Class {
 	#name : #StringConfigurationItem,
 	#superclass : #Chrysal,
-	#category : #Chrysal
+	#category : #'Chrysal-Model'
 }
 
 { #category : #example }

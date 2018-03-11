@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'items'
 	],
-	#category : #Chrysal
+	#category : #'Chrysal-Model'
 }
 
 { #category : #accessing }

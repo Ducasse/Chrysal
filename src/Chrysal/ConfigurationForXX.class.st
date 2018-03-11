@@ -1,7 +1,7 @@
 Class {
 	#name : #ConfigurationForXX,
 	#superclass : #ChrysalConfiguration,
-	#category : #Chrysal
+	#category : #'Chrysal-Model'
 }
 
 { #category : #accessing }
