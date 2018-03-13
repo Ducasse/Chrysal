@@ -72,8 +72,14 @@ ChrysalConfigurationBuilder >> addDeclaredItemsMethodFrom: descriptionItems [
 ]
 
 { #category : #'add description' }
-ChrysalConfigurationBuilder >> addDescription: description [
-	self configurationClass class compile: (self descriptionMethodFrom: description) classified: 'description'
+ChrysalConfigurationBuilder >> addDescription: descriptionItems [
+	self configurationClass class compile: (self descriptionMethodFrom: descriptionItems) classified: 'description'
+]
+
+{ #category : #'add description' }
+ChrysalConfigurationBuilder >> addDescriptionBodyIn: aStream forItems: descriptionItems [
+
+	aStream print: (STON toStringPretty: descriptionItems)
 ]
 
 { #category : #accessing }
@@ -135,12 +141,14 @@ ChrysalConfigurationBuilder >> defineConfigurationClassNamed: aString packagedIn
 ]
 
 { #category : #'add description' }
-ChrysalConfigurationBuilder >> descriptionMethodFrom: description [
-		
-	^ String streamContents: [ :s |
-		s nextPutAll: 'description'; newLine.
-		s nextPutAll: '^ ' 
-		]
+ChrysalConfigurationBuilder >> descriptionMethodFrom: descriptionItems [
+	"self new descriptionMethodFrom: ChrysalConfigurationDescription itemDescriptionForXX "
+
+	^ String
+		streamContents: [ :s | 
+			s nextPutAll: 'descriptions'; cr.
+			s nextPutAll: ' ^ STON fromString: '.
+			self addDescriptionBodyIn: s forItems: descriptionItems ]
 ]
 
 { #category : #'add configuration accessors' }
@@ -161,5 +169,6 @@ ChrysalConfigurationBuilder >> withDescriptionItems: descriptionItems [
 	"self new with: ConfigurationDescriptionForXX new items"
 
 	self addAccessorsAndConversionMethodsFrom: descriptionItems.
-	self addDeclaredItemsMethodFrom: descriptionItems
+	self addDeclaredItemsMethodFrom: descriptionItems.
+	self addDescription: descriptionItems
 ]

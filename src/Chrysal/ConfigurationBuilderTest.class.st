@@ -27,3 +27,17 @@ ConfigurationBuilderTest >> testBuilder [
 	"generated code"
 	^ self propertyAt: #latexWriter ifAbsent: [#latex:sbabook]'
 ]
+
+{ #category : #tests }
+ConfigurationBuilderTest >> testDescriptionBuilder [
+	
+	| builder string |
+	builder := ChrysalConfigurationBuilder new.
+	string := String
+		streamContents: [ :s |  builder 
+										addDescriptionBodyIn: s 
+										forItems: ChrysalConfigurationDescription itemDescriptionForXX ].
+	self 
+		assert: (STON fromString: string) size 
+		equals:  ChrysalConfigurationDescription itemDescriptionForXX size
+]
