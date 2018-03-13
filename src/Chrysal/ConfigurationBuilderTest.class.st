@@ -31,13 +31,15 @@ ConfigurationBuilderTest >> testBuilder [
 { #category : #tests }
 ConfigurationBuilderTest >> testDescriptionBuilder [
 	
-	| builder string |
+	| builder string items |
 	builder := ChrysalConfigurationBuilder new.
+	items := ChrysalConfigurationDescription itemDescriptionForXX.
+	self assert: items size equals: 13.
 	string := String
 		streamContents: [ :s |  builder 
 										addDescriptionBodyIn: s 
-										forItems: ChrysalConfigurationDescription itemDescriptionForXX ].
+										forItems:  items ].
 	self 
 		assert: (STON fromString: string) size 
-		equals:  ChrysalConfigurationDescription itemDescriptionForXX size
+		equals: items size
 ]
