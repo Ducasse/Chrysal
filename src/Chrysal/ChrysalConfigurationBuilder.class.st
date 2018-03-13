@@ -3,24 +3,21 @@ I generate a configuration class independent from Chrysal objects, but based on 
 
 There are two ways of specify the configuration class: either using ==configurationClass:== or ==defineConfigurationClassNamed:packagedIn:==
 	
-The main public API is the method ==with:==
+The main public API is the method ==withDescriptionItems:==
 
 
 	
-ConfigurationBuilder new 
+ChrysalConfigurationBuilder new 
 	configurationClass: ConfigurationForPillar;
-	with: ConfigurationDescriptionForPillar new
+	withDescriptionItems: ChrysalConfigurationDescription itemDescriptionForPillar
 	
-ConfigurationBuilder new 
+ChrysalConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForPillar packagedIn: 'Chrysal-ToBeMovedElsewhere'; 
-	with: ConfigurationDescriptionForPillar new
+	withDescriptionItems: ChrysalConfigurationDescription itemDescriptionForPillar
 	
-	
-	
-	
-ConfigurationBuilder new 
-	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal'; 
-	with: ConfigurationDescriptionForXX new
+ChrysalConfigurationBuilder new 
+	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'ChrysalXX'; 
+	withDescriptionItems: ChrysalConfigurationDescription itemDescriptionForXX
 "
 Class {
 	#name : #ChrysalConfigurationBuilder,
@@ -146,7 +143,7 @@ ChrysalConfigurationBuilder >> descriptionMethodFrom: descriptionItems [
 
 	^ String
 		streamContents: [ :s | 
-			s nextPutAll: 'descriptions'; cr.
+			s nextPutAll: 'chrysalDescriptions'; cr.
 			s nextPutAll: ' ^ STON fromString: '.
 			self addDescriptionBodyIn: s forItems: descriptionItems ]
 ]
