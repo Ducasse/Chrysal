@@ -18,6 +18,16 @@ ChrysalConfigurationBuilder new
 ChrysalConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'ChrysalXX'; 
 	withDescriptionItems: ChrysalConfigurationDescription itemDescriptionForXX
+	
+
+
+Next step is to 
+- generate code that generate the class itself.  
+- do we copy the methods from the superclass? this way we are fully automous?
+
+
+
+
 "
 Class {
 	#name : #ChrysalConfigurationBuilder,
