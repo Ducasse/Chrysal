@@ -38,6 +38,12 @@ BooleanConfigurationItem >> defaultDomainValueString [
 	^ self defaultValue
 ]
 
+{ #category : #'public API' }
+BooleanConfigurationItem >> defaultValue [
+	"Default value is the default value of an item in the domain of the configuration writer and not in the Pharo world."
+	^ default
+]
+
 { #category : #accessing }
 BooleanConfigurationItem >> domainValueConversionString [
 	"Returns a string representing the conversion of a value from the configuration writer world to Pharo. aValue is the parameter representing the object to be converted"

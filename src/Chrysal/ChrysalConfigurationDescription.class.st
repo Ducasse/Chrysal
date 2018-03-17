@@ -38,6 +38,14 @@ ChrysalConfigurationDescription class >> itemDescriptionForPillar [
 	(FileConfigurationItem new
 		propertyName: 'latexTemplate';
 		default: '_support/templates/main.latex.mustache').
+	(BooleanConfigurationItem  new
+		propertyName: 'scrambledEmailAddresses';
+		beFalseAsDefault
+		).
+	(BooleanConfigurationItem  new
+		propertyName: 'separateOutputFiles';
+		beFalseAsDefault
+		).
 	(FileConfigurationItem new
 		propertyName: 'latexChapterTemplate';
 		default: '_support/templates/chapter.latex.mustache').

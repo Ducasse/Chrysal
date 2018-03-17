@@ -4,6 +4,69 @@ Class {
 	#category : #'Chrysal-ToBeMovedElsewhere'
 }
 
+{ #category : #description }
+ConfigurationForPillar class >> chrysalDescriptions [
+ ^ STON fromString: '[
+	StringConfigurationItem {
+		#propertyName : ''title'',
+		#default : ''my super cool book''
+	},
+	StringConfigurationItem {
+		#propertyName : ''attribution'',
+		#default : ''me, myself and I''
+	},
+	StringConfigurationItem {
+		#propertyName : ''series'',
+		#default : ''Square Bracket Associate Collection''
+	},
+	StringConfigurationItem {
+		#propertyName : ''keywords'',
+		#default : ''Pharo''
+	},
+	FolderConfigurationItem {
+		#propertyName : ''outputDirectory'',
+		#default : ''build''
+	},
+	FileConfigurationItem {
+		#propertyName : ''mainDocument'',
+		#default : ''book''
+	},
+	FileConfigurationItem {
+		#propertyName : ''latexTemplate'',
+		#default : ''_support/templates/main.latex.mustache''
+	},
+	BooleanConfigurationItem {
+		#propertyName : ''scrambledEmailAddresses'',
+		#default : ''false''
+	},
+	BooleanConfigurationItem {
+		#propertyName : ''separateOutputFiles'',
+		#default : ''false''
+	},
+	FileConfigurationItem {
+		#propertyName : ''latexChapterTemplate'',
+		#default : ''_support/templates/chapter.latex.mustache''
+	},
+	FileConfigurationItem {
+		#propertyName : ''htmlTemplate'',
+		#default : ''_support/templates/html.mustache''
+	},
+	FileConfigurationItem {
+		#propertyName : ''htmlChapterTemplate'',
+		#default : ''_support/templates/html.mustache''
+	},
+	NewLineConfigurationItem {
+		#propertyName : ''newLine'',
+		#default : #unix,
+		#defaultKey : #unix
+	},
+	StringConfigurationItem {
+		#propertyName : ''latexWriter'',
+		#default : #''latex:sbabook''
+	}
+]'
+]
+
 { #category : #accessing }
 ConfigurationForPillar >> attribution [
 	"generated code"
@@ -84,6 +147,18 @@ ConfigurationForPillar >> convertOutputDirectory: aValue [
 ]
 
 { #category : #conversion }
+ConfigurationForPillar >> convertScrambledEmailAddresses: aValue [
+	"generated code"
+	^ Object readFrom: aValue
+]
+
+{ #category : #conversion }
+ConfigurationForPillar >> convertSeparateOutputFiles: aValue [
+	"generated code"
+	^ Object readFrom: aValue
+]
+
+{ #category : #conversion }
 ConfigurationForPillar >> convertSeries: aValue [
 	"generated code"
 	^ aValue
@@ -98,7 +173,7 @@ ConfigurationForPillar >> convertTitle: aValue [
 { #category : #'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
-	^ #( #title #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
+	^ #( #title #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #scrambledEmailAddresses #separateOutputFiles #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
 ]
 
 { #category : #accessing }
@@ -207,6 +282,30 @@ ConfigurationForPillar >> outputDirectory [
 ConfigurationForPillar >> outputDirectory: aValue [
 	"generated code"
 	^ self propertyAt: #outputDirectory put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> scrambledEmailAddresses [
+	"generated code"
+	^ self propertyAt: #scrambledEmailAddresses ifAbsent: [false]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> scrambledEmailAddresses: aValue [
+	"generated code"
+	^ self propertyAt: #scrambledEmailAddresses put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> separateOutputFiles [
+	"generated code"
+	^ self propertyAt: #separateOutputFiles ifAbsent: [false]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> separateOutputFiles: aValue [
+	"generated code"
+	^ self propertyAt: #separateOutputFiles put: aValue
 ]
 
 { #category : #accessing }
