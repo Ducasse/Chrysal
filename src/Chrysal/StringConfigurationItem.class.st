@@ -1,6 +1,6 @@
 Class {
 	#name : #StringConfigurationItem,
-	#superclass : #Chrysal,
+	#superclass : #ChrysalItem,
 	#category : #'Chrysal-Model'
 }
 

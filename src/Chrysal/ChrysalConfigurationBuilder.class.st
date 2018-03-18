@@ -5,21 +5,15 @@ There are two ways of specify the configuration class: either using ==configurat
 	
 The main public API is the method ==withDescriptionItems:==
 
-
+ChrysalConfigurationBuilder new 
+	defineConfigurationClassNamed: #ConfigurationForXX 
+	packagedIn: 'Chrysal-Tests'; 
+	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
 	
 ChrysalConfigurationBuilder new 
-	configurationClass: ConfigurationForPillar;
-	withDescriptionItems: ChrysalConfigurationDescription itemDescriptionForPillar
+	configurationClass: ConfigurationForXX;
+	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
 	
-ChrysalConfigurationBuilder new 
-	defineConfigurationClassNamed: #ConfigurationForPillar packagedIn: 'Chrysal-ToBeMovedElsewhere'; 
-	withDescriptionItems: ChrysalConfigurationDescription itemDescriptionForPillar
-	
-ChrysalConfigurationBuilder new 
-	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'ChrysalXX'; 
-	withDescriptionItems: ChrysalConfigurationDescription itemDescriptionForXX
-	
-
 
 Next step is to 
 - generate code that generate the class itself.  
@@ -37,6 +31,115 @@ Class {
 	],
 	#category : #'Chrysal-Model'
 }
+
+{ #category : #'for test and documentation' }
+ChrysalConfigurationBuilder class >> itemDescriptionForPillar [
+	"Pay attention this description is not used to generate pillar configuration. It is just here are an example for the documentation and class comment"
+	^ {(StringConfigurationItem new
+		propertyName: 'title';
+		default: 'my super cool book';
+		yourself).
+	(StringConfigurationItem new
+		propertyName: 'attribution';
+		default: 'me, myself and I';
+		yourself).
+	(StringConfigurationItem new
+		propertyName: 'series';
+		default: 'Square Bracket Associate Collection';
+		yourself).
+	(StringConfigurationItem new
+		propertyName: 'keywords';
+		default: 'Pharo';
+		yourself).
+	(FolderConfigurationItem new
+		propertyName: 'outputDirectory';
+		default: 'build').
+	(FileConfigurationItem new
+		propertyName: 'mainDocument';
+		default: 'book').
+	(FileConfigurationItem new
+		propertyName: 'latexTemplate';
+		default: '_support/templates/main.latex.mustache').
+	(BooleanConfigurationItem  new
+		propertyName: 'scrambledEmailAddresses';
+		beFalseAsDefault
+		).
+	(BooleanConfigurationItem  new
+		propertyName: 'separateOutputFiles';
+		beFalseAsDefault
+		).
+	(BooleanConfigurationItem  new
+		propertyName: 'renderStructureAsSlide';
+		beFalseAsDefault
+		).	
+	(FileConfigurationItem new
+		propertyName: 'latexChapterTemplate';
+		default: '_support/templates/chapter.latex.mustache').
+	(FileConfigurationItem new
+		propertyName: 'htmlTemplate';
+		default: '_support/templates/html.mustache').
+	(FileConfigurationItem new
+		propertyName: 'htmlChapterTemplate';
+		default: '_support/templates/html.mustache').
+	(NewLineConfigurationItem new
+		propertyName: 'newLine';
+		defaultIsUnix).
+	(StringConfigurationItem new
+		propertyName: 'latexWriter';
+		default: #latex:sbabook;
+		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class"}
+]
+
+{ #category : #'for test and documentation' }
+ChrysalConfigurationBuilder class >> itemDescriptionForXX [
+	"just a simple description of items for the tests"
+	
+	^ {(StringConfigurationItem new
+		propertyName: 'title';
+		default: 'my super cool book';
+		yourself).
+	(BooleanConfigurationItem new
+		propertyName: 'verbose';
+		beTrueAsDefault;
+		yourself).
+	(StringConfigurationItem new
+		propertyName: 'attribution';
+		default: 'me, myself and I';
+		yourself).
+	(StringConfigurationItem new
+		propertyName: 'series';
+		default: 'Square Bracket Associate Collection';
+		yourself).
+	(StringConfigurationItem new
+		propertyName: 'keywords';
+		default: 'Pharo';
+		yourself).
+	(FolderConfigurationItem new
+		propertyName: 'outputDirectory';
+		default: 'build').
+	(FileConfigurationItem new
+		propertyName: 'mainDocument';
+		default: 'book').
+	(FileConfigurationItem new
+		propertyName: 'latexTemplate';
+		default: '_support/templates/main.latex.mustache').
+	(FileConfigurationItem new
+		propertyName: 'latexChapterTemplate';
+		default: '_support/templates/chapter.latex.mustache').
+	(FileConfigurationItem new
+		propertyName: 'htmlTemplate';
+		default: '_support/templates/html.mustache').
+	(FileConfigurationItem new
+		propertyName: 'htmlChapterTemplate';
+		default: '_support/templates/html.mustache').
+	(NewLineConfigurationItem new
+		propertyName: 'newLine';
+		defaultIsUnix).
+	(SymbolConfigurationItem new
+		propertyName: 'latexWriter';
+		default: #latex:sbabook;
+		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class"}
+]
 
 { #category : #'add configuration accessors' }
 ChrysalConfigurationBuilder >> accessorGenerationForItem: anItem [

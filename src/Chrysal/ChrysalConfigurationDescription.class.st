@@ -46,6 +46,10 @@ ChrysalConfigurationDescription class >> itemDescriptionForPillar [
 		propertyName: 'separateOutputFiles';
 		beFalseAsDefault
 		).
+	(BooleanConfigurationItem  new
+		propertyName: 'renderStructureAsSlide';
+		beFalseAsDefault
+		).	
 	(FileConfigurationItem new
 		propertyName: 'latexChapterTemplate';
 		default: '_support/templates/chapter.latex.mustache').

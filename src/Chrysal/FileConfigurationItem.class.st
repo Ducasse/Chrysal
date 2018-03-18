@@ -1,6 +1,6 @@
 Class {
 	#name : #FileConfigurationItem,
-	#superclass : #Chrysal,
+	#superclass : #ChrysalItem,
 	#category : #'Chrysal-Model'
 }
 

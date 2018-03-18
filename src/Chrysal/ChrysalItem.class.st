@@ -1,4 +1,36 @@
 "
+A chrysalItem is a description object responsible for generating statically a configuration class able to represent, convert, and manage default value of various configuration properties. 
+
+A configuration is expressed as STON file on disk and the strings contained in the configuration should be converted to Pharo objects. For example files, folder, newline conventions. 
+
+An item has basically a propertyName, an explanation string, a default value. 
+Now care must be taken because item are compiled time objects and they should return string representations that will be used to generate the actual configuration class representing the configuration. 
+
+For example NewLineConfigurationItem>> domainValueConversionStringis a good example. It returns a mapping that will be used to map configuration properties to Pharo objects.
+
+NewLineConfigurationItem>> domainValueConversionString
+	""Returns a string converting a string as written by in the configuration file to a pharo object. 
+	Note that this method is like the body of a macro that will be expanded in the configuration class: 
+	here aValue is the name of the parameter of the generated method.
+	""
+
+	^ '(Dictionary
+			newFrom:
+				{(#cr -> String cr).
+				(#lf -> UnixPlatform new lineEnding).
+				(#crlf -> Win32Platform new lineEnding).
+				(#unix -> UnixPlatform new lineEnding).
+				(#mac -> UnixPlatform new lineEnding).
+				(#dos -> Win32Platform new lineEnding)}) at: aValue'
+
+
+
+Applications may extend or add new subclasses to manage specific property.
+
+
+
+
+
 STON toStringPretty: ConfigurationDescriptionForXX new items
 
  '[
@@ -57,45 +89,58 @@ STON toStringPretty: ConfigurationDescriptionForXX new items
 ]'
 "
 Class {
-	#name : #Chrysal,
+	#name : #ChrysalItem,
 	#superclass : #Object,
 	#instVars : [
 		'propertyName',
-		'default'
+		'default',
+		'explanation'
 	],
 	#category : #'Chrysal-Model'
 }
 
 { #category : #accessing }
-Chrysal >> default [
+ChrysalItem >> default [
 	^ default ifNil: [ default := self defaultValue ]
 ]
 
 { #category : #accessing }
-Chrysal >> default: aString [ 
+ChrysalItem >> default: aString [ 
 	default := aString
 ]
 
 { #category : #accessing }
-Chrysal >> defaultDomainValueString [
+ChrysalItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-Chrysal >> defaultValue [
+ChrysalItem >> defaultValue [
 	"Default value is the default value of an item in the domain of the configuration writer and not in the Pharo world."
 	^ 'defaultValue'
 ]
 
+{ #category : #accessing }
+ChrysalItem >> explanation [
+
+	^ explanation
+]
+
+{ #category : #accessing }
+ChrysalItem >> explanation: aString [
+
+	explanation := aString
+]
+
 { #category : #unused }
-Chrysal >> possibleValuesString [
+ChrysalItem >> possibleValuesString [
 	^ ''
 ]
 
 { #category : #printing }
-Chrysal >> printOn: aStream [
+ChrysalItem >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPutAll: ' (' , propertyName printString;
@@ -103,19 +148,19 @@ Chrysal >> printOn: aStream [
 ]
 
 { #category : #accessing }
-Chrysal >> propertyName [
+ChrysalItem >> propertyName [
 	^ propertyName
 ]
 
 { #category : #accessing }
-Chrysal >> propertyName: aString [
+ChrysalItem >> propertyName: aString [
 	"property name"
 
 	propertyName := aString
 ]
 
 { #category : #printing }
-Chrysal >> storeOn: aStream [
+ChrysalItem >> storeOn: aStream [
 
 	
 ]
