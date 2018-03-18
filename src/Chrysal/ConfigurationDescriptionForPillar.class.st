@@ -25,7 +25,8 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 		yourself).
 	(NumberConfigurationItem new
 		propertyName: 'headingLevelOffset';
-		explanation: 'Indicate how to convert from the level of a Pillar heading to the level of heading in your exported document.
+		explanation:
+			'Indicate how to convert from the level of a Pillar heading to the level of heading in your exported document.
 	For example, a headingLevelOffset of 3 converts a 1st level Pillar heading to an <h4>in HTML';
 		default: 0;
 		yourself).
@@ -44,6 +45,12 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 		propertyName: 'mainDocument';
 		default: 'book').
 	(FileConfigurationItem new
+		propertyName: 'inputFile';
+		default: 'book';
+		explanation:
+			'The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value';
+		default: 'book').
+	(FileConfigurationItem new
 		propertyName: 'latexTemplate';
 		default: '_support/templates/main.latex.mustache').
 	(BooleanConfigurationItem new
@@ -56,6 +63,8 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 		beFalseAsDefault).
 	(BooleanConfigurationItem new
 		propertyName: 'renderStructureAsSlide';
+		explanation:
+			'When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document';
 		beFalseAsDefault).
 	(FileConfigurationItem new
 		propertyName: 'latexChapterTemplate';

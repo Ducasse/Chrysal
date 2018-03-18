@@ -37,6 +37,11 @@ ConfigurationForPillar class >> chrysalDescriptions [
 		#default : ''book''
 	},
 	FileConfigurationItem {
+		#propertyName : ''inputFile'',
+		#default : ''book'',
+		#explanation : ''The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value''
+	},
+	FileConfigurationItem {
 		#propertyName : ''latexTemplate'',
 		#default : ''_support/templates/main.latex.mustache''
 	},
@@ -51,7 +56,8 @@ ConfigurationForPillar class >> chrysalDescriptions [
 	},
 	BooleanConfigurationItem {
 		#propertyName : ''renderStructureAsSlide'',
-		#default : ''false''
+		#default : ''false'',
+		#explanation : ''When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document''
 	},
 	FileConfigurationItem {
 		#propertyName : ''latexChapterTemplate'',
@@ -110,6 +116,12 @@ ConfigurationForPillar >> convertHtmlChapterTemplate: aValue [
 
 { #category : #conversion }
 ConfigurationForPillar >> convertHtmlTemplate: aValue [
+	"generated code"
+	^ (FileSystem workingDirectory / aValue)
+]
+
+{ #category : #conversion }
+ConfigurationForPillar >> convertInputFile: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
 ]
@@ -196,7 +208,7 @@ ConfigurationForPillar >> convertTitle: aValue [
 { #category : #'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
-	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #mainDocument #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
+	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
 ]
 
 { #category : #accessing }
@@ -233,6 +245,18 @@ ConfigurationForPillar >> htmlTemplate [
 ConfigurationForPillar >> htmlTemplate: aValue [
 	"generated code"
 	^ self propertyAt: #htmlTemplate put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> inputFile [
+	"generated code"
+	^ self propertyAt: #inputFile ifAbsent: [(FileSystem workingDirectory / 'book')]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> inputFile: aValue [
+	"generated code"
+	^ self propertyAt: #inputFile put: aValue
 ]
 
 { #category : #accessing }
