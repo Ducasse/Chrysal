@@ -61,7 +61,8 @@ NewLineConfigurationItem >> domainValueConversionString [
 { #category : #initialization }
 NewLineConfigurationItem >> initialize [
 	super initialize.
-	explanation := 'The string that separates lines in the exported document. This is often either LF or CR\+LF but any string is possible. Values are ', self possibleValuesString. 
+	explanation := 'The string that separates lines in the exported document. This is often either LF or CR\+LF but any string is possible. Values are '
+		, self possibleValuesString
 ]
 
 { #category : #'mapping logic' }
@@ -92,5 +93,5 @@ NewLineConfigurationItem >> mapperFromUserToDomainRepresentations [
 
 { #category : #initialization }
 NewLineConfigurationItem >> possibleValuesString [
-	^ #(#cr #lf  #crlf  #unix  #mac  #dos)
+	^ #(#cr #lf #crlf #unix #mac #dos) asString
 ]

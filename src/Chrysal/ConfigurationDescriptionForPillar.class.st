@@ -1,5 +1,11 @@
 "
 I'm just holding some descriptions that are used to generate the configurationForPillar class.
+
+
+ChrysalConfigurationBuilder new 
+	defineConfigurationClassNamed: #ConfigurationForPillar 
+	packagedIn: 'Chrysal-ToBeMovedElsewhere'; 
+	withDescriptionItems: ConfigurationDescriptionForPillar itemDescriptionForPillar
 "
 Class {
 	#name : #ConfigurationDescriptionForPillar,
@@ -16,6 +22,12 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 	(StringConfigurationItem new
 		propertyName: 'attribution';
 		default: 'me, myself and I';
+		yourself).
+	(NumberConfigurationItem new
+		propertyName: 'headingLevelOffset';
+		explanation: 'Indicate how to convert from the level of a Pillar heading to the level of heading in your exported document.
+	For example, a headingLevelOffset of 3 converts a 1st level Pillar heading to an <h4>in HTML';
+		default: 0;
 		yourself).
 	(StringConfigurationItem new
 		propertyName: 'series';
@@ -39,7 +51,8 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 		beFalseAsDefault).
 	(BooleanConfigurationItem new
 		propertyName: 'separateOutputFiles';
-		explanation: 'If true, each input file is exported to one output file. If false (the default), all input files are exported to outputFile.';
+		explanation:
+			'If true, each input file is exported to one output file. If false (the default), all input files are exported to outputFile.';
 		beFalseAsDefault).
 	(BooleanConfigurationItem new
 		propertyName: 'renderStructureAsSlide';

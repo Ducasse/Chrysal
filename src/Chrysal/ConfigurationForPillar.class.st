@@ -15,6 +15,11 @@ ConfigurationForPillar class >> chrysalDescriptions [
 		#propertyName : ''attribution'',
 		#default : ''me, myself and I''
 	},
+	NumberConfigurationItem {
+		#propertyName : ''headingLevelOffset'',
+		#default : 0,
+		#explanation : ''Indicate how to convert from the level of a Pillar heading to the level of heading in your exported document.\r\tFor example, a headingLevelOffset of 3 converts a 1st level Pillar heading to an <h4>in HTML''
+	},
 	StringConfigurationItem {
 		#propertyName : ''series'',
 		#default : ''Square Bracket Associate Collection''
@@ -41,6 +46,11 @@ ConfigurationForPillar class >> chrysalDescriptions [
 	},
 	BooleanConfigurationItem {
 		#propertyName : ''separateOutputFiles'',
+		#default : ''false'',
+		#explanation : ''If true, each input file is exported to one output file. If false (the default), all input files are exported to outputFile.''
+	},
+	BooleanConfigurationItem {
+		#propertyName : ''renderStructureAsSlide'',
 		#default : ''false''
 	},
 	FileConfigurationItem {
@@ -58,6 +68,7 @@ ConfigurationForPillar class >> chrysalDescriptions [
 	NewLineConfigurationItem {
 		#propertyName : ''newLine'',
 		#default : #unix,
+		#explanation : ''The string that separates lines in the exported document. This is often either LF or CR\\+LF but any string is possible. Values are #(#cr #lf #crlf #unix #mac #dos)'',
 		#defaultKey : #unix
 	},
 	StringConfigurationItem {
@@ -83,6 +94,12 @@ ConfigurationForPillar >> attribution: aValue [
 ConfigurationForPillar >> convertAttribution: aValue [
 	"generated code"
 	^ aValue
+]
+
+{ #category : #conversion }
+ConfigurationForPillar >> convertHeadingLevelOffset: aValue [
+	"generated code"
+	^ Object readFrom: aValue
 ]
 
 { #category : #conversion }
@@ -147,6 +164,12 @@ ConfigurationForPillar >> convertOutputDirectory: aValue [
 ]
 
 { #category : #conversion }
+ConfigurationForPillar >> convertRenderStructureAsSlide: aValue [
+	"generated code"
+	^ Object readFrom: aValue
+]
+
+{ #category : #conversion }
 ConfigurationForPillar >> convertScrambledEmailAddresses: aValue [
 	"generated code"
 	^ Object readFrom: aValue
@@ -173,7 +196,19 @@ ConfigurationForPillar >> convertTitle: aValue [
 { #category : #'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
-	^ #( #title #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #scrambledEmailAddresses #separateOutputFiles #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
+	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #mainDocument #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> headingLevelOffset [
+	"generated code"
+	^ self propertyAt: #headingLevelOffset ifAbsent: [0]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> headingLevelOffset: aValue [
+	"generated code"
+	^ self propertyAt: #headingLevelOffset put: aValue
 ]
 
 { #category : #accessing }
@@ -282,6 +317,18 @@ ConfigurationForPillar >> outputDirectory [
 ConfigurationForPillar >> outputDirectory: aValue [
 	"generated code"
 	^ self propertyAt: #outputDirectory put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> renderStructureAsSlide [
+	"generated code"
+	^ self propertyAt: #renderStructureAsSlide ifAbsent: [false]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> renderStructureAsSlide: aValue [
+	"generated code"
+	^ self propertyAt: #renderStructureAsSlide put: aValue
 ]
 
 { #category : #accessing }
