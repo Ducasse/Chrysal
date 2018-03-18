@@ -1,5 +1,5 @@
 "
-I generate a configuration class independent from Chrysal objects, but based on them. I'm like a macro expansionNow Chrysal configuration still need to be subclass of ChrysalConfiguration class. 
+I generate a configuration class independent from Chrysal objects, but based on them. I'm like a macro expansio. For Now the generated Chrysal configuration classes still need to be subclass of ChrysalConfiguration class. 
 
 There are two ways of specify the configuration class: either using ==configurationClass:== or ==defineConfigurationClassNamed:packagedIn:==
 	

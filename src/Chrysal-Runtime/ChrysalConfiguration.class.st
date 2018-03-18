@@ -1,3 +1,9 @@
+"
+I'm the superclass of the generated configuration classes. 
+I'm needed because I define some behavior for the creation of instances of such generated classes. I also make sure that conversion methods are invoked when creating instances of such subclasses. 
+
+I'm packaged in the Chrysal-Runtime package because users of Chrysal may want to package their configuration without the full Chrysal builder. 
+"
 Class {
 	#name : #ChrysalConfiguration,
 	#superclass : #CTEnvironment,
