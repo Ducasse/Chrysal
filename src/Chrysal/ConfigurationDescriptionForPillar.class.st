@@ -34,18 +34,16 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 	(FileConfigurationItem new
 		propertyName: 'latexTemplate';
 		default: '_support/templates/main.latex.mustache').
-	(BooleanConfigurationItem  new
+	(BooleanConfigurationItem new
 		propertyName: 'scrambledEmailAddresses';
-		beFalseAsDefault
-		).
-	(BooleanConfigurationItem  new
+		beFalseAsDefault).
+	(BooleanConfigurationItem new
 		propertyName: 'separateOutputFiles';
-		beFalseAsDefault
-		).
-	(BooleanConfigurationItem  new
+		explanation: 'If true, each input file is exported to one output file. If false (the default), all input files are exported to outputFile.';
+		beFalseAsDefault).
+	(BooleanConfigurationItem new
 		propertyName: 'renderStructureAsSlide';
-		beFalseAsDefault
-		).	
+		beFalseAsDefault).
 	(FileConfigurationItem new
 		propertyName: 'latexChapterTemplate';
 		default: '_support/templates/chapter.latex.mustache').
