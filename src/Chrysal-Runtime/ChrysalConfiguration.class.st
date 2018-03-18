@@ -4,12 +4,21 @@ Class {
 	#category : #'Chrysal-Runtime'
 }
 
-{ #category : #'instance creation' }
-ChrysalConfiguration class >> newFromDictionary: stonDictionary [
+{ #category : #'instance creation others' }
+ChrysalConfiguration class >> newFromConvertedDictionary: aDictionary [
+	"Assuming that aDictionary contains values which are already objects (i.e., false and not 'false') create a configuration based on this dictionary"
+	
 	| conf |
 	conf := self new.
-	stonDictionary associations do: [ :aBinding | conf setConvertedValueOf: aBinding ].
+	aDictionary associations do: [ :aBinding | conf propertyAt: aBinding key asSymbol  put: aBinding value ].
 	^ conf
+]
+
+{ #category : #'instance creation' }
+ChrysalConfiguration class >> newFromDictionary: stonDictionary [
+	"It seems that pillar cocoon configuration semantics is to consider the argument as a ston dictionary, i.e., with strings and not objects as values."
+	
+	^ self newFromSTONDictionary: stonDictionary
 ]
 
 { #category : #'compatible with pillar' }
@@ -27,9 +36,18 @@ ChrysalConfiguration class >> newFromFile: aFile extendedWith: anotherDictionary
 	^ aFile readStreamDo: [ :input | self newFromStream: input extendedWith: anotherDictionary ]
 ]
 
+{ #category : #'instance creation others' }
+ChrysalConfiguration class >> newFromSTONDictionary: stonDictionary [
+	| conf |
+	conf := self new.
+	stonDictionary associations do: [ :aBinding | conf setConvertedValueOf: aBinding ].
+	^ conf
+]
+
 { #category : #'instance creation' }
 ChrysalConfiguration class >> newFromStream: aStream [
-
+	"Create a new configuration from the stream, values are converted accordingly to the properties.
+	i.e., a string 'false' will be turned into a false object in the resulting configuration."
 	^ self newFromDictionary: (STON fromStream: aStream)
 ]
 

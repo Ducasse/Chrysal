@@ -42,14 +42,18 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 		propertyName: 'outputDirectory';
 		default: 'build').
 	(FileConfigurationItem new
+		propertyName: 'outputFile';
+		default: 'output';
+		explanation:
+			'If separateOutputFiles is false, indicate the name of the output file. This can also be a write stream.').
+	(FileConfigurationItem new
 		propertyName: 'mainDocument';
 		default: 'book').
 	(FileConfigurationItem new
 		propertyName: 'inputFile';
 		default: 'book';
 		explanation:
-			'The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value';
-		default: 'book').
+			'The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value').
 	(FileConfigurationItem new
 		propertyName: 'latexTemplate';
 		default: '_support/templates/main.latex.mustache').

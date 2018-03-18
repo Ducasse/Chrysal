@@ -33,6 +33,11 @@ ConfigurationForPillar class >> chrysalDescriptions [
 		#default : ''build''
 	},
 	FileConfigurationItem {
+		#propertyName : ''outputFile'',
+		#default : ''output'',
+		#explanation : ''If separateOutputFiles is false, indicate the name of the output file. This can also be a write stream.''
+	},
+	FileConfigurationItem {
 		#propertyName : ''mainDocument'',
 		#default : ''book''
 	},
@@ -176,6 +181,12 @@ ConfigurationForPillar >> convertOutputDirectory: aValue [
 ]
 
 { #category : #conversion }
+ConfigurationForPillar >> convertOutputFile: aValue [
+	"generated code"
+	^ (FileSystem workingDirectory / aValue)
+]
+
+{ #category : #conversion }
 ConfigurationForPillar >> convertRenderStructureAsSlide: aValue [
 	"generated code"
 	^ Object readFrom: aValue
@@ -208,7 +219,7 @@ ConfigurationForPillar >> convertTitle: aValue [
 { #category : #'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
-	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
+	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
 ]
 
 { #category : #accessing }
@@ -341,6 +352,18 @@ ConfigurationForPillar >> outputDirectory [
 ConfigurationForPillar >> outputDirectory: aValue [
 	"generated code"
 	^ self propertyAt: #outputDirectory put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> outputFile [
+	"generated code"
+	^ self propertyAt: #outputFile ifAbsent: [(FileSystem workingDirectory / 'output')]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> outputFile: aValue [
+	"generated code"
+	^ self propertyAt: #outputFile put: aValue
 ]
 
 { #category : #accessing }
