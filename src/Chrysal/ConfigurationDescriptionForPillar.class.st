@@ -85,5 +85,8 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 	(StringConfigurationItem new
 		propertyName: 'latexWriter';
 		default: #latex:sbabook;
-		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class"}
+		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class"
+		.
+	(CodeBlockDefaultLanguageItem new)
+	}
 ]

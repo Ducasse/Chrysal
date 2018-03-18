@@ -34,8 +34,13 @@ FileConfigurationItem >> defaultValue [
 
 { #category : #accessing }
 FileConfigurationItem >> domainValueConversionString [
-	"Returns a string converting a string as written by in the configuration file to a pharo object. 
-	Note that this method is like the body of a macro that will be expanded in the configuration class: here aValue is the name of the parameter of the generated method.
+	"Returns a string converting a string as written in the configuration file to a pharo object. Note that this method is like the body of a macro that will be expanded in the configuration class: here aValue is the name of the parameter of the generated method.
+	
+	The result of the method will be used in the body of the following generated method (for the inputFile property)
+	
+	convertInputFile: aValue
+	      ^ (FileSystem workingDirectory / aValue)
+	
 	
 	 Parameter of the item like baseline should be accessed via self nameOfProperty"
 

@@ -28,6 +28,19 @@ NewLineConfigurationItem>> domainValueConversionString
 Applications may extend or add new subclasses to manage specific property.
 
 
+Known limitations:
+
+Note that for now, I do not manage the fact that the user could define a default value when he does not specify a given value for a property. 
+For example, the following configuration method
+
+defaultScriptLanguage
+	""generated code""
+	^ self propertyAt: #defaultScriptLanguage ifAbsent: [(PRRealScriptLanguage for: 'smalltalk')]
+
+is generated and we cannot simply let the user define that the default language could be something else than 'smalltalk'. Of course, he just has to specify a value for defaultScriptLanguage to do it - but we are talking about the default case specification. 
+
+
+
 
 
 
@@ -120,6 +133,23 @@ ChrysalItem >> defaultDomainValueString [
 ChrysalItem >> defaultValue [
 	"Default value is the default value of an item in the domain of the configuration writer and not in the Pharo world."
 	^ 'defaultValue'
+]
+
+{ #category : #accessing }
+ChrysalItem >> domainValueConversionString [
+	"Returns a string converting a string as written in the configuration file to a pharo object. 
+	Note that this method is like the body of a macro that will be expanded in the configuration class: here aValue is the name of the parameter of the generated method.
+	
+	For example for fileConfigurationItem (inputFile), 
+	the result of the method will be used in the body of the following generated method 
+	
+	convertInputFile: aValue
+	      ^ (FileSystem workingDirectory / aValue)
+	
+	
+	 Parameter of the item like baseline should be accessed via self nameOfProperty"
+
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }

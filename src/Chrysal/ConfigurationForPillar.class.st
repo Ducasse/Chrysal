@@ -85,6 +85,11 @@ ConfigurationForPillar class >> chrysalDescriptions [
 	StringConfigurationItem {
 		#propertyName : ''latexWriter'',
 		#default : #''latex:sbabook''
+	},
+	CodeBlockDefaultLanguageItem {
+		#propertyName : #defaultScriptLanguage,
+		#default : ''smalltalk'',
+		#explanation : ''Indicate the language in scripts when none is specified. This language is used for syntax highlighting. The currently supported languages are bash, css, html, http, json, javascript, pillar, sql, ston, shellcommands and smalltalk''
 	}
 ]'
 ]
@@ -105,6 +110,12 @@ ConfigurationForPillar >> attribution: aValue [
 ConfigurationForPillar >> convertAttribution: aValue [
 	"generated code"
 	^ aValue
+]
+
+{ #category : #conversion }
+ConfigurationForPillar >> convertDefaultScriptLanguage: aValue [
+	"generated code"
+	^ PRAbstractScriptLanguage for: aValue
 ]
 
 { #category : #conversion }
@@ -219,7 +230,19 @@ ConfigurationForPillar >> convertTitle: aValue [
 { #category : #'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
-	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
+	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #defaultScriptLanguage )
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> defaultScriptLanguage [
+	"generated code"
+	^ self propertyAt: #defaultScriptLanguage ifAbsent: [(PRRealScriptLanguage for: 'smalltalk')]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> defaultScriptLanguage: aValue [
+	"generated code"
+	^ self propertyAt: #defaultScriptLanguage put: aValue
 ]
 
 { #category : #accessing }
