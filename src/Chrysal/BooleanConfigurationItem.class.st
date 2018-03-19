@@ -25,7 +25,8 @@ BooleanConfigurationItem >> beTrueAsDefault [
 { #category : #unused }
 BooleanConfigurationItem >> convertToDomainObject: aValue [
 	"self new convertToDomainObject: 'true'"
-	^ Object readFrom: aValue
+	"^ (Compiler evaluate: self domainValueConversionString"
+	^ aValue
 ]
 
 { #category : #accessing }
@@ -45,7 +46,7 @@ BooleanConfigurationItem >> defaultValue [
 BooleanConfigurationItem >> domainValueConversionString [
 	"Returns a string representing the conversion of a value from the configuration writer world to Pharo. aValue is the parameter representing the object to be converted"
 
-	^ 'Object readFrom: aValue'
+	^ ' aValue '
 ]
 
 { #category : #unused }

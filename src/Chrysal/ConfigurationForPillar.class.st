@@ -121,7 +121,7 @@ ConfigurationForPillar >> convertDefaultScriptLanguage: aValue [
 { #category : #conversion }
 ConfigurationForPillar >> convertHeadingLevelOffset: aValue [
 	"generated code"
-	^ Object readFrom: aValue
+	^  aValue
 ]
 
 { #category : #conversion }
@@ -200,19 +200,19 @@ ConfigurationForPillar >> convertOutputFile: aValue [
 { #category : #conversion }
 ConfigurationForPillar >> convertRenderStructureAsSlide: aValue [
 	"generated code"
-	^ Object readFrom: aValue
+	^  aValue 
 ]
 
 { #category : #conversion }
 ConfigurationForPillar >> convertScrambledEmailAddresses: aValue [
 	"generated code"
-	^ Object readFrom: aValue
+	^  aValue 
 ]
 
 { #category : #conversion }
 ConfigurationForPillar >> convertSeparateOutputFiles: aValue [
 	"generated code"
-	^ Object readFrom: aValue
+	^  aValue 
 ]
 
 { #category : #conversion }

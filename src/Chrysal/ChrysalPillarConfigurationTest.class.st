@@ -20,6 +20,14 @@ ChrysalPillarConfigurationTest >> testReadingDefaultScriptLanguage [
 ]
 
 { #category : #'tests - from cocoon' }
+ChrysalPillarConfigurationTest >> testReadingHeadingLevelOffset [
+	| dictionary config |
+	dictionary := Dictionary with: 'headingLevelOffset' -> 1.
+	config := self configurationClass newFromDictionary: dictionary.
+	self assert: config headingLevelOffset equals: 1
+]
+
+{ #category : #'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingNewLine [
 	| dictionary config |
 	dictionary := Dictionary with: 'newLine' -> #unix.
@@ -30,7 +38,7 @@ ChrysalPillarConfigurationTest >> testReadingNewLine [
 { #category : #'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingRenderStructureAsSlide [
 	| dictionary config |
-	dictionary := Dictionary with: 'renderStructureAsSlide' -> 'false'.
+	dictionary := Dictionary with: 'renderStructureAsSlide' -> false.
 	config := self configurationClass newFromDictionary: dictionary.
 	self assert: config renderStructureAsSlide equals: false
 ]
@@ -38,7 +46,7 @@ ChrysalPillarConfigurationTest >> testReadingRenderStructureAsSlide [
 { #category : #'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingScrambledEmailAddresses [
 	| dictionary config |
-	dictionary := STON fromStream: '{ "scrambledEmailAddresses" :"true" }' readStream.
+	dictionary := STON fromStream: '{ "scrambledEmailAddresses" : true }' readStream.
 	config := self configurationClass newFromDictionary: dictionary.
 	self assert: config scrambledEmailAddresses equals: true
 ]
@@ -46,7 +54,7 @@ ChrysalPillarConfigurationTest >> testReadingScrambledEmailAddresses [
 { #category : #'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> testReadingSeparateOutputFiles [
 	| dictionary config |
-	dictionary := Dictionary with: 'separateOutputFiles' -> 'false'.
+	dictionary := Dictionary with: 'separateOutputFiles' -> false.
 	config := self configurationClass newFromDictionary: dictionary.
 	self assert: config separateOutputFiles equals: false
 ]
@@ -71,7 +79,7 @@ ChrysalPillarConfigurationTest >> testReadingVerbose [
 ChrysalPillarConfigurationTest >> testSeparateOutputFiles [
 	| dictionary config |
 	dictionary := STON
-		fromStream: '{  "separateOutputFiles" :"false" }' readStream.
+		fromStream: '{  "separateOutputFiles" : false }' readStream.
 	config := self configurationClass
 		newFromDictionary: dictionary.
 	self assert: config separateOutputFiles equals: false

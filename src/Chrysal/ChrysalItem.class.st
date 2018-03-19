@@ -149,7 +149,7 @@ ChrysalItem >> domainValueConversionString [
 	
 	 Parameter of the item like baseline should be accessed via self nameOfProperty"
 
-	^ self subclassResponsibility
+	^ 'aValue'
 ]
 
 { #category : #accessing }

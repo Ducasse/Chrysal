@@ -15,5 +15,5 @@ NumberConfigurationItem >> defaultDomainValueString [
 NumberConfigurationItem >> domainValueConversionString [
 	"Returns a string representing the conversion of a value from the configuration writer world to Pharo. aValue is the parameter representing the object to be converted"
 
-	^ 'Object readFrom: aValue'
+	^ ' aValue'
 ]
