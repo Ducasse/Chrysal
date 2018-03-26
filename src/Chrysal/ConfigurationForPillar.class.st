@@ -86,6 +86,11 @@ ConfigurationForPillar class >> chrysalDescriptions [
 		#propertyName : ''latexWriter'',
 		#default : #''latex:sbabook''
 	},
+	NumberConfigurationItem {
+		#propertyName : ''slideInTemplateForDeckJS'',
+		#default : 1,
+		#explanation : ''Number of slides in Template: Indicate the number of slides created by the DeckJS template. This is important to create anchors.''
+	},
 	CodeBlockDefaultLanguageItem {
 		#propertyName : #defaultScriptLanguage,
 		#default : ''smalltalk'',
@@ -222,6 +227,12 @@ ConfigurationForPillar >> convertSeries: aValue [
 ]
 
 { #category : #conversion }
+ConfigurationForPillar >> convertSlideInTemplateForDeckJS: aValue [
+	"generated code"
+	^  aValue
+]
+
+{ #category : #conversion }
 ConfigurationForPillar >> convertTitle: aValue [
 	"generated code"
 	^ aValue
@@ -230,7 +241,7 @@ ConfigurationForPillar >> convertTitle: aValue [
 { #category : #'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
-	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #defaultScriptLanguage )
+	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #slideInTemplateForDeckJS #defaultScriptLanguage )
 ]
 
 { #category : #accessing }
@@ -435,6 +446,18 @@ ConfigurationForPillar >> series [
 ConfigurationForPillar >> series: aValue [
 	"generated code"
 	^ self propertyAt: #series put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> slideInTemplateForDeckJS [
+	"generated code"
+	^ self propertyAt: #slideInTemplateForDeckJS ifAbsent: [1]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> slideInTemplateForDeckJS: aValue [
+	"generated code"
+	^ self propertyAt: #slideInTemplateForDeckJS put: aValue
 ]
 
 { #category : #accessing }

@@ -87,6 +87,11 @@ ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 		default: #latex:sbabook;
 		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class"
 		.
+	(NumberConfigurationItem new
+		propertyName: 'slideInTemplateForDeckJS';
+		explanation: 'Number of slides in Template: Indicate the number of slides created by the DeckJS template. This is important to create anchors.';
+		default: 1;
+		yourself).
 	(CodeBlockDefaultLanguageItem new)
 	}
 ]
