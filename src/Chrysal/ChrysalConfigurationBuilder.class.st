@@ -1,19 +1,32 @@
 "
 I generate a configuration class independent from Chrysal objects, but based on them. I'm like a macro expansio. For Now the generated Chrysal configuration classes still need to be subclass of ChrysalConfiguration class. 
 
+!! API
 There are two ways of specify the configuration class: either using ==configurationClass:== or ==defineConfigurationClassNamed:packagedIn:==
 	
 The main public API is the method ==withDescriptionItems:==
 
+Here are some typical usecases. 
+[[[
 ChrysalConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForXX 
 	packagedIn: 'Chrysal-Tests'; 
 	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
-	
+]]]
+
+[[[	
 ChrysalConfigurationBuilder new 
 	configurationClass: ConfigurationForXX;
 	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
-	
+]]]	
+
+
+!! Note for the chrysal extender
+
+STON configurations consider the following as literals and not strings: number true false symbol string.
+Therefore the conversion is not needed. 
+
+
 
 Next step is to 
 - generate code that generate the class itself.  

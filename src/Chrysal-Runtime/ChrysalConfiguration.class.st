@@ -29,6 +29,12 @@ ChrysalConfiguration class >> newFromDictionary: stonDictionary [
 
 { #category : #'compatible with pillar' }
 ChrysalConfiguration class >> newFromDictionary: aSTONDictionary extendedWith: anotherDictionary [
+
+	| configuration |
+	configuration :=  self newFromSTONDictionary: aSTONDictionary.
+	anotherDictionary associations do: [ :aBinding | configuration setConvertedValueOf: aBinding ].
+	self flag: #needsTest.
+	^ configuration
 ]
 
 { #category : #'instance creation' }
@@ -44,6 +50,8 @@ ChrysalConfiguration class >> newFromFile: aFile extendedWith: anotherDictionary
 
 { #category : #'instance creation others' }
 ChrysalConfiguration class >> newFromSTONDictionary: stonDictionary [
+	"Create a configuration based on a dictionary with the objects as defined in STON. 'string' for files and not files. Now pay attention since some literal objects such as true, numbers are not represented as string in STON."
+	
 	| conf |
 	conf := self new.
 	stonDictionary associations do: [ :aBinding | conf setConvertedValueOf: aBinding ].
@@ -59,12 +67,13 @@ ChrysalConfiguration class >> newFromStream: aStream [
 
 { #category : #'compatible with pillar' }
 ChrysalConfiguration class >> newFromStream: aStream extendedWith: anotherDictionary [
-	^ self newFromDictionary: (STON fromStream: aStream) extendedWith: anotherDictionary
+	^ self newFromDictionary: (STON fromStream: aStream) extendedWith: anotherDictionary 
 			
 ]
 
 { #category : #'instance creation' }
 ChrysalConfiguration class >> newFromString: aString [
+
 	^ self newFromStream: aString readStream
 ]
 

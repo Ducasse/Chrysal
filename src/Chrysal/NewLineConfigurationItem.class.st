@@ -1,3 +1,6 @@
+"
+To describe new lines.
+"
 Class {
 	#name : #NewLineConfigurationItem,
 	#superclass : #ChrysalItem,
@@ -15,12 +18,6 @@ NewLineConfigurationItem class >> example [
 	^ NewLineConfigurationItem new
 		propertyName: 'newline';
 		defaultIsUnix
-]
-
-{ #category : #unused }
-NewLineConfigurationItem >> convertToDomainObject: aValue [
-	"not good because I cannot generate it in the configuration class code"
-	^ self mapperFromUserToDomain at: aValue
 ]
 
 { #category : #accessing }

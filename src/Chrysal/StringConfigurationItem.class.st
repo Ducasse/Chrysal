@@ -1,3 +1,7 @@
+"
+To describe string items.
+Literal in STON.
+"
 Class {
 	#name : #StringConfigurationItem,
 	#superclass : #ChrysalItem,
@@ -13,11 +17,6 @@ StringConfigurationItem class >> example [
 		propertyName: 'title';
 		default: 'my super cool book';
 		yourself.
-]
-
-{ #category : #unused }
-StringConfigurationItem >> convertToDomainObject: aValue [ 
-	^ aValue
 ]
 
 { #category : #accessing }

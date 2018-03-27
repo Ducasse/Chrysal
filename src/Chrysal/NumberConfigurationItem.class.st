@@ -1,3 +1,7 @@
+"
+To describe number items.
+Literal in STON.
+"
 Class {
 	#name : #NumberConfigurationItem,
 	#superclass : #ChrysalItem,

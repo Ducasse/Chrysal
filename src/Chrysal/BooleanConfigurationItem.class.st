@@ -1,3 +1,7 @@
+"
+To describe boolean items.
+Literal in STON.
+"
 Class {
 	#name : #BooleanConfigurationItem,
 	#superclass : #ChrysalItem,
@@ -7,7 +11,7 @@ Class {
 { #category : #example }
 BooleanConfigurationItem class >> example [
 	<sampleInstance>
-	^ BooleanConfigurationItem new
+	^ self new
 		propertyName: 'separateOutputFiles';
 		beTrueAsDefault
 ]
@@ -20,13 +24,6 @@ BooleanConfigurationItem >> beFalseAsDefault [
 { #category : #'public API' }
 BooleanConfigurationItem >> beTrueAsDefault [
 	default := 'true'
-]
-
-{ #category : #unused }
-BooleanConfigurationItem >> convertToDomainObject: aValue [
-	"self new convertToDomainObject: 'true'"
-	"^ (Compiler evaluate: self domainValueConversionString"
-	^ aValue
 ]
 
 { #category : #accessing }

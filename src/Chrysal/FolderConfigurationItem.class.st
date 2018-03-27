@@ -1,3 +1,6 @@
+"
+To describe folder items
+"
 Class {
 	#name : #FolderConfigurationItem,
 	#superclass : #ChrysalItem,
@@ -11,13 +14,6 @@ FolderConfigurationItem class >> example [
 	^ FolderConfigurationItem new
 		propertyName: 'outputDirectory';
 		default: 'build'
-]
-
-{ #category : #unused }
-FolderConfigurationItem >> convertToDomainObject: aString [
-	"right now we do not pay attention to have a baseDirectory property to parametrize the folderitem"
-
-	^ FileSystem workingDirectory / aString
 ]
 
 { #category : #accessing }

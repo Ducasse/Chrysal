@@ -1,13 +1,12 @@
+"
+To describe symbol items.
+Literal in STON.
+"
 Class {
 	#name : #SymbolConfigurationItem,
 	#superclass : #ChrysalItem,
 	#category : #'Chrysal-Model'
 }
-
-{ #category : #unused }
-SymbolConfigurationItem >> convertToDomainObject: aValue [
-	^ aValue
-]
 
 { #category : #accessing }
 SymbolConfigurationItem >> defaultDomainValueString [

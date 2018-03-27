@@ -1,3 +1,7 @@
+"
+To describe file items.
+
+"
 Class {
 	#name : #FileConfigurationItem,
 	#superclass : #ChrysalItem,
@@ -11,13 +15,6 @@ FileConfigurationItem class >> example [
 	^ FileConfigurationItem new
 		propertyName: 'mainDocument';
 		default: 'book'
-]
-
-{ #category : #unused }
-FileConfigurationItem >> convertToDomainObject: aString [
-	"right now we do not pay attention to have a baseDirectory property to parametrize the folderitem"
-
-	^ FileSystem workingDirectory / aString
 ]
 
 { #category : #accessing }
