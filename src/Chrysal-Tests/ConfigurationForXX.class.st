@@ -86,6 +86,13 @@ ConfigurationForXX class >> chrysalDescriptions [
 			#numbering,
 			#headerSize
 		]
+	},
+	ListConfigurationItem {
+		#propertyName : ''levels'',
+		#default : #OrderedCollection,
+		#elements : [
+			#printerComposite
+		]
 	}
 ]'
 ]
@@ -151,6 +158,12 @@ ConfigurationForXX >> convertLatexWriter: aValue [
 ]
 
 { #category : #conversion }
+ConfigurationForXX >> convertLevels: aValue [
+	"generated code"
+	^ aValue
+]
+
+{ #category : #conversion }
 ConfigurationForXX >> convertMainDocument: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
@@ -210,7 +223,7 @@ ConfigurationForXX >> convertVerbose: aValue [
 { #category : #'declared items' }
 ConfigurationForXX >> declaredItems [
 	"generated code"
-	^ #( #title #headingLevelOffset #verbose #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #printerComposite )
+	^ #( #title #headingLevelOffset #verbose #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #printerComposite #levels )
 ]
 
 { #category : #accessing }
@@ -295,6 +308,18 @@ ConfigurationForXX >> latexWriter [
 ConfigurationForXX >> latexWriter: aValue [
 	"generated code"
 	^ self propertyAt: #latexWriter put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForXX >> levels [
+	"generated code"
+	^ self propertyAt: #levels ifAbsent: [ OrderedCollection new ]
+]
+
+{ #category : #accessing }
+ConfigurationForXX >> levels: aValue [
+	"generated code"
+	^ self propertyAt: #levels put: aValue
 ]
 
 { #category : #accessing }

@@ -125,6 +125,11 @@ ChrysalConfigurationBuilder class >> itemDescriptionForXX [
 		propertyName: 'printerComposite';
 		default: #ChrysalCompositeDomain;
 		fields: #(level renderAs capitalization numbering headerSize);
+		yourself).
+	(ListConfigurationItem new
+		propertyName: 'levels';
+		default: #OrderedCollection;
+		elements: #(printerComposite);
 		yourself)
 		}
 ]
