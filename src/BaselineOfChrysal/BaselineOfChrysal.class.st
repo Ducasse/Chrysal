@@ -19,7 +19,7 @@ BaselineOfChrysal >> baseline: spec [
 			spec
 				package: 'Chrysal-Runtime'.
 			spec
-				package: 'Chrysal-Test'
+				package: 'Chrysal-Tests'
 				with: [ spec requires: #('Chrysal-Runtime' 'Chrysal') ].
 			spec
 				package: 'Chrysal'
