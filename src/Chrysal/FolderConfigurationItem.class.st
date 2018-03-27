@@ -1,5 +1,10 @@
 "
-To describe folder items
+To describe folder items.
+
+
+(FolderConfigurationItem new
+		propertyName: 'outputDirectory';
+		default: 'build').
 "
 Class {
 	#name : #FolderConfigurationItem,
@@ -36,7 +41,7 @@ FolderConfigurationItem >> domainValueConversionString [
 	
 	 Parameter of the item like baseline should be accessed via self nameOfProperty"
 
-	^ '(FileSystem workingDirectory / aValue)' 
+	^ '^ (FileSystem workingDirectory / aValue)' 
 ]
 
 { #category : #unused }

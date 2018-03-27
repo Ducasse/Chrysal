@@ -1,6 +1,11 @@
 "
 To describe number items.
 Literal in STON.
+
+(NumberConfigurationItem new
+		propertyName: 'headingLevelOffset';
+		default: 0;
+		yourself)
 "
 Class {
 	#name : #NumberConfigurationItem,
@@ -19,5 +24,5 @@ NumberConfigurationItem >> defaultDomainValueString [
 NumberConfigurationItem >> domainValueConversionString [
 	"Returns a string representing the conversion of a value from the configuration writer world to Pharo. aValue is the parameter representing the object to be converted"
 
-	^ ' aValue'
+	^ '^ aValue'
 ]

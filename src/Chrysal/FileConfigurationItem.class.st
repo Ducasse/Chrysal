@@ -1,6 +1,12 @@
 "
 To describe file items.
 
+(FileConfigurationItem new
+		propertyName: 'mainDocument';
+		default: 'book').
+(FileConfigurationItem new
+		propertyName: 'latexChapterTemplate';
+		default: '_support/templates/chapter.latex.mustache').
 "
 Class {
 	#name : #FileConfigurationItem,
@@ -41,7 +47,7 @@ FileConfigurationItem >> domainValueConversionString [
 	
 	 Parameter of the item like baseline should be accessed via self nameOfProperty"
 
-	^ '(FileSystem workingDirectory / aValue)' 
+	^ '^ (FileSystem workingDirectory / aValue)' 
 ]
 
 { #category : #unused }

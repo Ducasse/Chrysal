@@ -1,3 +1,6 @@
+"
+Check ChrysalConfigurationBuilder >> #itemDescriptionForXX for the definition of the description items. 
+"
 Class {
 	#name : #ChrysalConfigurationForXXTest,
 	#superclass : #TestCase,
@@ -7,6 +10,27 @@ Class {
 { #category : #hooks }
 ChrysalConfigurationForXXTest >> configurationClass [
 	^ ConfigurationBuilderTest ensureConfigurationForXXExist
+]
+
+{ #category : #resources }
+ChrysalConfigurationForXXTest >> listSample [
+	^  '{
+  "title": "A Little Scheme in Pharo",
+  ''printer'' : [
+		[    ''level'' : 1,
+			''renderAs'' : ''letter'',
+			''capitalization'' : ''uppercase'',
+			''numbering'' : true,
+			''size'' : 2
+		],
+		[	''level'' : 2,
+			''renderAs'' : ''number'',
+			''capitalization'' : ''uppercase'',
+			''numbering'' : true,
+			''size'' : 3
+		]
+	]
+}'
 ]
 
 { #category : #resources }
@@ -26,6 +50,28 @@ ChrysalConfigurationForXXTest >> sample [
   "newLine": #unix,
   "latexWriter": #''latex:sbabook''
 }'
+]
+
+{ #category : #'tests - composite' }
+ChrysalConfigurationForXXTest >> testComposite [
+	|  config composite |
+	config := self configurationClass newFromDictionary:  (STON fromString: '{
+	''printerComposite'' : 
+		[ 
+		''level'' : 1,
+		''renderAs'' : ''letter'',
+		''capitalization'' : ''uppercase'',
+		''numbering'' : true,
+		''headerSize'' : 2
+		]
+	}').
+	composite := config propertyAt: 'printerComposite'. 
+	self assert: composite capitalization equals: 'uppercase'.
+	self assert: composite level equals: 1.
+	self assert: composite numbering.
+	self assert: composite headerSize equals: 2.
+	
+	
 ]
 
 { #category : #'tests - creation from ston' }
@@ -124,7 +170,7 @@ ChrysalConfigurationForXXTest >> testNewFromStream [
 	self assert: conf verbose
 ]
 
-{ #category : #'test - lower api' }
+{ #category : #'tests - composite' }
 ChrysalConfigurationForXXTest >> testSetConvertedValueOf [
 	| conf |
 	conf := self configurationClass newFromStream: self sample readStream.

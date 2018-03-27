@@ -62,7 +62,7 @@ CodeBlockDefaultLanguageItem >> domainValueConversionString [
 	
 	 Parameter of the item like baseline should be accessed via self nameOfProperty"
 
-	^ 'PRAbstractScriptLanguage for: aValue' 
+	^ '^ PRAbstractScriptLanguage for: aValue' 
 ]
 
 { #category : #initialization }

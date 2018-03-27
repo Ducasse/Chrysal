@@ -1,12 +1,63 @@
+"
+Check ChrysalConfigurationBuilder >> #itemDescriptionForXX for the
+"
 Class {
 	#name : #ChrysalPillarConfigurationTest,
 	#superclass : #TestCase,
 	#category : #'Chrysal-ToBeMovedElsewhere'
 }
 
+{ #category : #tests }
+ChrysalPillarConfigurationTest >> compositeSample [
+	"STON fromString: self new compositeSample"
+	^ '{
+	''printerComposite'' : 
+		[ 
+		''level'' : 1,
+		''renderAs'' : ''letter'',
+		''capitalization'' : ''uppercase'',
+		''numbering'' : true,
+		''size'' : 2
+		]
+	}'
+]
+
 { #category : #'tests - from cocoon' }
 ChrysalPillarConfigurationTest >> configurationClass [
 	^ ConfigurationForPillar
+]
+
+{ #category : #tests }
+ChrysalPillarConfigurationTest >> printerSample [
+	^ '{
+	''printer'' : [
+		[    ''level'' : 1,
+			''renderAs'' : ''letter'',
+			''capitalization'' : ''uppercase'',
+			''numbering'' : true,
+			''size'' : 2
+		],
+		[	''level'' : 2,
+			''renderAs'' : ''number'',
+			''capitalization'' : ''uppercase'',
+			''numbering'' : true,
+			''size'' : 3
+		]
+	]
+}'
+]
+
+{ #category : #tests }
+ChrysalPillarConfigurationTest >> testPrinter [
+	|  config printer |
+	config := self configurationClass newFromDictionary:  (STON fromString: self printerSample).
+	printer := config propertyAt: 'printer'. 
+	self assert: printer level1 capitalization equals: 'uppercase'.
+	self assert: printer level1 level equals: 1.
+	self assert: printer level1 size equals: 'uppercase'.
+	self assert: printer level1 class equals: PRLevelLetterPrinter.
+	
+	
 ]
 
 { #category : #'tests - from cocoon' }

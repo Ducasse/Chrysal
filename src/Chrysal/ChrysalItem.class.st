@@ -146,10 +146,9 @@ ChrysalItem >> domainValueConversionString [
 	convertInputFile: aValue
 	      ^ (FileSystem workingDirectory / aValue)
 	
-	
 	 Parameter of the item like baseline should be accessed via self nameOfProperty"
 
-	^ 'aValue'
+	^ '^ aValue'
 ]
 
 { #category : #accessing }
@@ -187,10 +186,4 @@ ChrysalItem >> propertyName: aString [
 	"property name"
 
 	propertyName := aString
-]
-
-{ #category : #printing }
-ChrysalItem >> storeOn: aStream [
-
-	
 ]

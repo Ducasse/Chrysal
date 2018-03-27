@@ -75,6 +75,17 @@ ConfigurationForXX class >> chrysalDescriptions [
 	SymbolConfigurationItem {
 		#propertyName : ''latexWriter'',
 		#default : #''latex:sbabook''
+	},
+	CompositeConfigurationItem {
+		#propertyName : ''printerComposite'',
+		#default : #ChrysalCompositeDomain,
+		#fields : [
+			#level,
+			#renderAs,
+			#capitalization,
+			#numbering,
+			#headerSize
+		]
 	}
 ]'
 ]
@@ -100,7 +111,7 @@ ConfigurationForXX >> convertAttribution: aValue [
 { #category : #conversion }
 ConfigurationForXX >> convertHeadingLevelOffset: aValue [
 	"generated code"
-	^  aValue
+	^ aValue
 ]
 
 { #category : #conversion }
@@ -165,6 +176,20 @@ ConfigurationForXX >> convertOutputDirectory: aValue [
 ]
 
 { #category : #conversion }
+ConfigurationForXX >> convertPrinterComposite: aValue [
+	"generated code"
+	| composite |
+	composite := ChrysalCompositeDomain new.
+	aValue do: [:v | 
+			(#(#level #renderAs #capitalization #numbering #headerSize) includes: v key asSymbol)
+				ifTrue: [ composite 
+								perform:  (v key, ':') asSymbol 
+								with: v value].
+		].
+	^ composite
+]
+
+{ #category : #conversion }
 ConfigurationForXX >> convertSeries: aValue [
 	"generated code"
 	^ aValue
@@ -179,13 +204,13 @@ ConfigurationForXX >> convertTitle: aValue [
 { #category : #conversion }
 ConfigurationForXX >> convertVerbose: aValue [
 	"generated code"
-	^  aValue 
+	^ aValue 
 ]
 
 { #category : #'declared items' }
 ConfigurationForXX >> declaredItems [
 	"generated code"
-	^ #( #title #headingLevelOffset #verbose #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter )
+	^ #( #title #headingLevelOffset #verbose #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #printerComposite )
 ]
 
 { #category : #accessing }
@@ -306,6 +331,18 @@ ConfigurationForXX >> outputDirectory [
 ConfigurationForXX >> outputDirectory: aValue [
 	"generated code"
 	^ self propertyAt: #outputDirectory put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForXX >> printerComposite [
+	"generated code"
+	^ self propertyAt: #printerComposite ifAbsent: [ ChrysalCompositeDomain new ]
+]
+
+{ #category : #accessing }
+ConfigurationForXX >> printerComposite: aValue [
+	"generated code"
+	^ self propertyAt: #printerComposite put: aValue
 ]
 
 { #category : #accessing }

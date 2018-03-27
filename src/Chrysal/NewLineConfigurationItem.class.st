@@ -1,5 +1,9 @@
 "
 To describe new lines.
+
+(NewLineConfigurationItem new
+		propertyName: 'newLine';
+		defaultIsUnix).
 "
 Class {
 	#name : #NewLineConfigurationItem,
@@ -45,7 +49,7 @@ NewLineConfigurationItem >> domainValueConversionString [
 	here aValue is the name of the parameter of the generated method.
 	"
 
-	^ '(Dictionary
+	^ '^ (Dictionary
 			newFrom:
 				{(#cr -> String cr).
 				(#lf -> UnixPlatform new lineEnding).

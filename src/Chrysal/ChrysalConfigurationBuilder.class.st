@@ -1,5 +1,14 @@
 "
-I generate a configuration class independent from Chrysal objects, but based on them. I'm like a macro expansio. For Now the generated Chrysal configuration classes still need to be subclass of ChrysalConfiguration class. 
+I generate a configuration class independent from Chrysal objects (check itemDescriptionForXX for a sample of such description objects), but based on them. I'm like a macro expansion.
+
+The generated configuration classes knows how to 
+- access properties it stores
+- convert values from the external world (in terms of STON) to Pharo objects.
+
+Since we are using STON as an external format, the following objects are considered as literals and as such we do not 
+convert them since they get converted by STON reader for us:  number, true, false, symbol and string.
+
+The generated Chrysal configuration classes still needs to be subclass of ChrysalConfiguration class to reuse some of the behavior to create instances.
 
 !! API
 There are two ways of specify the configuration class: either using ==configurationClass:== or ==defineConfigurationClassNamed:packagedIn:==
@@ -21,14 +30,28 @@ ChrysalConfigurationBuilder new
 ]]]	
 
 
+A ConfigurationItem can be an elementary element such as Number, String, Symbol, NewLine,
+ File or Folder, but also a composite one. 
+
+In case of composite, for now the composite are not converted using Chrysal but are plain STON values. 
+
+
+
+
+
 !! Note for the chrysal extender
 
-STON configurations consider the following as literals and not strings: number true false symbol string.
-Therefore the conversion is not needed. 
+STON configurations consider the following as literals and not strings: number true false symbol string. Therefore the conversion is not needed. 
 
 
 
 Next step is to 
+- The builder should delegate to the item for the definition of the method?
+- what do we want for composite and list?
+-- composite: should we only allow literal. 
+-- composite: should we declare the elements type. 
+-- list: should we declare the element Yes and add:/addAll:
+
 - generate code that generate the class itself.  
 - do we copy the methods from the superclass? this way we are fully automous?
 
@@ -97,7 +120,13 @@ ChrysalConfigurationBuilder class >> itemDescriptionForXX [
 	(SymbolConfigurationItem new
 		propertyName: 'latexWriter';
 		default: #latex:sbabook;
-		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class"}
+		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class".
+	(CompositeConfigurationItem new
+		propertyName: 'printerComposite';
+		default: #ChrysalCompositeDomain;
+		fields: #(level renderAs capitalization numbering headerSize);
+		yourself)
+		}
 ]
 
 { #category : #'add configuration accessors' }
@@ -173,7 +202,7 @@ ChrysalConfigurationBuilder >> conversionGenerationForItem: anItem [
 			str cr; tab.
 			str nextPutAll: '"generated code"'.
 			str cr; tab.
-			str nextPutAll: ('^ ', anItem domainValueConversionString ) ]
+			str nextPutAll: ( anItem domainValueConversionString ) ]
 ]
 
 { #category : #'add configuration accessors' }

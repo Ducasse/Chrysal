@@ -1,6 +1,11 @@
 "
 To describe boolean items.
 Literal in STON.
+
+(BooleanConfigurationItem new
+		propertyName: 'verbose';
+		beTrueAsDefault;
+		yourself).
 "
 Class {
 	#name : #BooleanConfigurationItem,
@@ -43,7 +48,7 @@ BooleanConfigurationItem >> defaultValue [
 BooleanConfigurationItem >> domainValueConversionString [
 	"Returns a string representing the conversion of a value from the configuration writer world to Pharo. aValue is the parameter representing the object to be converted"
 
-	^ ' aValue '
+	^ '^ aValue '
 ]
 
 { #category : #unused }
