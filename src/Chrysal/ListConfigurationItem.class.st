@@ -63,10 +63,3 @@ ListConfigurationItem >> domainValueConversionString [
 ListConfigurationItem >> element: aCollection [ 
 	element := aCollection
 ]
-
-{ #category : #initialization }
-ListConfigurationItem >> initialize [
-
-	super initialize. 
-	elements := OrderedCollection new.
-]
