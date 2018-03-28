@@ -127,6 +127,11 @@ ChrysalConfigurationBuilder class >> itemDescriptionForXX [
 		default: #ChrysalCompositeDomain;
 		fields: #(level renderAs capitalization numbering headerSize);
 		yourself).
+	(CompositeConfigurationItem new
+		propertyName: 'convertedComposite';
+		default: #ChrysalConvertedCompositeDomain;
+		fields: #(newLine htmlTemplate title);
+		yourself).
 	(ListConfigurationItem new
 		propertyName: 'levels';
 		default: #OrderedCollection;

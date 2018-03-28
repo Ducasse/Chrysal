@@ -87,6 +87,15 @@ ConfigurationForXX class >> chrysalDescriptions [
 			#headerSize
 		]
 	},
+	CompositeConfigurationItem {
+		#propertyName : ''convertedComposite'',
+		#default : #ChrysalConvertedCompositeDomain,
+		#fields : [
+			#newLine,
+			#htmlTemplate,
+			#title
+		]
+	},
 	ListConfigurationItem {
 		#propertyName : ''levels'',
 		#default : #OrderedCollection,
@@ -111,6 +120,27 @@ ConfigurationForXX >> attribution: aValue [
 ConfigurationForXX >> convertAttribution: aValue [
 	"generated code"
 	^ aValue
+]
+
+{ #category : #conversion }
+ConfigurationForXX >> convertConvertedComposite: aValue [
+	"generated code"
+	| composite |
+	composite := ChrysalConvertedCompositeDomain new.
+	aValue do: [:v | 
+		    "We ignore undeclared fields"
+			(#(#newLine #htmlTemplate #title) includes: v key asSymbol)
+				ifTrue: [ 
+					| value |
+					"if the element has been described we convert"
+					(self declaredItems includes: v key asSymbol)
+						ifTrue: [ value := self perform: (#convert, v key capitalized, ':') asSymbol with: v value ]
+						ifFalse: [ value := v value ].		
+					composite 
+								perform:  (v key, ':') asSymbol 
+								with: value].
+		].
+	^ composite
 ]
 
 { #category : #conversion }
@@ -196,10 +226,17 @@ ConfigurationForXX >> convertPrinterComposite: aValue [
 	| composite |
 	composite := ChrysalCompositeDomain new.
 	aValue do: [:v | 
+		    "We ignore undeclared fields"
 			(#(#level #renderAs #capitalization #numbering #headerSize) includes: v key asSymbol)
-				ifTrue: [ composite 
+				ifTrue: [ 
+					| value |
+					"if the element has been described we convert"
+					(self declaredItems includes: v key asSymbol)
+						ifTrue: [ value := self perform: (#convert, v key capitalized, ':') asSymbol with: v value ]
+						ifFalse: [ value := v value ].		
+					composite 
 								perform:  (v key, ':') asSymbol 
-								with: v value].
+								with: value].
 		].
 	^ composite
 ]
@@ -222,10 +259,22 @@ ConfigurationForXX >> convertVerbose: aValue [
 	^ aValue 
 ]
 
+{ #category : #accessing }
+ConfigurationForXX >> convertedComposite [
+	"generated code"
+	^ self propertyAt: #convertedComposite ifAbsent: [ ChrysalConvertedCompositeDomain new ]
+]
+
+{ #category : #accessing }
+ConfigurationForXX >> convertedComposite: aValue [
+	"generated code"
+	^ self propertyAt: #convertedComposite put: aValue
+]
+
 { #category : #'declared items' }
 ConfigurationForXX >> declaredItems [
 	"generated code"
-	^ #( #title #headingLevelOffset #verbose #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #printerComposite #levels )
+	^ #( #title #headingLevelOffset #verbose #attribution #series #keywords #outputDirectory #mainDocument #latexTemplate #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #printerComposite #convertedComposite #levels )
 ]
 
 { #category : #accessing }

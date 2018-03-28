@@ -74,6 +74,47 @@ ChrysalConfigurationForXXTest >> testComposite [
 	
 ]
 
+{ #category : #'tests - composite' }
+ChrysalConfigurationForXXTest >> testCompositeDiscardUndeclaredField [
+	|  config composite |
+	config := self configurationClass newFromDictionary:  (STON fromString: '{
+	''printerComposite'' : 
+		[ 
+		''level'' : 1,
+		''renderAs'' : ''letter'',
+		''capitalization'' : ''uppercase'',
+		''numbering'' : true,
+		''headerSize'' : 2,
+		"undeclaredField": true
+		]
+	}').
+	composite := config propertyAt: 'printerComposite'. 
+	self assert: composite capitalization equals: 'uppercase'.
+	self assert: composite level equals: 1.
+	self assert: composite numbering.
+	self assert: composite headerSize equals: 2.
+	
+	
+]
+
+{ #category : #'tests - composite' }
+ChrysalConfigurationForXXTest >> testConvertingComposite [
+	|  config composite |
+	config := self configurationClass  newFromDictionary:  (STON fromString: '{
+		"convertedComposite": [
+			"title": "supercool book",
+			"htmlTemplate": "_support/templates/html.mustache",
+			"newLine":#unix,
+			"undeclared":"true" ]
+		}').
+	composite :=config propertyAt: 'convertedComposite'. 
+	self assert: composite title equals: 'supercool book'.
+	self assert: composite htmlTemplate class equals: FileReference.
+	self assert: composite newLine equals: UnixPlatform new lineEnding
+	
+	
+]
+
 { #category : #'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromDictionaryWithConversion [
 	| conf |
@@ -181,6 +222,8 @@ ChrysalConfigurationForXXTest >> testList [
 		]
 	]}').
 	list := config propertyAt: 'levels'. 
+	self assert: list size equals: 2.
+	self assert: list first class equals: ChrysalCompositeDomain.
 	self assert: list first capitalization equals: 'uppercase'.
 	self assert: list first level equals: 1.
 	self assert: list first numbering.

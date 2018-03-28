@@ -12,7 +12,7 @@ Here is an example how to define a CompositeConfigurationItem.
 ]]]
 
 It says that the composite will an instance of ChrysalCompositeDomain and that 
-only these fields will be considered during the conversion. 
+only these fields will be considered and only the ones described by other items will be converted during the conversion. 
 
 Right now, the value of such fields are not converted using Chrysal. We just get the STON elements. 
 
@@ -61,10 +61,17 @@ CompositeConfigurationItem >> domainValueConversionString [
 	^ '| composite |
 	composite := {1} new.
 	aValue do: [:v | 
+		    "We ignore undeclared fields"
 			({2} includes: v key asSymbol)
-				ifTrue: [ composite 
+				ifTrue: [ 
+					| value |
+					"if the element has been described we convert"
+					(self declaredItems includes: v key asSymbol)
+						ifTrue: [ value := self perform: (#convert, v key capitalized, '':'') asSymbol with: v value ]
+						ifFalse: [ value := v value ].		
+					composite 
 								perform:  (v key, '':'') asSymbol 
-								with: v value].
+								with: value].
 		].
 	^ composite' format: {self default asString . fields}
 ]
