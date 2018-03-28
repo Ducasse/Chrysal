@@ -130,7 +130,7 @@ ChrysalConfigurationBuilder class >> itemDescriptionForXX [
 	(ListConfigurationItem new
 		propertyName: 'levels';
 		default: #OrderedCollection;
-		elements: #(printerComposite);
+		element: 'printerComposite';
 		yourself)
 		}
 ]
@@ -255,6 +255,25 @@ ChrysalConfigurationBuilder >> descriptionMethodFrom: descriptionItems [
 			self addDescriptionBodyIn: s forItems: descriptionItems ]
 ]
 
+{ #category : #private }
+ChrysalConfigurationBuilder >> descriptionNamed: aName [
+
+	^ items at: aName asSymbol
+]
+
+{ #category : #'public api' }
+ChrysalConfigurationBuilder >> initializeDescription: descriptionItems [
+	items := Dictionary new.
+	descriptionItems
+		do: [ :each | items at: each propertyName asSymbol put: each ]
+]
+
+{ #category : #private }
+ChrysalConfigurationBuilder >> isPropertyDefined: aName [
+
+	^ items keys includes: aName asSymbol
+]
+
 { #category : #'add configuration accessors' }
 ChrysalConfigurationBuilder >> setterGenerationForItem: anItem [
 	
@@ -271,8 +290,8 @@ ChrysalConfigurationBuilder >> setterGenerationForItem: anItem [
 { #category : #'public api' }
 ChrysalConfigurationBuilder >> withDescriptionItems: descriptionItems [
 	"self new with: ConfigurationDescriptionForXX new items"
-	descriptionItems do: 
-		[ :each | items at: each propertyName put: each ].
+
+	self initializeDescription: descriptionItems.
 	self addAccessorsAndConversionMethodsFrom: descriptionItems.
 	self addDeclaredItemsMethodFrom: descriptionItems.
 	self addDescription: descriptionItems

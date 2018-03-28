@@ -90,9 +90,7 @@ ConfigurationForXX class >> chrysalDescriptions [
 	ListConfigurationItem {
 		#propertyName : ''levels'',
 		#default : #OrderedCollection,
-		#elements : [
-			#printerComposite
-		]
+		#element : ''printerComposite''
 	}
 ]'
 ]
@@ -160,7 +158,11 @@ ConfigurationForXX >> convertLatexWriter: aValue [
 { #category : #conversion }
 ConfigurationForXX >> convertLevels: aValue [
 	"generated code"
-	^ aValue
+	| elements |
+	elements := OrderedCollection new.
+	aValue do: [:v | 
+		 elements add: (self convertPrinterComposite: v ) ].
+	^ elements
 ]
 
 { #category : #conversion }

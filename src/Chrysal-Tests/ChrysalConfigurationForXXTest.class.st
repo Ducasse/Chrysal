@@ -163,6 +163,32 @@ ChrysalConfigurationForXXTest >> testImportFromString [
 	self assert: conf newLine equals: UnixPlatform new lineEnding
 ]
 
+{ #category : #'tests - composite' }
+ChrysalConfigurationForXXTest >> testList [
+	|  config list |
+	config := self configurationClass newFromDictionary:  (STON fromString: '  { ''levels'' : [
+		[    ''level'' : 1,
+			''renderAs'' : ''letter'',
+			''capitalization'' : ''uppercase'',
+			''numbering'' : true,
+			''headerSize'' : 2
+		],
+		[	''level'' : 2,
+			''renderAs'' : ''number'',
+			''capitalization'' : ''uppercase'',
+			''numbering'' : true,
+			''headerSize'' : 3
+		]
+	]}').
+	list := config propertyAt: 'levels'. 
+	self assert: list first capitalization equals: 'uppercase'.
+	self assert: list first level equals: 1.
+	self assert: list first numbering.
+	self assert: list first headerSize equals: 2.
+	
+	
+]
+
 { #category : #'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testNewFromStream [
 	| conf |
