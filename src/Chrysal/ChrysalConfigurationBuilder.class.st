@@ -64,7 +64,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'configurationClass',
-		'items'
+		'items',
+		'configurationRootClass'
 	],
 	#category : #'Chrysal-Model'
 }
@@ -201,6 +202,17 @@ ChrysalConfigurationBuilder >> configurationClass: aClass [
 	configurationClass := aClass
 ]
 
+{ #category : #'add class definition' }
+ChrysalConfigurationBuilder >> configurationRootClass [
+	^ configurationRootClass ifNil: [ configurationRootClass := self defaultChrysalConfigurationClass ]
+]
+
+{ #category : #'add class definition' }
+ChrysalConfigurationBuilder >> configurationRootClass: aClass [
+	"to define a different superclass than ChrysalConfiguration (a subclass of it to store specific behavior for example"
+	 configurationRootClass := aClass
+]
+
 { #category : #'add configuration accessors' }
 ChrysalConfigurationBuilder >> conversionGenerationForItem: anItem [
 	"self new accessorGenerationForItem: FileConfigurationItem example"
@@ -240,7 +252,7 @@ ChrysalConfigurationBuilder >> defaultChrysalConfigurationClass [
 
 { #category : #'add class definition' }
 ChrysalConfigurationBuilder >> defineConfigurationClassNamed: aString packagedIn: packageName [
-	self defaultChrysalConfigurationClass 
+	self configurationRootClass 
 		subclass: aString asSymbol
 		instanceVariableNames: ''
 		classVariableNames: ''

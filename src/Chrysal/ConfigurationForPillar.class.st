@@ -1,6 +1,6 @@
 Class {
 	#name : #ConfigurationForPillar,
-	#superclass : #ChrysalConfiguration,
+	#superclass : #ChrysalPillarishConfiguration,
 	#category : #'Chrysal-ToBeMovedElsewhere'
 }
 
