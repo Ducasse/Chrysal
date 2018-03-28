@@ -183,7 +183,9 @@ ChrysalConfigurationBuilder >> addDeclaredItemsMethodFrom: descriptionItems [
 
 { #category : #'add description' }
 ChrysalConfigurationBuilder >> addDescription: descriptionItems [
-	self configurationClass class compile: (self descriptionMethodFrom: descriptionItems) classified: 'description'
+	self configurationClass class 
+		compile: (self descriptionMethodFrom: descriptionItems) 
+		classified: 'description'
 ]
 
 { #category : #'add description' }
@@ -197,17 +199,17 @@ ChrysalConfigurationBuilder >> configurationClass [
 	^ configurationClass
 ]
 
-{ #category : #accessing }
+{ #category : #'public api' }
 ChrysalConfigurationBuilder >> configurationClass: aClass [
 	configurationClass := aClass
 ]
 
-{ #category : #'add class definition' }
+{ #category : #accessing }
 ChrysalConfigurationBuilder >> configurationRootClass [
 	^ configurationRootClass ifNil: [ configurationRootClass := self defaultChrysalConfigurationClass ]
 ]
 
-{ #category : #'add class definition' }
+{ #category : #'public api' }
 ChrysalConfigurationBuilder >> configurationRootClass: aClass [
 	"to define a different superclass than ChrysalConfiguration (a subclass of it to store specific behavior for example"
 	 configurationRootClass := aClass
