@@ -32,6 +32,10 @@ ConfigurationForPillar class >> chrysalDescriptions [
 		#propertyName : ''outputDirectory'',
 		#default : ''build''
 	},
+	FolderConfigurationItem {
+		#propertyName : ''baseDirectory'',
+		#default : ''.''
+	},
 	FileConfigurationItem {
 		#propertyName : ''outputFile'',
 		#default : ''output'',
@@ -46,7 +50,7 @@ ConfigurationForPillar class >> chrysalDescriptions [
 		#default : ''book'',
 		#explanation : ''The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value''
 	},
-	FileConfigurationItem {
+	StringConfigurationItem {
 		#propertyName : ''latexTemplate'',
 		#default : ''_support/templates/main.latex.mustache''
 	},
@@ -64,15 +68,15 @@ ConfigurationForPillar class >> chrysalDescriptions [
 		#default : ''false'',
 		#explanation : ''When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document''
 	},
-	FileConfigurationItem {
+	StringConfigurationItem {
 		#propertyName : ''latexChapterTemplate'',
 		#default : ''_support/templates/chapter.latex.mustache''
 	},
-	FileConfigurationItem {
+	StringConfigurationItem {
 		#propertyName : ''htmlTemplate'',
 		#default : ''_support/templates/html.mustache''
 	},
-	FileConfigurationItem {
+	StringConfigurationItem {
 		#propertyName : ''htmlChapterTemplate'',
 		#default : ''_support/templates/html.mustache''
 	},
@@ -85,6 +89,10 @@ ConfigurationForPillar class >> chrysalDescriptions [
 	StringConfigurationItem {
 		#propertyName : ''latexWriter'',
 		#default : #''latex:sbabook''
+	},
+	StringConfigurationItem {
+		#propertyName : ''htmlWriter'',
+		#default : #html
 	},
 	NumberConfigurationItem {
 		#propertyName : ''slideInTemplateForDeckJS'',
@@ -111,10 +119,28 @@ ConfigurationForPillar >> attribution: aValue [
 	^ self propertyAt: #attribution put: aValue
 ]
 
+{ #category : #accessing }
+ConfigurationForPillar >> baseDirectory [
+	"generated code"
+	^ self propertyAt: #baseDirectory ifAbsent: [(FileSystem workingDirectory / '.')]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> baseDirectory: aValue [
+	"generated code"
+	^ self propertyAt: #baseDirectory put: aValue
+]
+
 { #category : #conversion }
 ConfigurationForPillar >> convertAttribution: aValue [
 	"generated code"
 	^ aValue
+]
+
+{ #category : #conversion }
+ConfigurationForPillar >> convertBaseDirectory: aValue [
+	"generated code"
+	^ (FileSystem workingDirectory / aValue)
 ]
 
 { #category : #conversion }
@@ -126,19 +152,25 @@ ConfigurationForPillar >> convertDefaultScriptLanguage: aValue [
 { #category : #conversion }
 ConfigurationForPillar >> convertHeadingLevelOffset: aValue [
 	"generated code"
-	^  aValue
+	^ aValue
 ]
 
 { #category : #conversion }
 ConfigurationForPillar >> convertHtmlChapterTemplate: aValue [
 	"generated code"
-	^ (FileSystem workingDirectory / aValue)
+	^ aValue
 ]
 
 { #category : #conversion }
 ConfigurationForPillar >> convertHtmlTemplate: aValue [
 	"generated code"
-	^ (FileSystem workingDirectory / aValue)
+	^ aValue
+]
+
+{ #category : #conversion }
+ConfigurationForPillar >> convertHtmlWriter: aValue [
+	"generated code"
+	^ aValue
 ]
 
 { #category : #conversion }
@@ -156,13 +188,13 @@ ConfigurationForPillar >> convertKeywords: aValue [
 { #category : #conversion }
 ConfigurationForPillar >> convertLatexChapterTemplate: aValue [
 	"generated code"
-	^ (FileSystem workingDirectory / aValue)
+	^ aValue
 ]
 
 { #category : #conversion }
 ConfigurationForPillar >> convertLatexTemplate: aValue [
 	"generated code"
-	^ (FileSystem workingDirectory / aValue)
+	^ aValue
 ]
 
 { #category : #conversion }
@@ -205,19 +237,19 @@ ConfigurationForPillar >> convertOutputFile: aValue [
 { #category : #conversion }
 ConfigurationForPillar >> convertRenderStructureAsSlide: aValue [
 	"generated code"
-	^  aValue 
+	^ aValue 
 ]
 
 { #category : #conversion }
 ConfigurationForPillar >> convertScrambledEmailAddresses: aValue [
 	"generated code"
-	^  aValue 
+	^ aValue 
 ]
 
 { #category : #conversion }
 ConfigurationForPillar >> convertSeparateOutputFiles: aValue [
 	"generated code"
-	^  aValue 
+	^ aValue 
 ]
 
 { #category : #conversion }
@@ -229,7 +261,7 @@ ConfigurationForPillar >> convertSeries: aValue [
 { #category : #conversion }
 ConfigurationForPillar >> convertSlideInTemplateForDeckJS: aValue [
 	"generated code"
-	^  aValue
+	^ aValue
 ]
 
 { #category : #conversion }
@@ -241,7 +273,7 @@ ConfigurationForPillar >> convertTitle: aValue [
 { #category : #'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
-	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #slideInTemplateForDeckJS #defaultScriptLanguage )
+	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #baseDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #htmlWriter #slideInTemplateForDeckJS #defaultScriptLanguage )
 ]
 
 { #category : #accessing }
@@ -271,7 +303,7 @@ ConfigurationForPillar >> headingLevelOffset: aValue [
 { #category : #accessing }
 ConfigurationForPillar >> htmlChapterTemplate [
 	"generated code"
-	^ self propertyAt: #htmlChapterTemplate ifAbsent: [(FileSystem workingDirectory / '_support/templates/html.mustache')]
+	^ self propertyAt: #htmlChapterTemplate ifAbsent: ['_support/templates/html.mustache']
 ]
 
 { #category : #accessing }
@@ -283,13 +315,25 @@ ConfigurationForPillar >> htmlChapterTemplate: aValue [
 { #category : #accessing }
 ConfigurationForPillar >> htmlTemplate [
 	"generated code"
-	^ self propertyAt: #htmlTemplate ifAbsent: [(FileSystem workingDirectory / '_support/templates/html.mustache')]
+	^ self propertyAt: #htmlTemplate ifAbsent: ['_support/templates/html.mustache']
 ]
 
 { #category : #accessing }
 ConfigurationForPillar >> htmlTemplate: aValue [
 	"generated code"
 	^ self propertyAt: #htmlTemplate put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> htmlWriter [
+	"generated code"
+	^ self propertyAt: #htmlWriter ifAbsent: ['html']
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> htmlWriter: aValue [
+	"generated code"
+	^ self propertyAt: #htmlWriter put: aValue
 ]
 
 { #category : #accessing }
@@ -319,7 +363,7 @@ ConfigurationForPillar >> keywords: aValue [
 { #category : #accessing }
 ConfigurationForPillar >> latexChapterTemplate [
 	"generated code"
-	^ self propertyAt: #latexChapterTemplate ifAbsent: [(FileSystem workingDirectory / '_support/templates/chapter.latex.mustache')]
+	^ self propertyAt: #latexChapterTemplate ifAbsent: ['_support/templates/chapter.latex.mustache']
 ]
 
 { #category : #accessing }
@@ -331,7 +375,7 @@ ConfigurationForPillar >> latexChapterTemplate: aValue [
 { #category : #accessing }
 ConfigurationForPillar >> latexTemplate [
 	"generated code"
-	^ self propertyAt: #latexTemplate ifAbsent: [(FileSystem workingDirectory / '_support/templates/main.latex.mustache')]
+	^ self propertyAt: #latexTemplate ifAbsent: ['_support/templates/main.latex.mustache']
 ]
 
 { #category : #accessing }

@@ -32,8 +32,7 @@ ChrysalConfiguration class >> newFromDictionary: aSTONDictionary extendedWith: a
 
 	| configuration |
 	configuration :=  self newFromSTONDictionary: aSTONDictionary.
-	anotherDictionary associations do: [ :aBinding | configuration setConvertedValueOf: aBinding ].
-	self flag: #needsTest.
+	anotherDictionary associations do: [ :aBinding | configuration propertyAt: aBinding key put: aBinding value].
 	^ configuration
 ]
 
