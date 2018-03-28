@@ -63,7 +63,8 @@ Class {
 	#name : #ChrysalConfigurationBuilder,
 	#superclass : #Object,
 	#instVars : [
-		'configurationClass'
+		'configurationClass',
+		'items'
 	],
 	#category : #'Chrysal-Model'
 }
@@ -270,7 +271,8 @@ ChrysalConfigurationBuilder >> setterGenerationForItem: anItem [
 { #category : #'public api' }
 ChrysalConfigurationBuilder >> withDescriptionItems: descriptionItems [
 	"self new with: ConfigurationDescriptionForXX new items"
-
+	descriptionItems do: 
+		[ :each | items at: each propertyName put: each ].
 	self addAccessorsAndConversionMethodsFrom: descriptionItems.
 	self addDeclaredItemsMethodFrom: descriptionItems.
 	self addDescription: descriptionItems
