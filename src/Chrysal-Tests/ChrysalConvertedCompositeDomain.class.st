@@ -6,7 +6,7 @@ Class {
 		'htmlTemplate',
 		'title'
 	],
-	#category : #'Chrysal-Tests'
+	#category : #'Chrysal-Tests-Mocks'
 }
 
 { #category : #accessing }

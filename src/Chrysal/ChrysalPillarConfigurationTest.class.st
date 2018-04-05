@@ -4,7 +4,7 @@ Check ChrysalConfigurationBuilder >> #itemDescriptionForXX for the
 Class {
 	#name : #ChrysalPillarConfigurationTest,
 	#superclass : #TestCase,
-	#category : #'Chrysal-ToBeMovedElsewhere'
+	#category : #'Chrysal-Pillar'
 }
 
 { #category : #tests }
@@ -30,7 +30,7 @@ ChrysalPillarConfigurationTest >> configurationClass [
 { #category : #tests }
 ChrysalPillarConfigurationTest >> printerSample [
 	^ '{
-	''printer'' : [
+	''levels'' : [
 		[    ''level'' : 1,
 			''renderAs'' : ''letter'',
 			''capitalization'' : ''uppercase'',

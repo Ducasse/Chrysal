@@ -20,7 +20,7 @@ NewLineConfigurationItem class >> example [
 	<sampleInstance>
 	
 	^ NewLineConfigurationItem new
-		propertyName: 'newline';
+		propertyName: #newline ;
 		defaultIsUnix
 ]
 

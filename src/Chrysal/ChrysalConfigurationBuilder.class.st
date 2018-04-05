@@ -75,66 +75,66 @@ ChrysalConfigurationBuilder class >> itemDescriptionForXX [
 	"just a simple description of items for the tests"
 	
 	^ {(StringConfigurationItem new
-		propertyName: 'title';
+		propertyName: #title;
 		default: 'my super cool book';
 		yourself).
 	(NumberConfigurationItem new
-		propertyName: 'headingLevelOffset';
+		propertyName: #headingLevelOffset;
 		default: 0;
 		yourself).
 	(BooleanConfigurationItem new
-		propertyName: 'verbose';
+		propertyName: #verbose;
 		beTrueAsDefault;
 		yourself).
 	(StringConfigurationItem new
-		propertyName: 'attribution';
+		propertyName: #attribution;
 		default: 'me, myself and I';
 		yourself).
 	(StringConfigurationItem new
-		propertyName: 'series';
+		propertyName: #series;
 		default: 'Square Bracket Associate Collection';
 		yourself).
 	(StringConfigurationItem new
-		propertyName: 'keywords';
+		propertyName: #keywords;
 		default: 'Pharo';
 		yourself).
 	(FolderConfigurationItem new
-		propertyName: 'outputDirectory';
+		propertyName: #outputDirectory;
 		default: 'build').
 	(FileConfigurationItem new
-		propertyName: 'mainDocument';
+		propertyName: #mainDocument;
 		default: 'book').
 	(FileConfigurationItem new
-		propertyName: 'latexTemplate';
+		propertyName: #latexTemplate;
 		default: '_support/templates/main.latex.mustache').
 	(FileConfigurationItem new
-		propertyName: 'latexChapterTemplate';
+		propertyName: #latexChapterTemplate;
 		default: '_support/templates/chapter.latex.mustache').
 	(FileConfigurationItem new
-		propertyName: 'htmlTemplate';
+		propertyName: #htmlTemplate;
 		default: '_support/templates/html.mustache').
 	(FileConfigurationItem new
-		propertyName: 'htmlChapterTemplate';
+		propertyName: #htmlChapterTemplate;
 		default: '_support/templates/html.mustache').
 	(NewLineConfigurationItem new
-		propertyName: 'newLine';
+		propertyName: #newLine;
 		defaultIsUnix).
 	(SymbolConfigurationItem new
-		propertyName: 'latexWriter';
+		propertyName: #latexWriter;
 		default: #latex:sbabook;
 		yourself)	"may be we should turn it into a Pillar specific item that convert to a specific class".
 	(CompositeConfigurationItem new
-		propertyName: 'printerComposite';
+		propertyName: #printerComposite;
 		default: #ChrysalCompositeDomain;
 		fields: #(level renderAs capitalization numbering headerSize);
 		yourself).
 	(CompositeConfigurationItem new
-		propertyName: 'convertedComposite';
+		propertyName: #convertedComposite;
 		default: #ChrysalConvertedCompositeDomain;
 		fields: #(newLine htmlTemplate title);
 		yourself).
 	(ListConfigurationItem new
-		propertyName: 'levels';
+		propertyName: #levels;
 		default: #OrderedCollection;
 		element: 'printerComposite';
 		yourself)

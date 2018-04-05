@@ -10,10 +10,21 @@ Class {
 		'renderAs',
 		'capitalization',
 		'numbering',
-		'headerSize'
+		'headerSize',
+		'autoAnchor'
 	],
-	#category : #'Chrysal-Tests'
+	#category : #'Chrysal-Tests-Mocks'
 }
+
+{ #category : #accessing }
+ChrysalCompositeDomain >> autoAnchor [ 
+	^ autoAnchor
+]
+
+{ #category : #accessing }
+ChrysalCompositeDomain >> autoAnchor: aBoolean [
+	autoAnchor := aBoolean
+]
 
 { #category : #accessing }
 ChrysalCompositeDomain >> capitalization [

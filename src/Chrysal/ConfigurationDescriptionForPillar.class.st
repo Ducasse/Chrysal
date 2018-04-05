@@ -5,190 +5,202 @@ I'm just holding some descriptions that are used to generate the configurationFo
 ChrysalConfigurationBuilder new 
 	configurationRootClass: ChrysalPillarishConfiguration;
 	defineConfigurationClassNamed: #ConfigurationForPillar 
-	packagedIn: 'Chrysal-ToBeMovedElsewhere'; 
+	packagedIn: 'Chrysal-Pillar'; 
 	withDescriptionItems: ConfigurationDescriptionForPillar itemDescriptionForPillar
 "
 Class {
 	#name : #ConfigurationDescriptionForPillar,
 	#superclass : #Object,
-	#category : #'Chrysal-ToBeMovedElsewhere'
+	#category : #'Chrysal-Pillar'
 }
 
 { #category : #sample }
 ConfigurationDescriptionForPillar class >> itemDescriptionForPillar [
 	^ {(StringConfigurationItem new
-		propertyName: 'title';
+		propertyName: #title;
 		default: 'my super cool book';
 		yourself).
 	(StringConfigurationItem new
-		propertyName: 'attribution';
+		propertyName: #attribution;
 		default: 'me, myself and I';
 		yourself).
 	(NumberConfigurationItem new
-		propertyName: 'headingLevelOffset';
+		propertyName: #headingLevelOffset;
 		explanation:
 			'Indicate how to convert from the level of a Pillar heading to the level of heading in your exported document.
 	For example, a headingLevelOffset of 3 converts a 1st level Pillar heading to an <h4>in HTML';
 		default: 0;
 		yourself).
 	(StringConfigurationItem new
-		propertyName: 'series';
+		propertyName: #series;
 		default: 'Square Bracket Associate Collection';
 		yourself).
 	(StringConfigurationItem new
-		propertyName: 'keywords';
+		propertyName: #keywords;
 		default: 'Pharo';
 		yourself).
 	(FolderConfigurationItem new
-		propertyName: 'outputDirectory';
+		propertyName: #outputDirectory;
 		default: 'build').
 	(FolderConfigurationItem new
-		propertyName: 'baseDirectory';
+		propertyName: #baseDirectory;
 		default: '.').
 	(FileConfigurationItem new
-		propertyName: 'outputFile';
+		propertyName: #outputFile;
 		default: 'output';
 		explanation:
 			'If separateOutputFiles is false, indicate the name of the output file. This can also be a write stream.').
 	(FileConfigurationItem new
-		propertyName: 'mainDocument';
+		propertyName: #mainDocument;
 		default: 'book').
 	(FileConfigurationItem new
-		propertyName: 'inputFile';
+		propertyName: #inputFile;
 		default: 'book';
 		explanation:
 			'The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value').
 	(StringConfigurationItem new
-		propertyName: 'latexTemplate';
+		propertyName: #latexTemplate;
 		default: '_support/templates/main.latex.mustache').
 	(BooleanConfigurationItem new
-		propertyName: 'scrambledEmailAddresses';
+		propertyName: #scrambledEmailAddresses;
 		beFalseAsDefault).
 	(BooleanConfigurationItem new
-		propertyName: 'separateOutputFiles';
+		propertyName: #separateOutputFiles;
 		explanation:
 			'If true, each input file is exported to one output file. If false (the default), all input files are exported to outputFile.';
 		beFalseAsDefault).
 	(BooleanConfigurationItem new
-		propertyName: 'renderStructureAsSlide';
+		propertyName: #renderStructureAsSlide;
 		explanation:
 			'When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document';
 		beFalseAsDefault).
 	(StringConfigurationItem new
-		propertyName: 'latexChapterTemplate';
+		propertyName: #latexChapterTemplate;
 		default: '_support/templates/chapter.latex.mustache').
 	(StringConfigurationItem new
-		propertyName: 'htmlTemplate';
+		propertyName: #htmlTemplate;
 		default: '_support/templates/html.mustache').
 	(StringConfigurationItem new
-		propertyName: 'htmlChapterTemplate';
+		propertyName: #htmlChapterTemplate;
 		default: '_support/templates/html.mustache').
 	(NewLineConfigurationItem new
-		propertyName: 'newLine';
+		propertyName: #newLine;
 		defaultIsUnix).
 	(StringConfigurationItem new
-		propertyName: 'latexWriter';
+		propertyName: #latexWriter;
 		default: #latex:sbabook;
 		yourself)	
 		.
 	(StringConfigurationItem new
-		propertyName: 'htmlWriter';
+		propertyName: #htmlWriter;
 		default: #html;
 		yourself)	
 		.
 	(NumberConfigurationItem new
-		propertyName: 'slideInTemplateForDeckJS';
+		propertyName: #slideInTemplateForDeckJS;
 		explanation: 'Number of slides in Template: Indicate the number of slides created by the DeckJS template. This is important to create anchors.';
 		default: 1;
 		yourself).
 	(CodeBlockDefaultLanguageItem new)
+	.
+	(CompositeConfigurationItem new
+		propertyName: #levelSpecification;
+		default: #ChrysalCompositeDomain;
+		fields: #(level renderAs capitalization numbering headerSize);
+		yourself)
+	.
+	(ListConfigurationItem new
+		propertyName: #levels;
+		default: #OrderedCollection;
+		element: #levelSpecification;
+		yourself)
 	}
 ]
 
 { #category : #sample }
 ConfigurationDescriptionForPillar class >> itemDescriptionForPillarOld [
 	^ {(StringConfigurationItem new
-		propertyName: 'title';
+		propertyName: #title;
 		default: 'my super cool book';
 		yourself).
 	(StringConfigurationItem new
-		propertyName: 'attribution';
+		propertyName: #attribution;
 		default: 'me, myself and I';
 		yourself).
 	(NumberConfigurationItem new
-		propertyName: 'headingLevelOffset';
+		propertyName: #headingLevelOffset;
 		explanation:
 			'Indicate how to convert from the level of a Pillar heading to the level of heading in your exported document.
 	For example, a headingLevelOffset of 3 converts a 1st level Pillar heading to an <h4>in HTML';
 		default: 0;
 		yourself).
 	(StringConfigurationItem new
-		propertyName: 'series';
+		propertyName: #series;
 		default: 'Square Bracket Associate Collection';
 		yourself).
 	(StringConfigurationItem new
-		propertyName: 'keywords';
+		propertyName: #keywords;
 		default: 'Pharo';
 		yourself).
 	(FolderConfigurationItem new
 		propertyName: 'outputDirectory';
 		default: 'build').
 	(FolderConfigurationItem new
-		propertyName: 'baseDirectory';
+		propertyName: #baseDirectory;
 		default: '.').
 	(FileConfigurationItem new
-		propertyName: 'outputFile';
+		propertyName: #outputFile;
 		default: 'output';
 		explanation:
 			'If separateOutputFiles is false, indicate the name of the output file. This can also be a write stream.').
 	(FileConfigurationItem new
-		propertyName: 'mainDocument';
+		propertyName: #mainDocument;
 		default: 'book').
 	(FileConfigurationItem new
-		propertyName: 'inputFile';
+		propertyName: #inputFile;
 		default: 'book';
 		explanation:
 			'The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value').
 	(FileConfigurationItem new
-		propertyName: 'latexTemplate';
+		propertyName: #latexTemplate;
 		default: '_support/templates/main.latex.mustache').
 	(BooleanConfigurationItem new
-		propertyName: 'scrambledEmailAddresses';
+		propertyName: #scrambledEmailAddresses;
 		beFalseAsDefault).
 	(BooleanConfigurationItem new
-		propertyName: 'separateOutputFiles';
+		propertyName: #separateOutputFiles;
 		explanation:
 			'If true, each input file is exported to one output file. If false (the default), all input files are exported to outputFile.';
 		beFalseAsDefault).
 	(BooleanConfigurationItem new
-		propertyName: 'renderStructureAsSlide';
+		propertyName: #renderStructureAsSlide;
 		explanation:
 			'When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document';
 		beFalseAsDefault).
 	(FileConfigurationItem new
-		propertyName: 'latexChapterTemplate';
+		propertyName: #latexChapterTemplate;
 		default: '_support/templates/chapter.latex.mustache').
 	(FileConfigurationItem new
-		propertyName: 'htmlTemplate';
+		propertyName: #htmlTemplate;
 		default: '_support/templates/html.mustache').
 	(FileConfigurationItem new
-		propertyName: 'htmlChapterTemplate';
+		propertyName: #htmlChapterTemplate;
 		default: '_support/templates/html.mustache').
 	(NewLineConfigurationItem new
-		propertyName: 'newLine';
+		propertyName: #newLine;
 		defaultIsUnix).
 	(StringConfigurationItem new
-		propertyName: 'latexWriter';
+		propertyName: #latexWriter;
 		default: #latex:sbabook;
 		yourself)	
 		.
 	(StringConfigurationItem new
-		propertyName: 'htmlWriter';
+		propertyName: #htmlWriter;
 		default: #html;
 		yourself)	
 		.
 	(NumberConfigurationItem new
-		propertyName: 'slideInTemplateForDeckJS';
+		propertyName: #slideInTemplateForDeckJS ;
 		explanation: 'Number of slides in Template: Indicate the number of slides created by the DeckJS template. This is important to create anchors.';
 		default: 1;
 		yourself).

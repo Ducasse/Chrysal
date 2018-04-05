@@ -182,8 +182,8 @@ ChrysalItem >> propertyName [
 ]
 
 { #category : #accessing }
-ChrysalItem >> propertyName: aString [
+ChrysalItem >> propertyName: aSymbol [
 	"property name"
 
-	propertyName := aString
+	propertyName := aSymbol asSymbol
 ]

@@ -32,7 +32,7 @@ CompositeConfigurationItem class >> example [
 	<sampleInstance>
 	
 	^ (CompositeConfigurationItem new
-		propertyName: 'printerComposite';
+		propertyName: #printerComposite;
 		default: #ChrysalCompositeDomain;
 		fields: #(level renderAs capitalization numbering headerSize);
 		yourself)

@@ -54,6 +54,7 @@ ChrysalConfiguration class >> newFromSTONDictionary: stonDictionary [
 	| conf |
 	conf := self new.
 	stonDictionary associations do: [ :aBinding | conf setConvertedValueOf: aBinding ].
+	conf postTreat.
 	^ conf
 ]
 
@@ -85,6 +86,11 @@ ChrysalConfiguration class >> newFromString: aString extendedWith: anotherDictio
 ChrysalConfiguration >> declaredItems [
 
 	^ #()
+]
+
+{ #category : #'post hooks' }
+ChrysalConfiguration >> postTreat [
+	"I'm a hook so that my subclasses can perform some actions once a configuration is created."
 ]
 
 { #category : #conversion }

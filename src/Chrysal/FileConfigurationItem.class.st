@@ -19,7 +19,7 @@ FileConfigurationItem class >> example [
 	<sampleInstance>
 	
 	^ FileConfigurationItem new
-		propertyName: 'mainDocument';
+		propertyName: #mainDocument ;
 		default: 'book'
 ]
 

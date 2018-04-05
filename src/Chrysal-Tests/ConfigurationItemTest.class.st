@@ -8,7 +8,7 @@ Class {
 ConfigurationItemTest >> testDefaultBoolean [
 	| item |
 	item := BooleanConfigurationItem new
-		propertyName: 'separateOutputFiles';
+		propertyName: #separateOutputFiles;
 		yourself.
 	self assert: item default equals: item defaultValue
 ]
@@ -17,7 +17,7 @@ ConfigurationItemTest >> testDefaultBoolean [
 ConfigurationItemTest >> testDefaultBooleanIsAReallyBoolean [
 	| item |
 	item := BooleanConfigurationItem new
-		propertyName: 'separateOutputFiles';
+		propertyName: #separateOutputFiles;
 		beFalseAsDefault;
 		yourself.
 	self assert: item default equals: 'false'.
@@ -31,7 +31,7 @@ ConfigurationItemTest >> testDefaultBooleanIsAReallyBoolean [
 ConfigurationItemTest >> testDefaultFile [
 	| item |
 	item := FileConfigurationItem new
-		propertyName: 'mainDocument';
+		propertyName: #mainDocument;
 		yourself.
 	self assert: item default equals: item defaultValue
 ]
@@ -39,7 +39,7 @@ ConfigurationItemTest >> testDefaultFile [
 { #category : #tests }
 ConfigurationItemTest >> testDefaultString [
 	| item |
-	item := StringConfigurationItem new propertyName: 'title' ;yourself.
+	item := StringConfigurationItem new propertyName: #title ; yourself.
 	self assert: item default equals: item defaultValue
 	
 ]
@@ -48,7 +48,7 @@ ConfigurationItemTest >> testDefaultString [
 ConfigurationItemTest >> testDefaultString2 [
 	| item |
 	item :=	(StringConfigurationItem new
-		propertyName: 'latexWriter';
+		propertyName: #latexWriter;
 		default: 'latex:sbabook';
 		yourself).
 	self assert: item defaultDomainValueString equals: '''latex:sbabook'''
@@ -59,7 +59,7 @@ ConfigurationItemTest >> testDefaultString2 [
 ConfigurationItemTest >> testDefaultSymbol [
 	| item |
 	item := SymbolConfigurationItem new
-		propertyName: 'latexWriter';
+		propertyName: #latexWriter;
 		default: #latex:sbabook;
 		yourself.
 	self assert: item defaultDomainValueString equals: '#latex:sbabook'
@@ -69,7 +69,7 @@ ConfigurationItemTest >> testDefaultSymbol [
 ConfigurationItemTest >> testNewLineConversion [
 	| item |
 	item := NewLineConfigurationItem new
-		propertyName: 'newLine';
+		propertyName: #newLine;
 		yourself.
 	self assert: item default equals: #unix
 ]
@@ -78,7 +78,7 @@ ConfigurationItemTest >> testNewLineConversion [
 ConfigurationItemTest >> testNumber [
 	| item |
 	item := NumberConfigurationItem new
-		propertyName: 'headerLevel';
+		propertyName: #headerLevel;
 		default: 3;
 		yourself.
 	self assert: item default equals: 3
@@ -88,7 +88,7 @@ ConfigurationItemTest >> testNumber [
 ConfigurationItemTest >> testSettingDefaultBoolean [
 	| item |
 	item := BooleanConfigurationItem new
-		propertyName: 'separateOutputFiles';
+		propertyName: #separateOutputFiles;
 		default: 'false';
 		yourself.
 	self assert: item default equals: 'false'
@@ -98,7 +98,7 @@ ConfigurationItemTest >> testSettingDefaultBoolean [
 ConfigurationItemTest >> testSettingDefaultFile [
 	| item |
 	item := FileConfigurationItem new
-		propertyName: 'mainDocument';
+		propertyName: #mainDocument;
 		default: 'myfile.pillar';
 		yourself.
 	self assert: item default equals: 'myfile.pillar'
@@ -108,7 +108,7 @@ ConfigurationItemTest >> testSettingDefaultFile [
 ConfigurationItemTest >> testSettingDefaultString [
 	| item |
 	item := StringConfigurationItem new
-		propertyName: 'title';
+		propertyName: #title;
 		default: 'my super cool book';
 		yourself.
 	self assert: item default equals: 'my super cool book' 

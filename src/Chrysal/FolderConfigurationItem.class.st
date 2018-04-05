@@ -17,7 +17,7 @@ FolderConfigurationItem class >> example [
 	<sampleInstance>
 
 	^ FolderConfigurationItem new
-		propertyName: 'outputDirectory';
+		propertyName: #outputDirectory;
 		default: 'build'
 ]
 

@@ -17,7 +17,7 @@ Class {
 BooleanConfigurationItem class >> example [
 	<sampleInstance>
 	^ self new
-		propertyName: 'separateOutputFiles';
+		propertyName: #separateOutputFiles;
 		beTrueAsDefault
 ]
 

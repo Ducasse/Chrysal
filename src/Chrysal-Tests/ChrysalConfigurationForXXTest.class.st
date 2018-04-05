@@ -1,5 +1,12 @@
 "
 Check ChrysalConfigurationBuilder >> #itemDescriptionForXX for the definition of the description items. 
+
+
+ChrysalConfigurationBuilder new 
+	configurationRootClass: ConfigurationRootForXX;
+	defineConfigurationClassNamed: #ConfigurationForXX 
+	packagedIn: 'Chrysal-Tests'; 
+	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
 "
 Class {
 	#name : #ChrysalConfigurationForXXTest,
@@ -237,6 +244,27 @@ ChrysalConfigurationForXXTest >> testNewFromStream [
 	| conf |
 	conf := self configurationClass newFromStream: self sample readStream.
 	self assert: conf verbose
+]
+
+{ #category : #'tests - composite' }
+ChrysalConfigurationForXXTest >> testPostTreat [
+	|  config list |
+	config := self configurationClass newFromDictionary:  (STON fromString: '  { ''levels'' : [
+		[    ''level'' : 1,
+			''renderAs'' : ''letter'',
+			''capitalization'' : ''uppercase'',
+			''numbering'' : true,
+			''headerSize'' : 2
+		],
+		[	''level'' : 2,
+			''renderAs'' : ''number'',
+			''capitalization'' : ''uppercase'',
+			''numbering'' : true,
+			''headerSize'' : 3
+		]
+	]}').
+	list := config propertyAt: 'levels'. 
+	self assert: (config  hasProperty: #newLevels)
 ]
 
 { #category : #'tests - composite' }

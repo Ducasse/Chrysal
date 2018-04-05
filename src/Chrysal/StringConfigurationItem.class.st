@@ -21,7 +21,7 @@ StringConfigurationItem class >> example [
 	<sampleInstance>
 	
 	^ StringConfigurationItem new
-		propertyName: 'title';
+		propertyName: #title;
 		default: 'my super cool book';
 		yourself.
 ]

@@ -39,7 +39,7 @@ PRUnspecifiedScriptLanguage default
 Class {
 	#name : #CodeBlockDefaultLanguageItem,
 	#superclass : #ChrysalItem,
-	#category : #'Chrysal-ToBeMovedElsewhere'
+	#category : #'Chrysal-Pillar'
 }
 
 { #category : #accessing }

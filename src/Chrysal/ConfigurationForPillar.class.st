@@ -1,101 +1,101 @@
 Class {
 	#name : #ConfigurationForPillar,
 	#superclass : #ChrysalPillarishConfiguration,
-	#category : #'Chrysal-ToBeMovedElsewhere'
+	#category : #'Chrysal-Pillar'
 }
 
 { #category : #description }
 ConfigurationForPillar class >> chrysalDescriptions [
  ^ STON fromString: '[
 	StringConfigurationItem {
-		#propertyName : ''title'',
+		#propertyName : #title,
 		#default : ''my super cool book''
 	},
 	StringConfigurationItem {
-		#propertyName : ''attribution'',
+		#propertyName : #attribution,
 		#default : ''me, myself and I''
 	},
 	NumberConfigurationItem {
-		#propertyName : ''headingLevelOffset'',
+		#propertyName : #headingLevelOffset,
 		#default : 0,
 		#explanation : ''Indicate how to convert from the level of a Pillar heading to the level of heading in your exported document.\r\tFor example, a headingLevelOffset of 3 converts a 1st level Pillar heading to an <h4>in HTML''
 	},
 	StringConfigurationItem {
-		#propertyName : ''series'',
+		#propertyName : #series,
 		#default : ''Square Bracket Associate Collection''
 	},
 	StringConfigurationItem {
-		#propertyName : ''keywords'',
+		#propertyName : #keywords,
 		#default : ''Pharo''
 	},
 	FolderConfigurationItem {
-		#propertyName : ''outputDirectory'',
+		#propertyName : #outputDirectory,
 		#default : ''build''
 	},
 	FolderConfigurationItem {
-		#propertyName : ''baseDirectory'',
+		#propertyName : #baseDirectory,
 		#default : ''.''
 	},
 	FileConfigurationItem {
-		#propertyName : ''outputFile'',
+		#propertyName : #outputFile,
 		#default : ''output'',
 		#explanation : ''If separateOutputFiles is false, indicate the name of the output file. This can also be a write stream.''
 	},
 	FileConfigurationItem {
-		#propertyName : ''mainDocument'',
+		#propertyName : #mainDocument,
 		#default : ''book''
 	},
 	FileConfigurationItem {
-		#propertyName : ''inputFile'',
+		#propertyName : #inputFile,
 		#default : ''book'',
 		#explanation : ''The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value''
 	},
 	StringConfigurationItem {
-		#propertyName : ''latexTemplate'',
+		#propertyName : #latexTemplate,
 		#default : ''_support/templates/main.latex.mustache''
 	},
 	BooleanConfigurationItem {
-		#propertyName : ''scrambledEmailAddresses'',
+		#propertyName : #scrambledEmailAddresses,
 		#default : ''false''
 	},
 	BooleanConfigurationItem {
-		#propertyName : ''separateOutputFiles'',
+		#propertyName : #separateOutputFiles,
 		#default : ''false'',
 		#explanation : ''If true, each input file is exported to one output file. If false (the default), all input files are exported to outputFile.''
 	},
 	BooleanConfigurationItem {
-		#propertyName : ''renderStructureAsSlide'',
+		#propertyName : #renderStructureAsSlide,
 		#default : ''false'',
 		#explanation : ''When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document''
 	},
 	StringConfigurationItem {
-		#propertyName : ''latexChapterTemplate'',
+		#propertyName : #latexChapterTemplate,
 		#default : ''_support/templates/chapter.latex.mustache''
 	},
 	StringConfigurationItem {
-		#propertyName : ''htmlTemplate'',
+		#propertyName : #htmlTemplate,
 		#default : ''_support/templates/html.mustache''
 	},
 	StringConfigurationItem {
-		#propertyName : ''htmlChapterTemplate'',
+		#propertyName : #htmlChapterTemplate,
 		#default : ''_support/templates/html.mustache''
 	},
 	NewLineConfigurationItem {
-		#propertyName : ''newLine'',
+		#propertyName : #newLine,
 		#default : #unix,
 		#explanation : ''The string that separates lines in the exported document. This is often either LF or CR\\+LF but any string is possible. Values are #(#cr #lf #crlf #unix #mac #dos)'',
 		#defaultKey : #unix
 	},
 	StringConfigurationItem {
-		#propertyName : ''latexWriter'',
+		#propertyName : #latexWriter,
 		#default : #''latex:sbabook''
 	},
 	StringConfigurationItem {
-		#propertyName : ''htmlWriter'',
+		#propertyName : #htmlWriter,
 		#default : #html
 	},
 	NumberConfigurationItem {
-		#propertyName : ''slideInTemplateForDeckJS'',
+		#propertyName : #slideInTemplateForDeckJS,
 		#default : 1,
 		#explanation : ''Number of slides in Template: Indicate the number of slides created by the DeckJS template. This is important to create anchors.''
 	},
@@ -103,6 +103,22 @@ ConfigurationForPillar class >> chrysalDescriptions [
 		#propertyName : #defaultScriptLanguage,
 		#default : ''smalltalk'',
 		#explanation : ''Indicate the language in scripts when none is specified. This language is used for syntax highlighting. The currently supported languages are bash, css, html, http, json, javascript, pillar, sql, ston, shellcommands and smalltalk''
+	},
+	CompositeConfigurationItem {
+		#propertyName : #levelSpecification,
+		#default : #ChrysalCompositeDomain,
+		#fields : [
+			#level,
+			#renderAs,
+			#capitalization,
+			#numbering,
+			#headerSize
+		]
+	},
+	ListConfigurationItem {
+		#propertyName : #levels,
+		#default : #OrderedCollection,
+		#element : #levelSpecification
 	}
 ]'
 ]
@@ -204,6 +220,37 @@ ConfigurationForPillar >> convertLatexWriter: aValue [
 ]
 
 { #category : #conversion }
+ConfigurationForPillar >> convertLevelSpecification: aValue [
+	"generated code"
+	| composite |
+	composite := ChrysalCompositeDomain new.
+	aValue do: [:v | 
+		    "We ignore undeclared fields"
+			(#(#level #renderAs #capitalization #numbering #headerSize) includes: v key asSymbol)
+				ifTrue: [ 
+					| value |
+					"if the element has been described we convert"
+					(self declaredItems includes: v key asSymbol)
+						ifTrue: [ value := self perform: (#convert, v key capitalized, ':') asSymbol with: v value ]
+						ifFalse: [ value := v value ].		
+					composite 
+								perform:  (v key, ':') asSymbol 
+								with: value].
+		].
+	^ composite
+]
+
+{ #category : #conversion }
+ConfigurationForPillar >> convertLevels: aValue [
+	"generated code"
+	| elements |
+	elements := OrderedCollection new.
+	aValue do: [:v | 
+		 elements add: (self convertLevelSpecification: v ) ].
+	^ elements
+]
+
+{ #category : #conversion }
 ConfigurationForPillar >> convertMainDocument: aValue [
 	"generated code"
 	^ (FileSystem workingDirectory / aValue)
@@ -273,7 +320,7 @@ ConfigurationForPillar >> convertTitle: aValue [
 { #category : #'declared items' }
 ConfigurationForPillar >> declaredItems [
 	"generated code"
-	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #baseDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #htmlWriter #slideInTemplateForDeckJS #defaultScriptLanguage )
+	^ #( #title #attribution #headingLevelOffset #series #keywords #outputDirectory #baseDirectory #outputFile #mainDocument #inputFile #latexTemplate #scrambledEmailAddresses #separateOutputFiles #renderStructureAsSlide #latexChapterTemplate #htmlTemplate #htmlChapterTemplate #newLine #latexWriter #htmlWriter #slideInTemplateForDeckJS #defaultScriptLanguage #levelSpecification #levels )
 ]
 
 { #category : #accessing }
@@ -394,6 +441,30 @@ ConfigurationForPillar >> latexWriter [
 ConfigurationForPillar >> latexWriter: aValue [
 	"generated code"
 	^ self propertyAt: #latexWriter put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> levelSpecification [
+	"generated code"
+	^ self propertyAt: #levelSpecification ifAbsent: [ ChrysalCompositeDomain new ]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> levelSpecification: aValue [
+	"generated code"
+	^ self propertyAt: #levelSpecification put: aValue
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> levels [
+	"generated code"
+	^ self propertyAt: #levels ifAbsent: [ OrderedCollection new ]
+]
+
+{ #category : #accessing }
+ConfigurationForPillar >> levels: aValue [
+	"generated code"
+	^ self propertyAt: #levels put: aValue
 ]
 
 { #category : #accessing }
