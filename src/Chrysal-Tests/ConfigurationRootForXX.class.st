@@ -1,3 +1,10 @@
+"
+ChrysalConfigurationBuilder new 
+	configurationRootClass: ConfigurationRootForXX;
+	defineConfigurationClassNamed: #ConfigurationForXX 
+	packagedIn: 'Chrysal-Tests'; 
+	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
+"
 Class {
 	#name : #ConfigurationRootForXX,
 	#superclass : #ChrysalConfiguration,

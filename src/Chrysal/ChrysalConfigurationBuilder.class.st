@@ -16,6 +16,16 @@ There are two ways of specify the configuration class: either using ==configurat
 The main public API is the method ==withDescriptionItems:==
 
 Here are some typical usecases. 
+
+[[[
+ChrysalConfigurationBuilder new 
+	configurationRootClass: ConfigurationRootForXX;
+	defineConfigurationClassNamed: #ConfigurationForXX 
+	packagedIn: 'Chrysal-Tests'; 
+	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
+]]]
+
+
 [[[
 ChrysalConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForXX 

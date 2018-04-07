@@ -264,7 +264,8 @@ ChrysalConfigurationForXXTest >> testPostTreat [
 		]
 	]}').
 	list := config propertyAt: 'levels'. 
-	self assert: (config  hasProperty: #newLevels)
+	self assert: (config  hasProperty: #newLevels).
+	self assert: (config propertyAt: #newLevels) size equals: 2
 ]
 
 { #category : #'tests - composite' }
