@@ -20,7 +20,7 @@ ChrysalPillarishConfiguration >> initialize [
 { #category : #'post hooks' }
 ChrysalPillarishConfiguration >> postTreat [
 
-	(self propertyAt: #levels) do: [ 
+	(self propertyAt: #levels ifAbsent: [^ self ]) do: [ 
 			:levelSpec |
 			| instance |
 			instance := (self printer printerSpecFor: levelSpec renderAs).

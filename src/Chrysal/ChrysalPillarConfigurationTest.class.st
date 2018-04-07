@@ -51,7 +51,7 @@ ChrysalPillarConfigurationTest >> printerSample [
 ChrysalPillarConfigurationTest >> testPrinter [
 	|  config printer |
 	config := self configurationClass newFromDictionary:  (STON fromString: self printerSample).
-	printer := config propertyAt: 'printer'. 
+	printer := config propertyAt: 'levels'. 
 	self assert: printer level1 capitalization equals: 'uppercase'.
 	self assert: printer level1 level equals: 1.
 	self assert: printer level1 size equals: 'uppercase'.

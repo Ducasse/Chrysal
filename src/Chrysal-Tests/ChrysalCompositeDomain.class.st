@@ -86,3 +86,15 @@ ChrysalCompositeDomain >> renderAs [
 ChrysalCompositeDomain >> renderAs: anObject [
 	renderAs := anObject
 ]
+
+{ #category : #accessing }
+ChrysalCompositeDomain >> size [
+
+	^ self headerSize
+]
+
+{ #category : #accessing }
+ChrysalCompositeDomain >> size: anInteger [
+
+	self headerSize: anInteger
+]
