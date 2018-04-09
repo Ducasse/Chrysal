@@ -8,8 +8,9 @@ Class {
 ConfigurationBuilderTest class >> ensureConfigurationForXXExist [
 	Smalltalk globals at: #ConfigurationForXX ifAbsent: [  
 		ChrysalConfigurationBuilder new
+			configurationRootClass: ConfigurationRootForXX;
 			defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal-Tests';
-			withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX ].
+			withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX ].
 	^ Smalltalk globals at: #ConfigurationForXX
 ]
 
@@ -45,8 +46,8 @@ ConfigurationBuilderTest >> testDescriptionBuilder [
 	
 	| builder string items |
 	builder := ChrysalConfigurationBuilder new.
-	items := ChrysalConfigurationBuilder itemDescriptionForXX.
-	self assert: items size equals: 17.
+	items := ConfigurationDescriptionForXX itemDescriptionForXX.
+	self assert: items size equals: 21.
 	string := String
 		streamContents: [ :s |  builder 
 										addDescriptionBodyIn: s 

@@ -59,6 +59,22 @@ ChrysalConfigurationForXXTest >> sample [
 }'
 ]
 
+{ #category : #'tests - creation from ston' }
+ChrysalConfigurationForXXTest >> testAbsoluteComplexPath [
+	| config |
+	config := self configurationClass new.
+	self assert: config absoluteComplex isAbsolute.
+	self assert: config absoluteComplex equals: (Path from: '/simple/simple1')
+]
+
+{ #category : #'tests - creation from ston' }
+ChrysalConfigurationForXXTest >> testAbsoluteSimplePath [
+	| config |
+	config := self configurationClass new.
+	self assert: config absoluteSimple isAbsolute.
+	self assert: config absoluteSimple equals: (Path from: '/simple')
+]
+
 { #category : #'tests - composite' }
 ChrysalConfigurationForXXTest >> testComposite [
 	|  config composite |
@@ -124,7 +140,7 @@ ChrysalConfigurationForXXTest >> testConvertingComposite [
 
 { #category : #'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromDictionaryWithConversion [
-	| conf |
+	| conf | 
 	conf := ConfigurationForXX newFromSTONDictionary: {('verbose' -> true) . ( 'htmlChapterTemplate' -> '_support/templates/html.mustache')} asDictionary.
 	self assert: (conf propertyAt: 'verbose') equals: true	" and not 'true' ".
 	self assert: (conf propertyAt: 'htmlChapterTemplate') class equals: FileReference
@@ -143,7 +159,7 @@ ChrysalConfigurationForXXTest >> testImportFromFile [
 
 { #category : #'tests - creation from pharo' }
 ChrysalConfigurationForXXTest >> testImportFromPharoDictionary [
-	| conf |
+	| conf | 
 	conf := ConfigurationForXX
 		newFromConvertedDictionary:
 			{('array' -> #()).
@@ -164,9 +180,20 @@ ChrysalConfigurationForXXTest >> testImportFromPharoDictionary [
 ]
 
 { #category : #'tests - creation from ston' }
+ChrysalConfigurationForXXTest >> testImportFromRelativePath [
+	| config fileSystem |
+	fileSystem := FileSystem memory root.
+	fileSystem / 'test.conf'
+		writeStreamDo: [ :st | st nextPutAll: self sample ].
+	config := self configurationClass
+		newFromFile: fileSystem / 'test.conf'.
+	self assert: (config propertyAt: 'verbose')
+]
+
+{ #category : #'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromSTONDictionary [
 	
-	| conf |
+	| conf | 
 	conf := ConfigurationForXX
 		newFromSTONDictionary:
 			{('verbose' -> true).
@@ -180,7 +207,7 @@ ChrysalConfigurationForXXTest >> testImportFromSTONDictionary [
 { #category : #'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromSTONDictionaryWithExtended [
 	
-	| conf |
+	| conf | 
 	conf := ConfigurationForXX 
 				newFromDictionary:  {('verbose' -> true). ('title' -> 'supercool book') } asDictionary
 				extendedWith: {('authors' -> 'stef zegreat')} asDictionary.
@@ -266,6 +293,22 @@ ChrysalConfigurationForXXTest >> testPostTreat [
 	list := config propertyAt: 'levels'. 
 	self assert: (config  hasProperty: #newLevels).
 	self assert: (config propertyAt: #newLevels) size equals: 2
+]
+
+{ #category : #'tests - creation from ston' }
+ChrysalConfigurationForXXTest >> testRelativeComplexPath [
+	| config |
+	config := self configurationClass new.
+	self assert: config relativeComplex isRelative.
+	self assert: config relativeComplex equals: (Path from: 'simple/simple1')
+]
+
+{ #category : #'tests - creation from ston' }
+ChrysalConfigurationForXXTest >> testRelativePath [
+	| config |
+	config := self configurationClass new.
+	self assert: config relativeSimple isRelative.
+	self assert: config relativeSimple equals: (Path from: 'simple')
 ]
 
 { #category : #'tests - composite' }

@@ -85,6 +85,16 @@ ConfigurationItemTest >> testNumber [
 ]
 
 { #category : #tests }
+ConfigurationItemTest >> testSettingDefaultAbsolutePath [
+	| item |
+	item := PathConfigurationItem new
+		propertyName: #title;
+		default: '/build';
+		yourself.
+	self assert: item default equals: '/build'
+]
+
+{ #category : #tests }
 ConfigurationItemTest >> testSettingDefaultBoolean [
 	| item |
 	item := BooleanConfigurationItem new
@@ -95,6 +105,16 @@ ConfigurationItemTest >> testSettingDefaultBoolean [
 ]
 
 { #category : #tests }
+ConfigurationItemTest >> testSettingDefaultComplexPath [
+	| item |
+	item := PathConfigurationItem new
+		propertyName: #title;
+		default: 'path/to/build';
+		yourself.
+	self assert: item default equals: 'path/to/build'
+]
+
+{ #category : #tests }
 ConfigurationItemTest >> testSettingDefaultFile [
 	| item |
 	item := FileConfigurationItem new
@@ -102,6 +122,16 @@ ConfigurationItemTest >> testSettingDefaultFile [
 		default: 'myfile.pillar';
 		yourself.
 	self assert: item default equals: 'myfile.pillar'
+]
+
+{ #category : #tests }
+ConfigurationItemTest >> testSettingDefaultPath [
+	| item |
+	item := PathConfigurationItem new
+		propertyName: #title;
+		default: 'build';
+		yourself.
+	self assert: item default equals: 'build'
 ]
 
 { #category : #tests }
