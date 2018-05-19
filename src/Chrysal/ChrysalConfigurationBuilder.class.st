@@ -22,7 +22,7 @@ ChrysalConfigurationBuilder new
 	configurationRootClass: ConfigurationRootForXX;
 	defineConfigurationClassNamed: #ConfigurationForXX 
 	packagedIn: 'Chrysal-Tests'; 
-	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
+	withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
 ]]]
 
 
@@ -30,13 +30,13 @@ ChrysalConfigurationBuilder new
 ChrysalConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForXX 
 	packagedIn: 'Chrysal-Tests'; 
-	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
+	withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
 ]]]
 
 [[[	
 ChrysalConfigurationBuilder new 
 	configurationClass: ConfigurationForXX;
-	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
+	withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
 ]]]	
 
 
@@ -46,24 +46,12 @@ A ConfigurationItem can be an elementary element such as Number, String, Symbol,
 In case of composite, for now the composite are not converted using Chrysal but are plain STON values. 
 
 
-
-
-
 !! Note for the chrysal extender
-
 STON configurations consider the following as literals and not strings: number true false symbol string. Therefore the conversion is not needed. 
+ 
+!! Potential todo
 
-
-
-Next step is to 
-- The builder should delegate to the item for the definition of the method?
-- what do we want for composite and list?
--- composite: should we only allow literal. 
--- composite: should we declare the elements type. 
--- list: should we declare the element Yes and add:/addAll:
-
-- generate code that generate the class itself.  
-- do we copy the methods from the superclass? this way we are fully automous?
+- Generate the invocation that generates the class itself, so that we can regenerate it. 
 
 
 
@@ -236,6 +224,113 @@ ChrysalConfigurationBuilder >> isPropertyDefined: aName [
 	^ items keys includes: aName asSymbol
 ]
 
+{ #category : #sample }
+ChrysalConfigurationBuilder >> itemDescriptionForPillar [
+	^ {(StringConfigurationItem new
+		propertyName: #title;
+		default: 'my super cool book';
+		yourself).
+	(StringConfigurationItem new
+		propertyName: #attribution;
+		default: 'me, myself and I';
+		yourself).
+	(NumberConfigurationItem new
+		propertyName: #headingLevelOffset;
+		explanation:
+			'Indicate how to convert from the level of a Pillar heading to the level of heading in your exported document.
+	For example, a headingLevelOffset of 3 converts a 1st level Pillar heading to an <h4>in HTML';
+		default: 0;
+		yourself).
+	(StringConfigurationItem new
+		propertyName: #series;
+		default: 'Square Bracket Associate Collection';
+		yourself).
+	(StringConfigurationItem new
+		propertyName: #keywords;
+		default: 'Pharo';
+		yourself).
+	(FolderConfigurationItem new
+		propertyName: #outputDirectory;
+		default: 'build').
+	(FolderConfigurationItem new
+		propertyName: #baseDirectory;
+		default: '.').
+	(FileConfigurationItem new
+		propertyName: #outputFile;
+		default: 'output';
+		explanation:
+			'If separateOutputFiles is false, indicate the name of the output file. This can also be a write stream.').
+	(FileConfigurationItem new
+		propertyName: #mainDocument;
+		default: 'book').
+	(FileConfigurationItem new
+		propertyName: #inputFile;
+		default: 'book';
+		explanation:
+			'The Pillar file that must be transformed. You can also specify an input file at the end of the command-line interface. Previously there was no default value').
+	(StringConfigurationItem new
+		propertyName: #latexTemplate;
+		default: '_support/templates/main.latex.mustache').
+	(BooleanConfigurationItem new
+		propertyName: #scrambledEmailAddresses;
+		beFalseAsDefault).
+	(BooleanConfigurationItem new
+		propertyName: #separateOutputFiles;
+		explanation:
+			'If true, each input file is exported to one output file. If false (the default), all input files are exported to outputFile.';
+		beFalseAsDefault).
+	(BooleanConfigurationItem new
+		propertyName: #renderStructureAsSlide;
+		explanation:
+			'When true (the default), Pillar will create a dedicated slide for each Pillar header. This parameter is meaningless when generating a written document';
+		beTrueAsDefault).
+	(StringConfigurationItem new
+		propertyName: #latexChapterTemplate;
+		default: '_support/templates/chapter.latex.mustache').
+	(StringConfigurationItem new
+		propertyName: #htmlTemplate;
+		default: '_support/templates/html.mustache').
+	(StringConfigurationItem new
+		propertyName: #htmlChapterTemplate;
+		default: '_support/templates/html.mustache').
+	(NewLineConfigurationItem new
+		propertyName: #newLine;
+		defaultIsUnix).
+	(StringConfigurationItem new
+		propertyName: #latexWriter;
+		default: #latex:sbabook;
+		yourself)	
+		.
+	(StringConfigurationItem new
+		propertyName: #htmlWriter;
+		default: #html;
+		yourself)	
+		.
+	(NumberConfigurationItem new
+		propertyName: #slideInTemplateForDeckJS;
+		explanation: 'Number of slides in Template: Indicate the number of slides created by the DeckJS template. This is important to create anchors.';
+		default: 1;
+		yourself).
+	(CodeBlockDefaultLanguageItem new)
+	.
+	(CompositeConfigurationItem new
+		propertyName: #levelSpecification;
+		default: #PRTitlePrinterSpecification;
+		fields: #(level renderAs capitalization numbering headerSize);
+		yourself)
+	.
+	(ListConfigurationItem new
+		propertyName: #levels;
+		default: #OrderedCollection;
+		element: #levelSpecification;
+		yourself) 
+	.	
+	(FileConfigurationItem new
+		propertyName: #tocFile;
+		noDefault)
+	}
+]
+
 { #category : #'add configuration accessors' }
 ChrysalConfigurationBuilder >> setterGenerationForItem: anItem [
 	
@@ -255,14 +350,14 @@ ChrysalConfigurationBuilder >> testingGenerationForItem: anItem [
 
 	^ String
 		streamContents: [ :str | 
-			str nextPutAll: anItem propertyName uncapitalized, 'IfDefined: defBlockWithOneArg undefined: noDefBlock'.
+			str nextPutAll: anItem propertyName uncapitalized; nextPutAll: 'IfDefined: defBlockWithOneArg undefined: noDefBlock'.
 			str cr; tab.
 			str nextPutAll: '"generated code"'.
 			str nextPutAll: 'When the property has been declared as having a default, we pass its value defined or default to the argument, defBlockWithOneArg.
-Else we execute simply the noDefBlock. Since this code is statically generated we know which branch to take at compilation time.'
+Else we execute simply the noDefBlock. Since this code is statically generated we know which branch to take at compilation time.'.
 			str cr; tab.
 			anItem hasDefault
-				ifTrue: [ str nextPutAll: ' ^ defBlockWithOneArg value: self ', anItem propertyName uncapitalized ] 
+				ifTrue: [ str nextPutAll: ' ^ defBlockWithOneArg value: self ' ; nextPutAll: anItem propertyName uncapitalized ] 
 				ifFalse: [ str nextPutAll: ' ^ noDefBlock value']
 			]
 ]
