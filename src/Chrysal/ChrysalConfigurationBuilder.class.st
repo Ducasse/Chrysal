@@ -353,8 +353,8 @@ ChrysalConfigurationBuilder >> testingGenerationForItem: anItem [
 			str nextPutAll: anItem propertyName uncapitalized; nextPutAll: 'IfDefined: defBlockWithOneArg undefined: noDefBlock'.
 			str cr; tab.
 			str nextPutAll: '"generated code"'.
-			str nextPutAll: 'When the property has been declared as having a default, we pass its value defined or default to the argument, defBlockWithOneArg.
-Else we execute simply the noDefBlock. Since this code is statically generated we know which branch to take at compilation time.'.
+			str nextPutAll: '"When the property has been declared as having a default, we pass its value defined or default to the argument, defBlockWithOneArg.
+Else we execute simply the noDefBlock. Since this code is statically generated we know which branch to take at compilation time."'.
 			str cr; tab.
 			anItem hasDefault
 				ifTrue: [ str nextPutAll: ' ^ defBlockWithOneArg value: self ' ; nextPutAll: anItem propertyName uncapitalized ] 

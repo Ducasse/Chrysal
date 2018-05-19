@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 ChrysalTestResource >> setUp [
-	
+	Transcript show: 'Resources SetUp'.
 	Smalltalk globals at: #ConfigurationForXX ifAbsent: [  
 		ChrysalConfigurationBuilder new
 			configurationRootClass: ConfigurationRootForXX;

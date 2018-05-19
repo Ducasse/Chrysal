@@ -14,6 +14,13 @@ Class {
 	#category : #'Chrysal-Tests-Tests'
 }
 
+{ #category : #accessing }
+ChrysalConfigurationForXXTest class >> resources [
+   "Associate the resource with this class of test cases"
+   ^ { ChrysalTestResource }
+
+]
+
 { #category : #hooks }
 ChrysalConfigurationForXXTest >> configurationClass [
 	^ ConfigurationBuilderTest ensureConfigurationForXXExist
@@ -141,7 +148,7 @@ ChrysalConfigurationForXXTest >> testConvertingComposite [
 { #category : #'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromDictionaryWithConversion [
 	| conf | 
-	conf := ConfigurationForXX newFromSTONDictionary: {('verbose' -> true) . ( 'htmlChapterTemplate' -> '_support/templates/html.mustache')} asDictionary.
+	conf := self configurationClass newFromSTONDictionary: {('verbose' -> true) . ( 'htmlChapterTemplate' -> '_support/templates/html.mustache')} asDictionary.
 	self assert: (conf propertyAt: 'verbose') equals: true	" and not 'true' ".
 	self assert: (conf propertyAt: 'htmlChapterTemplate') class equals: FileReference
 ]
@@ -160,7 +167,7 @@ ChrysalConfigurationForXXTest >> testImportFromFile [
 { #category : #'tests - creation from pharo' }
 ChrysalConfigurationForXXTest >> testImportFromPharoDictionary [
 	| conf | 
-	conf := ConfigurationForXX
+	conf := self configurationClass
 		newFromConvertedDictionary:
 			{('array' -> #()).
 			('verbose' -> true).
@@ -171,7 +178,7 @@ ChrysalConfigurationForXXTest >> testImportFromPharoDictionary [
 	self assert: (conf propertyAt: 'authors') equals: 'stef zegreat'.
 	self assert: conf verbose.
 	
-	conf :=  ConfigurationForXX
+	conf :=  self configurationClass
 		newFromConvertedDictionary:
 			{('array' -> #()).
 			('verbose' -> 'true' ) } asDictionary.
@@ -194,7 +201,7 @@ ChrysalConfigurationForXXTest >> testImportFromRelativePath [
 ChrysalConfigurationForXXTest >> testImportFromSTONDictionary [
 	
 	| conf | 
-	conf := ConfigurationForXX
+	conf := self configurationClass
 		newFromSTONDictionary:
 			{('verbose' -> true).
 			('title' -> 'supercool book').
@@ -208,7 +215,7 @@ ChrysalConfigurationForXXTest >> testImportFromSTONDictionary [
 ChrysalConfigurationForXXTest >> testImportFromSTONDictionaryWithExtended [
 	
 	| conf | 
-	conf := ConfigurationForXX 
+	conf := self configurationClass 
 				newFromDictionary:  {('verbose' -> true). ('title' -> 'supercool book') } asDictionary
 				extendedWith: {('authors' -> 'stef zegreat')} asDictionary.
 	self assert: (conf propertyAt: 'title') equals: 'supercool book'.
