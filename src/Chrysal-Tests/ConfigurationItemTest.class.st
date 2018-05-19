@@ -1,7 +1,7 @@
 Class {
 	#name : #ConfigurationItemTest,
 	#superclass : #TestCase,
-	#category : #'Chrysal-Tests'
+	#category : #'Chrysal-Tests-Tests'
 }
 
 { #category : #tests }
@@ -72,6 +72,16 @@ ConfigurationItemTest >> testNewLineConversion [
 		propertyName: #newLine;
 		yourself.
 	self assert: item default equals: #unix
+]
+
+{ #category : #tests }
+ConfigurationItemTest >> testNoDefault [
+	| item |
+	item := StringConfigurationItem new propertyName: #title ; noDefault ;  yourself.
+	self deny: item hasDefault. 
+	item setHasDefault. 
+	self assert: item hasDefault
+	
 ]
 
 { #category : #tests }

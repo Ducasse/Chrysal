@@ -107,7 +107,8 @@ Class {
 	#instVars : [
 		'propertyName',
 		'default',
-		'explanation'
+		'explanation',
+		'noDefault'
 	],
 	#category : #'Chrysal-Model'
 }
@@ -163,6 +164,24 @@ ChrysalItem >> explanation: aString [
 	explanation := aString
 ]
 
+{ #category : #accessing }
+ChrysalItem >> hasDefault [
+
+	^ noDefault not
+]
+
+{ #category : #accessing }
+ChrysalItem >> initialize [
+
+	noDefault := false
+]
+
+{ #category : #accessing }
+ChrysalItem >> noDefault [
+
+	noDefault := true
+]
+
 { #category : #unused }
 ChrysalItem >> possibleValuesString [
 	^ ''
@@ -186,4 +205,10 @@ ChrysalItem >> propertyName: aSymbol [
 	"property name"
 
 	propertyName := aSymbol asSymbol
+]
+
+{ #category : #accessing }
+ChrysalItem >> setHasDefault [
+
+	noDefault := false
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #ConfigurationBuilderTest,
 	#superclass : #TestCase,
-	#category : #'Chrysal-Tests'
+	#category : #'Chrysal-Tests-Tests'
 }
 
 { #category : #tests }
@@ -12,6 +12,13 @@ ConfigurationBuilderTest class >> ensureConfigurationForXXExist [
 			defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal-Tests';
 			withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX ].
 	^ Smalltalk globals at: #ConfigurationForXX
+]
+
+{ #category : #accessing }
+ConfigurationBuilderTest class >> resources [
+   "Associate the resource with this class of test cases"
+   ^ { ChrysalTestResource }
+
 ]
 
 { #category : #tests }
@@ -27,6 +34,7 @@ ConfigurationBuilderTest >> testBuilder [
 	self assert: (self ensureConfigurationForXXExist selectors includes: #convertAttribution:).
 	self assert: (self ensureConfigurationForXXExist selectors includes: #attribution:).
 	self assert: (self ensureConfigurationForXXExist selectors includes: #attribution).
+	self assert: (self ensureConfigurationForXXExist selectors includes: #attributionDefined:undefined:).
 	self
 		assert: (self ensureConfigurationForXXExist >> #attribution) sourceCode
 		equals:

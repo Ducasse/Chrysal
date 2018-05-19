@@ -8,7 +8,7 @@ ChrysalConfigurationBuilder new
 Class {
 	#name : #ConfigurationRootForXX,
 	#superclass : #ChrysalConfiguration,
-	#category : #'Chrysal-Tests'
+	#category : #'Chrysal-Tests-Tests'
 }
 
 { #category : #'post hooks' }

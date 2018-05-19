@@ -7,7 +7,7 @@ ChrysalConfigurationBuilder new
 Class {
 	#name : #ConfigurationDescriptionForXX,
 	#superclass : #Object,
-	#category : #'Chrysal-Tests'
+	#category : #'Chrysal-Tests-Tests'
 }
 
 { #category : #'for test and documentation' }

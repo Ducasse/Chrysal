@@ -83,6 +83,6 @@ CompositeConfigurationItem >> fields: aCollection [
 
 { #category : #initialization }
 CompositeConfigurationItem >> initialize [
-
+	super initialize.
 	fields := #()
 ]

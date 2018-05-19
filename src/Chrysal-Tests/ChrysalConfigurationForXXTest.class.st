@@ -11,7 +11,7 @@ ChrysalConfigurationBuilder new
 Class {
 	#name : #ChrysalConfigurationForXXTest,
 	#superclass : #TestCase,
-	#category : #'Chrysal-Tests'
+	#category : #'Chrysal-Tests-Tests'
 }
 
 { #category : #hooks }
