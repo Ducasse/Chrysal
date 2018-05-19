@@ -1,4 +1,6 @@
 "
+Empty class only used to hold on list of items. 
+
 ChrysalConfigurationBuilder new
 				configurationRootClass: ConfigurationRootForXX;
 				defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal-Tests';
