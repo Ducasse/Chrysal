@@ -17,11 +17,11 @@ BaselineOfChrysal >> baseline: spec [
 		for: #pharo
 		do: [ 
 			spec
-				package: 'Chrysal-Runtime'.
+				package: 'Chrysal-Runtime' with: [ spec requires: #('ContainersPropertyEnvironment') ].
 			spec
 				package: 'Chrysal-Tests'
 				with: [ spec requires: #('Chrysal-Runtime' 'Chrysal') ].
 			spec
 				package: 'Chrysal'
-				with: [ spec requires: #('ContainersPropertyEnvironment' 'Chrysal-Runtime') ] ]
+				with: [ spec requires: #('Chrysal-Runtime') ] ]
 ]
