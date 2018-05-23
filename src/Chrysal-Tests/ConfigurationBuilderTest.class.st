@@ -34,7 +34,6 @@ ConfigurationBuilderTest >> testBuilder [
 	self assert: (self ensureConfigurationForXXExist selectors includes: #convertAttribution:).
 	self assert: (self ensureConfigurationForXXExist selectors includes: #attribution:).
 	self assert: (self ensureConfigurationForXXExist selectors includes: #attribution).
-	self assert: (self ensureConfigurationForXXExist selectors includes: #attributionIfDefined:undefined:).
 	self
 		assert: (self ensureConfigurationForXXExist >> #attribution) sourceCode
 		equals:
