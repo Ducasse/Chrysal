@@ -55,7 +55,7 @@ ConfigurationBuilderTest >> testDescriptionBuilder [
 	| builder string items |
 	builder := ChrysalConfigurationBuilder new.
 	items := ConfigurationDescriptionForXX itemDescriptionForXX.
-	self assert: items size equals: 22.
+	self assert: items size equals: 21.
 	string := String
 		streamContents: [ :s |  builder 
 										addDescriptionBodyIn: s 

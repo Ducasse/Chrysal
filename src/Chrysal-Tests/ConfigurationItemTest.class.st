@@ -75,16 +75,6 @@ ConfigurationItemTest >> testNewLineConversion [
 ]
 
 { #category : #tests }
-ConfigurationItemTest >> testNoDefault [
-	| item |
-	item := StringConfigurationItem new propertyName: #title ; noDefault ;  yourself.
-	self deny: item hasDefault. 
-	item setHasDefault. 
-	self assert: item hasDefault
-	
-]
-
-{ #category : #tests }
 ConfigurationItemTest >> testNumber [
 	| item |
 	item := NumberConfigurationItem new

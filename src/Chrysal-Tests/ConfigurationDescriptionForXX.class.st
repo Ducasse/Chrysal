@@ -96,11 +96,5 @@ ConfigurationDescriptionForXX class >> itemDescriptionForXX [
 		propertyName: #absoluteComplex;
 		default: '/simple/simple1';
 		yourself)
-	.
-	(StringConfigurationItem new
-		propertyName: #titleWithoutDefault;
-		default: 'my super cool book';
-		noDefault; 
-		yourself)	
 	}
 ]
