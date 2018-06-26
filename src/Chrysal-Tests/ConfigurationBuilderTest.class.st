@@ -60,6 +60,6 @@ ConfigurationBuilderTest >> testDescriptionBuilder [
 										addDescriptionBodyIn: s 
 										forItems:  items ].
 	self 
-		assert: (STON fromString: (Compiler evaluate: string)) size 
+		assert: (STON fromString: (self class evaluate: string)) size 
 		equals: items size
 ]

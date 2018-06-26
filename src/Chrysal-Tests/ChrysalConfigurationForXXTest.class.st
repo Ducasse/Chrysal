@@ -11,8 +11,41 @@ ChrysalConfigurationBuilder new
 Class {
 	#name : #ChrysalConfigurationForXXTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'testingWorkingDirectory'
+	],
 	#category : #'Chrysal-Tests-Tests'
 }
+
+{ #category : #files }
+ChrysalConfigurationForXXTest class >> config [
+	"self config"
+	
+	^ (Smalltalk globals at: #ConfigurationForXX) fromString: self configFileContentsForTest
+]
+
+{ #category : #files }
+ChrysalConfigurationForXXTest class >> configFileContentsForTest [
+
+	^ '{
+	''verbose'': true,
+	''printerComposite'' : 
+		[ 
+		''level'' : 1,
+		''renderAs'' : ''letter'',
+		''capitalization'' : ''uppercase'',
+		''numbering'' : true,
+		''headerSize'' : 2
+		]
+	
+}'
+]
+
+{ #category : #files }
+ChrysalConfigurationForXXTest class >> configFileNameForTest [
+
+	^ 'pillar.conf'
+]
 
 { #category : #accessing }
 ChrysalConfigurationForXXTest class >> resources [
@@ -64,6 +97,19 @@ ChrysalConfigurationForXXTest >> sample [
   "newLine": #unix,
   "latexWriter": #''latex:sbabook''
 }'
+]
+
+{ #category : #running }
+ChrysalConfigurationForXXTest >> setUp [
+
+	super setUp.
+	
+	"
+	testingWorkingDirectory := FileSystem memory workingDirectory.
+	(testingWorkingDirectory / self class configFileNameForTest)
+		writeStreamDo: [ :stream | 
+			stream nextPutAll: self class configFileContentsForTest ]
+	"
 ]
 
 { #category : #'tests - creation from ston' }
