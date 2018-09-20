@@ -44,7 +44,8 @@ ChrysalItem subclass: #NewLineConfigurationItem
 
 
 ## Example of configuration description
-C
+
+The developer of a specific configuration will assemble together a list of configuration item. This is this list that will describe how the actual configuration will be managed. This list will be interpreted and eaten by a reader builder to generate a specific reader. 
 
 Here is typical configuration description. 
 ```
@@ -122,7 +123,7 @@ itemDescriptionForXX
 	}
 ```
 
-## Builder
+## Configuration Reader Builder
 
 The configuration builder will consumes a configuration description as shown above and produces a configuration reader. 
 
