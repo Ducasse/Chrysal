@@ -3,8 +3,8 @@
 Chrysal is a library to express and manage external configurations expressed as STON files. Chrysal is the successor of Cocoon but it does not use any magical things like DNU and Magritte. Chrysal is purely static, it means that given a list of items, a reader class is generated that manages the conversion between the two worlds (what the end-users is declaring and what the application needs). At runtime a generated Chrysal configuration can be a subclass of a domain subclass of 
 Chrysal configuration. This way we can define behavior that will not be lost during the recompilation of the chrysal configuration (the one based on the actual description).
 
-* Chrysal creates at compile time a reader that is responsible for mapping end-user expressed configuration to their internal representation (for example a 'a/b/c.html' into a a file reference object). 
-* In addition at runtime a configuration objects can customize the default behavior of the generated reader. 
+* Chrysal creates at compile time a reader that is responsible for mapping end-user expressed configurations to their internal representations (for example a 'a/b/c.html' into a a file reference object). 
+* In addition at runtime a configuration object can customize the default behavior of the generated reader. 
 * Finally the configuration developer can extend Chrysal to support new data. 
 
 ## Example of configuration
@@ -155,6 +155,13 @@ ChrysalPillarishConfiguration >> postTreat
 			self printer level: instance n: levelSpec level. 
 			 ]
 ```
+
+## Adding New Configuration Item
+Since a configuration item describes information that will be used to generate code, it acts as a static data (from that perspective it can be perceived as data to be fed to a macro expansion engine). 
+
+
+
+
 
 ## Known limits:
 - Path management should be revisited. 
