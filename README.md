@@ -30,7 +30,7 @@ Here is an example of a configuration. This configuration is the one of a pillar
 ## Example of configuration element
 
 Chrysal supports the conversion of elements (file, new lines, custom domain specific,..) entities from a textual format to Pharo object. 
-It supports composite and list of items too. 
+It supports composite and list of items too. Item descriptions are subclasses of ChrysalItem. 
 
 For example the NewLineConfigurationItem manages how #unix will be converted into the correct platform specific encoding. 
 This logic is defined in the class NewLineConfigurationItem.
@@ -128,13 +128,16 @@ itemDescriptionForXX
 The configuration builder will consumes a configuration description as shown above and produces a configuration reader. 
 
 Here is a typical way to invoke the builder. 
+
 ```
 ChrysalConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal-Tests'; 
 	withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
 ```	
 
-## Example of extension
+It will generate a class and its associated comments so that we can regenerate it too.
+
+## Example of Extensions
 
 Pillar extends the ChrysalConfiguration (runtime class) to be able to perform extra treatment.
 ```
@@ -156,13 +159,45 @@ ChrysalPillarishConfiguration >> postTreat
 			 ]
 ```
 
+## About Runtime Dependencies
+
+Note that neither the items (subclasses of ChrysalItem and ChrysalItems), nor the builder will be used at runtime. 
+There you can package your description outside of Chrysal. This is why you can also store a description configuration in a textual format. 
+
+The only dependency needed at runtime is the Chrysal-Runtime. This package is minimalistic and it only contain the class ChrysalConfiguration that will be extended by the generated configuration reader produced by the builder. 
+
+
 ## Adding New Configuration Item
 Since a configuration item describes information that will be used to generate code, it acts as a static data (from that perspective it can be perceived as data to be fed to a macro expansion engine). 
 
+STON configurations consider the following as literals and not strings: number true false symbol string. Therefore the conversion is not needed. 
 
+To extend the item hierarchy, a new class should defines the methods: defaultDomainValueString
 
+```
+defaultDomainValueString
+	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
+     ...
+```
 
+```
+domainValueConversionString
+	"Returns a string converting a string as written in the configuration file to a pharo object. 
+	Note that this method is like the body of a macro that will be expanded in the configuration class: here aValue is the name of the parameter of the generated method.
+	
+	For example for fileConfigurationItem (inputFile), 
+	the result of the method will be used in the body of the following generated method 
+	
+	convertInputFile: aValue
+	      ^ (FileSystem workingDirectory / aValue)
+	
+	 Parameter of the item like baseline should be accessed via self nameOfProperty"
 
+	^ '^ aValue'
+
+```
+
+Read the class, BooleanConfigurationItem for a simple case and NewLineConfigurationItem for a bit more advanced case. 
 ## Known limits:
 - Path management should be revisited. 
 - Chrysal should be better packaged. 
