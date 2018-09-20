@@ -67,19 +67,6 @@ NewLineConfigurationItem >> initialize [
 ]
 
 { #category : #'mapping logic' }
-NewLineConfigurationItem >> mapperFromUserToDomain [
-	"coded this way because we may inline it in configuration class."
-	| fromUserToDomainDictionary |
-	fromUserToDomainDictionary := self mapperFromUserToDomainRepresentations copy.
-	fromUserToDomainDictionary
-		keysAndValuesDo: [ :k :v | 
-			fromUserToDomainDictionary
-				at: k
-				put: (fromUserToDomainDictionary at: k put: (Compiler evaluate: v)) ].
-	^ fromUserToDomainDictionary
-]
-
-{ #category : #'mapping logic' }
 NewLineConfigurationItem >> mapperFromUserToDomainRepresentations [
 	"coded this way because we may inline it in configuration class."
 	^ Dictionary

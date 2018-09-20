@@ -46,11 +46,11 @@ ChrysalCompositeDomain >> headerSize: anObject [
 	headerSize := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 ChrysalCompositeDomain >> initialize [
 
 	super initialize. 
-	level = 99. 
+	level := 99. 
 	capitalization := 'raw'.
 	numbering := false.
 	renderAs := 'letter'.
