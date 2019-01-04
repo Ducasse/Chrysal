@@ -76,10 +76,11 @@ NewLineConfigurationItem >> mapperFromUserToDomainRepresentations [
 			(#crlf -> 'Win32Platform new lineEnding').
 			(#unix -> 'UnixPlatform new lineEnding').
 			(#mac -> 'UnixPlatform new lineEnding').
-			(#dos -> 'Win32Platform new lineEnding')}
+			(#dos -> 'Win32Platform new lineEnding').
+			(#platform -> 'Smalltalk os lineEnding')}
 ]
 
 { #category : #initialization }
 NewLineConfigurationItem >> possibleValuesString [
-	^ #(#cr #lf #crlf #unix #mac #dos) asString
+	^ #(#cr #lf #crlf #unix #mac #dos #platform) asString
 ]
