@@ -71,7 +71,7 @@ ConfigurationItemTest >> testNewLineConversion [
 	item := NewLineConfigurationItem new
 		propertyName: #newLine;
 		yourself.
-	self assert: item default equals: #unix
+	self assert: item default equals: #platform
 ]
 
 { #category : #tests }

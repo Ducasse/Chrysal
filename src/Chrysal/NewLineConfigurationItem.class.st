@@ -32,6 +32,11 @@ NewLineConfigurationItem >> defaultDomainValueString [
 ]
 
 { #category : #'public api' }
+NewLineConfigurationItem >> defaultIsPlatform [
+	defaultKey := #platform
+]
+
+{ #category : #'public api' }
 NewLineConfigurationItem >> defaultIsUnix [
 	defaultKey := #unix.
 	
@@ -39,7 +44,7 @@ NewLineConfigurationItem >> defaultIsUnix [
 
 { #category : #accessing }
 NewLineConfigurationItem >> defaultValue [
-	^ #unix
+	^ #platform
 ]
 
 { #category : #conversion }
