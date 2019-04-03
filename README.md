@@ -15,6 +15,9 @@ Chrysal configuration. This way we can define behavior that will not be lost dur
 * In addition at runtime a configuration object can customize the default behavior of the generated reader. 
 * Finally the configuration developer can extend Chrysal to support new data. 
 
+
+
+
 ## Example of configuration
 
 Here is an example of a configuration. This configuration is the one of a pillar project. The end user specifies different values for given entry. 
@@ -206,6 +209,24 @@ domainValueConversionString
 ```
 
 Read the class, BooleanConfigurationItem for a simple case and NewLineConfigurationItem for a bit more advanced case. 
+
+## Loading
+
+```
+Metacello new
+   baseline: 'Chrysal';
+   repository: 'github://Ducasse/Chrysal';
+   load.
+```
+
+## If you want to depend on it
+
+```
+spec 
+   baseline: 'Chrysal' 
+   with: [ spec repository: 'github://Ducasse/Chrysal' ].
+```
+
 ## Known limits:
 - Path management should be revisited. 
 - Chrysal should be better packaged. 
