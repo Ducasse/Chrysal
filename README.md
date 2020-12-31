@@ -2,6 +2,7 @@
 
 
 ![https://github.com/Ducasse/Chrysal/workflows/currentStablePharo/badge.svg](https://github.com/Ducasse/Chrysal/workflows/currentStablePharo/badge.svg)
+![https://github.com/Ducasse/Chrysal/workflows/matrix/badge.svg](https://github.com/Ducasse/Chrysal/workflows/matrix/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github//Ducasse/Chrysal/badge.svg?branch=master)](https://coveralls.io/github//Ducasse/Containers-Grid?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 <!-- [![Build status](https://ci.appveyor.com/api/projects/status/1wdnjvmlxfbml8qo?svg=true)](https://ci.appveyor.com/project/olekscode/dataframe)  -->
