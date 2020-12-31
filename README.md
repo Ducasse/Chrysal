@@ -1,12 +1,12 @@
 # Chrysal
 
-[![Build Status](https://travis-ci.com/Ducasse/Chrysal.svg?branch=master)](https://travis-ci.com/Ducasse/Chrysal)
+
+![https://github.com/Ducasse/Chrysal/workflows/currentStablePharo/badge.svg](https://github.com/Ducasse/Chrysal/workflows/currentStablePharo/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github//Ducasse/Chrysal/badge.svg?branch=master)](https://coveralls.io/github//Ducasse/Containers-Grid?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
-[![Pharo version](https://img.shields.io/badge/Pharo-6.1-%23aac9ff.svg)](https://pharo.org/download)
-[![Pharo version](https://img.shields.io/badge/Pharo-7.0-%23aac9ff.svg)](https://pharo.org/download)
-[![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
 <!-- [![Build status](https://ci.appveyor.com/api/projects/status/1wdnjvmlxfbml8qo?svg=true)](https://ci.appveyor.com/project/olekscode/dataframe)  -->
+
+
 
 Chrysal is a library to express and manage external configurations expressed as STON files. Chrysal is the successor of Cocoon but it does not use any magical things like DNU and Magritte. Chrysal is purely static, it means that given a list of items, a reader class is generated that manages the conversion between the two worlds (what the end-users is declaring and what the application needs). At runtime a generated Chrysal configuration can be a subclass of a domain subclass of 
 Chrysal configuration. This way we can define behavior that will not be lost during the recompilation of the chrysal configuration (the one based on the actual description).
