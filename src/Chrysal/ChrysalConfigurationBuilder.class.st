@@ -1,53 +1,50 @@
 "
 Chrysal is composed of two parts: a configuration reader generator and a runtime reader (once generated). 
-Usually users declare a configuration description and the builder generates a reader that can be packaged independently of the configuration description.
+Usually application developers declare a configuration description and the builder generates a reader that can be packaged independently of the configuration description.
 
-I generate a configuration class independent from Chrysal objects (check itemDescriptionForXX for a sample of such description objects), but based on them. I'm like a macro expansion.
+I generate a configuration class independent from Chrysal objects (check `itemDescriptionForXX` for a sample of such description objects), but based on them. I'm a bit like a macro expansion.
 
 The generated configuration classes knows how to 
 - access properties it stores
-- convert values from the external world (in terms of STON) to Pharo objects.
+- convert values from the external world (in terms of JSON) to Pharo objects.
 
-Since we are using STON as an external format, the following objects are considered as literals and as such we do not 
+Since we are using JSON as an external format, the following objects are considered as literals and as such we do not 
 convert them since they get converted by STON reader for us:  number, true, false, symbol and string.
 
-The generated Chrysal configuration classes still needs to be subclass of ChrysalConfiguration class to reuse some of the behavior to create instances.
+The generated Chrysal configuration classes still needs to be subclass of `ChrysalConfiguration` class to reuse some of the behavior to create instances.
 
-!! API
+### API
 There are two ways of specify the configuration class: either using ==configurationClass:== or ==defineConfigurationClassNamed:packagedIn:==
 	
 The main public API is the method ==withDescriptionItems:==
 
 Here are some typical usecases. 
 
-[[[
+```
 ChrysalConfigurationBuilder new 
 	configurationRootClass: ConfigurationRootForXX;
 	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal-Tests'; 
 	withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
-]]]
+```
 
-
-[[[
+```
 ChrysalConfigurationBuilder new 
 	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal-Tests'; 
 	withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
-]]]
+```
 
-[[[	
+```	
 ChrysalConfigurationBuilder new 
 	configurationClass: ConfigurationForXX;
 	withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
-]]]	
+```
 
 
 A ConfigurationItem can be an elementary element such as Number, String, Symbol, NewLine,
- File or Folder, but also a composite one. 
-
-In case of composite, for now the composite are not converted using Chrysal but are plain STON values. 
+ File or Folder, but also a composite one. In case of composite, for now the composite are not converted using Chrysal but are plain STON values. 
 
 
-!! Note for the chrysal extender
+### Note for the chrysal extender
 STON configurations consider the following as literals and not strings: number true false symbol string. Therefore the conversion is not needed. 
 
 "
