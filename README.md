@@ -9,13 +9,12 @@
 
 
 
-Chrysal is a library to express and manage external configurations expressed as STON files. Chrysal is the successor of Cocoon but it does not use any magical things like DNU and Magritte. Chrysal is purely static, it means that given a list of items, a reader class is generated that manages the conversion between the two worlds (what the end-users is declaring and what the application needs). At runtime a generated Chrysal configuration can be a subclass of a domain subclass of 
-Chrysal configuration. This way we can define behavior that will not be lost during the recompilation of the chrysal configuration (the one based on the actual description).
+Chrysal is a library to express and manage external configurations expressed as JSON files. Chrysal is purely static, it means that given a list of items, a reader class is generated that manages the conversion between the two worlds (what the end-users is declaring and what the application needs). At run time a generated Chrysal configuration can be a subclass of a domain class, subclass of 
+ChrysalConfiguration. This way we can define behavior that will not be lost during the recompilation of the Chrysal configuration (the one based on the actual description).
 
 * Chrysal creates at compile-time a reader that is responsible for mapping end-user expressed configurations to their internal representations (for example a 'a/b/c.html' into a file reference object). 
-* In addition at runtime a configuration object can customize the default behavior of the generated reader. 
+* In addition at run time a configuration object can customize the default behavior of the generated reader. 
 * Finally the configuration developer can extend Chrysal to support new data. 
-
 
 
 
@@ -42,10 +41,10 @@ Here is an example of a configuration. This configuration is the one of a pillar
 ## Example of configuration element
 
 Chrysal supports the conversion of elements (file, new lines, custom domain specific,..) entities from a textual format to Pharo object. 
-It supports composite and list of items too. Item descriptions are subclasses of ChrysalItem. 
+It supports composite and list of items too. Item descriptions are subclasses of `ChrysalItem`. 
 
-For example the NewLineConfigurationItem manages how #unix will be converted into the correct platform specific encoding. 
-This logic is defined in the class NewLineConfigurationItem.
+For example the `NewLineConfigurationItem` manages how the word `#unix` will be converted into the correct platform specific encoding. 
+This logic is defined in the class `NewLineConfigurationItem`.
 
 ```
 ChrysalItem subclass: #NewLineConfigurationItem
@@ -137,7 +136,7 @@ itemDescriptionForXX
 
 ## Configuration Reader Builder
 
-The configuration builder will consumes a configuration description as shown above and produces a configuration reader. 
+The configuration builder will consume a configuration description as shown above and produce a configuration reader. 
 
 Here is a typical way to invoke the builder. 
 
@@ -147,11 +146,11 @@ ChrysalConfigurationBuilder new
 	withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
 ```	
 
-It will generate a class and its associated comments so that we can regenerate it too.
+Note that it will generate a class and its associated comments so that we can regenerate it too.
 
 ## Example of Extensions
 
-Pillar extends the ChrysalConfiguration (runtime class) to be able to perform extra treatment.
+Pillar extends the `ChrysalConfiguration` (run time class) to be able to perform extra treatment.
 ```
 ChrysalConfiguration subclass: #ChrysalPillarishConfiguration
 	instanceVariableNames: 'printer'
@@ -171,20 +170,20 @@ ChrysalPillarishConfiguration >> postTreat
 			 ]
 ```
 
-## About Runtime Dependencies
+## About Run time Dependencies
 
-Note that neither the items (subclasses of ChrysalItem and ChrysalItems), nor the builder will be used at runtime. 
+Note that neither the items (subclasses of `ChrysalItem` and `ChrysalItems`), nor the builder will be used at run time. 
 There you can package your description outside of Chrysal. This is why you can also store a description configuration in a textual format. 
 
-The only dependency needed at runtime is the Chrysal-Runtime. This package is minimalistic and it only contain the class ChrysalConfiguration that will be extended by the generated configuration reader produced by the builder. 
+The only dependency needed at run time is the `Chrysal-Runtime`. This package is minimalistic and it only contains the class `ChrysalConfiguration` that will be extended by the generated configuration reader produced by the builder. 
 
 
-## Adding New Configuration Item
+## Adding New Configuration Items
+
 Since a configuration item describes information that will be used to generate code, it acts as a static data (from that perspective it can be perceived as data to be fed to a macro expansion engine). 
 
-STON configurations consider the following as literals and not strings: number true false symbol string. Therefore the conversion is not needed. 
-
-To extend the item hierarchy, a new class should defines the methods: defaultDomainValueString
+JSON configurations consider the following as literals and not strings: number true false symbol string. Therefore the conversion is not needed. 
+To extend the item hierarchy, a new class should defines the methods: `defaultDomainValueString` and `domainValueConversionString`.
 
 ```
 defaultDomainValueString
@@ -209,7 +208,7 @@ domainValueConversionString
 
 ```
 
-Read the class, BooleanConfigurationItem for a simple case and NewLineConfigurationItem for a bit more advanced case. 
+Read the class, `BooleanConfigurationItem` for a simple case and `NewLineConfigurationItem` for a bit more advanced case. 
 
 ## Loading
 
@@ -230,4 +229,4 @@ spec
 
 ## Known limits:
 - Path management should be revisited. 
-- Chrysal should be better packaged. 
+
