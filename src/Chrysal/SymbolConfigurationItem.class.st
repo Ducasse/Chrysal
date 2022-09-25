@@ -2,10 +2,12 @@
 To describe symbol items.
 Literal in STON.
 
+```
 (SymbolConfigurationItem new
 		propertyName: 'latexWriter';
 		default: #latex:sbabook;
 		yourself)
+```
 "
 Class {
 	#name : #SymbolConfigurationItem,

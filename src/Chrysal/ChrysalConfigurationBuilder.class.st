@@ -1,4 +1,7 @@
 "
+Chrysal is composed of two parts: a configuration reader generator and a runtime reader (once generated). 
+Usually users declare a configuration description and the builder generates a reader that can be packaged independently of the configuration description.
+
 I generate a configuration class independent from Chrysal objects (check itemDescriptionForXX for a sample of such description objects), but based on them. I'm like a macro expansion.
 
 The generated configuration classes knows how to 

@@ -1,10 +1,14 @@
 "
 Empty class only used to hold on list of items. 
 
+The following code is there to be able to recreate this class. 
+
+```
 ChrysalConfigurationBuilder new
-				configurationRootClass: ConfigurationRootForXX;
-				defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal-Tests';
-				withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
+	configurationRootClass: ConfigurationRootForXX;
+	defineConfigurationClassNamed: #ConfigurationForXX packagedIn: 'Chrysal-Tests';
+	withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX
+```
 "
 Class {
 	#name : #ConfigurationDescriptionForXX,

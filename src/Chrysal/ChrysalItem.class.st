@@ -1,13 +1,18 @@
 "
-A chrysalItem is a description object responsible for generating statically a configuration class able to represent, convert, and manage default value of various configuration properties. 
+A chrysalItem is a description object responsible for generating _statically_ a configuration _class_ able to represent, convert, and manage default value of various configuration properties. 
 
 A configuration is expressed as STON file on disk and the strings contained in the configuration should be converted to Pharo objects. For example files, folder, newline conventions. 
 
 An item has basically a propertyName, an explanation string, a default value. 
-Now care must be taken because item are compiled time objects and they should return string representations that will be used to generate the actual configuration class representing the configuration. 
+Now care must be taken because items are _compiled time_ objects and they should return string representations that will be used to generate the actual configuration class representing the configuration. 
 
-For example NewLineConfigurationItem>> domainValueConversionStringis a good example. It returns a mapping that will be used to map configuration properties to Pharo objects.
+Applications may extend or add new subclasses to manage specific property.
 
+### Example
+
+`NewLineConfigurationItem>>#domainValueConversionString` is a good example. It returns a mapping that will be used to map configuration properties to Pharo objects.
+
+```
 NewLineConfigurationItem>> domainValueConversionString
 	""Returns a string converting a string as written by in the configuration file to a pharo object. 
 	Note that this method is like the body of a macro that will be expanded in the configuration class: 
@@ -22,28 +27,32 @@ NewLineConfigurationItem>> domainValueConversionString
 				(#unix -> UnixPlatform new lineEnding).
 				(#mac -> UnixPlatform new lineEnding).
 				(#dos -> Win32Platform new lineEnding)}) at: aValue'
+```
 
 
 
-Applications may extend or add new subclasses to manage specific property.
 
 
-Known limitations:
+### Known limitations:
 
 Note that for now, I do not manage the fact that the user could define a default value when he does not specify a given value for a property. 
 For example, the following configuration method
 
+```
 defaultScriptLanguage
 	""generated code""
 	^ self propertyAt: #defaultScriptLanguage ifAbsent: [(PRRealScriptLanguage for: 'smalltalk')]
+```
 
-is generated and we cannot simply let the user define that the default language could be something else than 'smalltalk'. Of course, he just has to specify a value for defaultScriptLanguage to do it - but we are talking about the default case specification. 
-
-
-
+is generated and we do simply let the user define that the default language could be something else than 'smalltalk'. Of course, he just has to specify a value for `defaultScriptLanguage` to do it - but we are talking about the default case specification. 
 
 
 
+### Configuration description
+
+Here is a typical configuration.
+
+```
 STON toStringPretty: ConfigurationDescriptionForXX new items
 
  '[
@@ -100,6 +109,8 @@ STON toStringPretty: ConfigurationDescriptionForXX new items
 		#default : #''latex:sbabook''
 	}
 ]'
+
+```
 "
 Class {
 	#name : #ChrysalItem,

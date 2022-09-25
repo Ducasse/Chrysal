@@ -2,12 +2,12 @@
 To describe string items.
 Literal in STON.
 
-[[[
+```
 StringConfigurationItem new
 		propertyName: 'title';
 		default: 'my super cool book';
 		yourself
-]]]
+```
 "
 Class {
 	#name : #StringConfigurationItem,

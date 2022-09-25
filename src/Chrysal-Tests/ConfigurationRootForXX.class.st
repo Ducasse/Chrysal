@@ -1,9 +1,14 @@
 "
+I represent the root class of for configuration for a dull project. 
+
+
+```
 ChrysalConfigurationBuilder new 
 	configurationRootClass: ConfigurationRootForXX;
 	defineConfigurationClassNamed: #ConfigurationForXX 
 	packagedIn: 'Chrysal-Tests'; 
 	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
+```
 "
 Class {
 	#name : #ConfigurationRootForXX,

@@ -1,12 +1,13 @@
 "
 Check ChrysalConfigurationBuilder >> #itemDescriptionForXX for the definition of the description items. 
 
-
+```
 ChrysalConfigurationBuilder new 
 	configurationRootClass: ConfigurationRootForXX;
 	defineConfigurationClassNamed: #ConfigurationForXX 
 	packagedIn: 'Chrysal-Tests'; 
 	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
+```
 "
 Class {
 	#name : #ChrysalConfigurationForXXTest,
