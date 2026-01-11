@@ -10,22 +10,24 @@ ChrysalConfigurationBuilder new
 ```
 "
 Class {
-	#name : #ChrysalConfigurationForXXTest,
-	#superclass : #TestCase,
+	#name : 'ChrysalConfigurationForXXTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'testingWorkingDirectory'
 	],
-	#category : #'Chrysal-Tests-Tests'
+	#category : 'Chrysal-Tests-Tests',
+	#package : 'Chrysal-Tests',
+	#tag : 'Tests'
 }
 
-{ #category : #files }
+{ #category : 'files' }
 ChrysalConfigurationForXXTest class >> config [
 	"self config"
 	
 	^ (Smalltalk globals at: #ConfigurationForXX) fromString: self configFileContentsForTest
 ]
 
-{ #category : #files }
+{ #category : 'files' }
 ChrysalConfigurationForXXTest class >> configFileContentsForTest [
 
 	^ '{
@@ -42,25 +44,25 @@ ChrysalConfigurationForXXTest class >> configFileContentsForTest [
 }'
 ]
 
-{ #category : #files }
+{ #category : 'files' }
 ChrysalConfigurationForXXTest class >> configFileNameForTest [
 
 	^ 'pillar.conf'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalConfigurationForXXTest class >> resources [
    "Associate the resource with this class of test cases"
    ^ { ChrysalTestResource }
 
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 ChrysalConfigurationForXXTest >> configurationClass [
 	^ ConfigurationBuilderTest ensureConfigurationForXXExist
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 ChrysalConfigurationForXXTest >> listSample [
 	^  '{
   "title": "A Little Scheme in Pharo",
@@ -81,7 +83,7 @@ ChrysalConfigurationForXXTest >> listSample [
 }'
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 ChrysalConfigurationForXXTest >> sample [
 	^  '{
   "title": "A Little Scheme in Pharo",
@@ -100,7 +102,7 @@ ChrysalConfigurationForXXTest >> sample [
 }'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 ChrysalConfigurationForXXTest >> setUp [
 
 	super setUp.
@@ -113,7 +115,7 @@ ChrysalConfigurationForXXTest >> setUp [
 	"
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testAbsoluteComplexPath [
 	| config |
 	config := self configurationClass new.
@@ -121,7 +123,7 @@ ChrysalConfigurationForXXTest >> testAbsoluteComplexPath [
 	self assert: config absoluteComplex equals: (Path from: '/simple/simple1')
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testAbsoluteSimplePath [
 	| config |
 	config := self configurationClass new.
@@ -129,7 +131,7 @@ ChrysalConfigurationForXXTest >> testAbsoluteSimplePath [
 	self assert: config absoluteSimple equals: (Path from: '/simple')
 ]
 
-{ #category : #'tests - composite' }
+{ #category : 'tests - composite' }
 ChrysalConfigurationForXXTest >> testComposite [
 	|  config composite |
 	config := self configurationClass newFromDictionary:  (STON fromString: '{
@@ -151,7 +153,7 @@ ChrysalConfigurationForXXTest >> testComposite [
 	
 ]
 
-{ #category : #'tests - composite' }
+{ #category : 'tests - composite' }
 ChrysalConfigurationForXXTest >> testCompositeDiscardUndeclaredField [
 	|  config composite |
 	config := self configurationClass newFromDictionary:  (STON fromString: '{
@@ -174,7 +176,7 @@ ChrysalConfigurationForXXTest >> testCompositeDiscardUndeclaredField [
 	
 ]
 
-{ #category : #'tests - composite' }
+{ #category : 'tests - composite' }
 ChrysalConfigurationForXXTest >> testConvertingComposite [
 	|  config composite |
 	config := self configurationClass  newFromDictionary:  (STON fromString: '{
@@ -192,7 +194,7 @@ ChrysalConfigurationForXXTest >> testConvertingComposite [
 	
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromDictionaryWithConversion [
 	| conf | 
 	conf := self configurationClass newFromSTONDictionary: {('verbose' -> true) . ( 'htmlChapterTemplate' -> '_support/templates/html.mustache')} asDictionary.
@@ -200,7 +202,7 @@ ChrysalConfigurationForXXTest >> testImportFromDictionaryWithConversion [
 	self assert: (conf propertyAt: 'htmlChapterTemplate') class equals: FileReference
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromFile [
 	| config fileSystem |
 	fileSystem := FileSystem memory root.
@@ -211,7 +213,7 @@ ChrysalConfigurationForXXTest >> testImportFromFile [
 	self assert: (config propertyAt: 'verbose')
 ]
 
-{ #category : #'tests - creation from pharo' }
+{ #category : 'tests - creation from pharo' }
 ChrysalConfigurationForXXTest >> testImportFromPharoDictionary [
 	| conf | 
 	conf := self configurationClass
@@ -233,7 +235,7 @@ ChrysalConfigurationForXXTest >> testImportFromPharoDictionary [
 	
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromRelativePath [
 	| config fileSystem |
 	fileSystem := FileSystem memory root.
@@ -244,7 +246,7 @@ ChrysalConfigurationForXXTest >> testImportFromRelativePath [
 	self assert: (config propertyAt: 'verbose')
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromSTONDictionary [
 	
 	| conf | 
@@ -258,7 +260,7 @@ ChrysalConfigurationForXXTest >> testImportFromSTONDictionary [
 	self assert: conf verbose
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testImportFromSTONDictionaryWithExtended [
 	
 	| conf | 
@@ -270,7 +272,7 @@ ChrysalConfigurationForXXTest >> testImportFromSTONDictionaryWithExtended [
 	self assert: conf verbose
 ]
 
-{ #category : #'tests - value types' }
+{ #category : 'tests - value types' }
 ChrysalConfigurationForXXTest >> testImportFromString [
 	| ston conf |
 	ston := '{
@@ -292,7 +294,7 @@ ChrysalConfigurationForXXTest >> testImportFromString [
 	self assert: conf newLine equals: UnixPlatform new lineEnding
 ]
 
-{ #category : #'tests - composite' }
+{ #category : 'tests - composite' }
 ChrysalConfigurationForXXTest >> testList [
 	|  config list |
 	config := self configurationClass newFromDictionary:  (STON fromString: '  { ''levels'' : [
@@ -320,14 +322,14 @@ ChrysalConfigurationForXXTest >> testList [
 	
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testNewFromStream [
 	| conf |
 	conf := self configurationClass newFromStream: self sample readStream.
 	self assert: conf verbose
 ]
 
-{ #category : #'tests - composite' }
+{ #category : 'tests - composite' }
 ChrysalConfigurationForXXTest >> testPostTreat [
 	|  config list |
 	config := self configurationClass newFromDictionary:  (STON fromString: '  { ''levels'' : [
@@ -349,7 +351,7 @@ ChrysalConfigurationForXXTest >> testPostTreat [
 	self assert: (config propertyAt: #newLevels) size equals: 2
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testRelativeComplexPath [
 	| config |
 	config := self configurationClass new.
@@ -357,7 +359,7 @@ ChrysalConfigurationForXXTest >> testRelativeComplexPath [
 	self assert: config relativeComplex equals: (Path from: 'simple/simple1')
 ]
 
-{ #category : #'tests - creation from ston' }
+{ #category : 'tests - creation from ston' }
 ChrysalConfigurationForXXTest >> testRelativePath [
 	| config |
 	config := self configurationClass new.
@@ -365,7 +367,7 @@ ChrysalConfigurationForXXTest >> testRelativePath [
 	self assert: config relativeSimple equals: (Path from: 'simple')
 ]
 
-{ #category : #'tests - composite' }
+{ #category : 'tests - composite' }
 ChrysalConfigurationForXXTest >> testSetConvertedValueOf [
 	| conf |
 	conf := self configurationClass newFromStream: self sample readStream.

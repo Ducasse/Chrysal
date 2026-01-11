@@ -11,12 +11,14 @@ ChrysalConfigurationBuilder new
 ```
 "
 Class {
-	#name : #ConfigurationDescriptionForXX,
-	#superclass : #Object,
-	#category : #'Chrysal-Tests-Tests'
+	#name : 'ConfigurationDescriptionForXX',
+	#superclass : 'Object',
+	#category : 'Chrysal-Tests-Tests',
+	#package : 'Chrysal-Tests',
+	#tag : 'Tests'
 }
 
-{ #category : #'for test and documentation' }
+{ #category : 'for test and documentation' }
 ConfigurationDescriptionForXX class >> itemDescriptionForXX [
 	"just a simple description of items for the tests"
 	

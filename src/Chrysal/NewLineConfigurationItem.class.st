@@ -6,16 +6,18 @@ To describe new lines.
 		defaultIsUnix).
 "
 Class {
-	#name : #NewLineConfigurationItem,
-	#superclass : #ChrysalItem,
+	#name : 'NewLineConfigurationItem',
+	#superclass : 'ChrysalItem',
 	#instVars : [
 		'defaultDomainObject',
 		'defaultKey'
 	],
-	#category : #'Chrysal-Model'
+	#category : 'Chrysal-Model',
+	#package : 'Chrysal',
+	#tag : 'Model'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 NewLineConfigurationItem class >> example [
 	<sampleInstance>
 	
@@ -24,30 +26,30 @@ NewLineConfigurationItem class >> example [
 		defaultIsUnix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewLineConfigurationItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
 
 	^ self mapperFromUserToDomainRepresentations at: self default
 ]
 
-{ #category : #'public api' }
+{ #category : 'public api' }
 NewLineConfigurationItem >> defaultIsPlatform [
 	defaultKey := #platform
 ]
 
-{ #category : #'public api' }
+{ #category : 'public api' }
 NewLineConfigurationItem >> defaultIsUnix [
 	defaultKey := #unix.
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewLineConfigurationItem >> defaultValue [
 	^ #platform
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 NewLineConfigurationItem >> domainValueConversionString [
 	"Returns a string converting a string as written by in the configuration file to a pharo object. 
 	Note that this method is like the body of a macro that will be expanded in the configuration class: 
@@ -64,14 +66,14 @@ NewLineConfigurationItem >> domainValueConversionString [
 				(#dos -> Win32Platform new lineEnding)}) at: aValue'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 NewLineConfigurationItem >> initialize [
 	super initialize.
 	explanation := 'The string that separates lines in the exported document. This is often either LF or CR\+LF but any string is possible. Values are '
 		, self possibleValuesString
 ]
 
-{ #category : #'mapping logic' }
+{ #category : 'mapping logic' }
 NewLineConfigurationItem >> mapperFromUserToDomainRepresentations [
 	"coded this way because we may inline it in configuration class."
 	^ Dictionary
@@ -85,7 +87,7 @@ NewLineConfigurationItem >> mapperFromUserToDomainRepresentations [
 			(#platform -> 'Smalltalk os lineEnding')}
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 NewLineConfigurationItem >> possibleValuesString [
 	^ #(#cr #lf #crlf #unix #mac #dos #platform) asString
 ]

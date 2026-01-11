@@ -7,12 +7,14 @@ To describe path items.
 	default: 'build').
 "
 Class {
-	#name : #PathConfigurationItem,
-	#superclass : #ChrysalItem,
-	#category : #'Chrysal-Model'
+	#name : 'PathConfigurationItem',
+	#superclass : 'ChrysalItem',
+	#category : 'Chrysal-Model',
+	#package : 'Chrysal',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PathConfigurationItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration.
 	
@@ -24,13 +26,13 @@ PathConfigurationItem >> defaultDomainValueString [
 	^ self pathCreationStringWithArgument: ('''{1}''' format: {self default})
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PathConfigurationItem >> defaultValue [
 	"The default value is the working directory, represented as a dot"
 	^ '.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PathConfigurationItem >> domainValueConversionString [
 	"Returns a string converting a string as written in the configuration file to a pharo object. Note that this method is like the body of a macro that will be expanded in the configuration class: here aValue is the name of the parameter of the generated method.
 	
@@ -44,7 +46,7 @@ PathConfigurationItem >> domainValueConversionString [
 	^ '^ ', (self pathCreationStringWithArgument: 'aValue')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PathConfigurationItem >> pathCreationStringWithArgument: argument [
 
 	^ 'Path from: {1}' format: { argument }

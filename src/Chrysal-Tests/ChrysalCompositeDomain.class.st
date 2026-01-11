@@ -3,8 +3,8 @@ I'm a dummy class just for the compositeConfigurationItem test.
 I represent a composite domain object.
 "
 Class {
-	#name : #ChrysalCompositeDomain,
-	#superclass : #Object,
+	#name : 'ChrysalCompositeDomain',
+	#superclass : 'Object',
 	#instVars : [
 		'level',
 		'renderAs',
@@ -13,40 +13,42 @@ Class {
 		'headerSize',
 		'autoAnchor'
 	],
-	#category : #'Chrysal-Tests-Mocks'
+	#category : 'Chrysal-Tests-Mocks',
+	#package : 'Chrysal-Tests',
+	#tag : 'Mocks'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> autoAnchor [ 
 	^ autoAnchor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> autoAnchor: aBoolean [
 	autoAnchor := aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> capitalization [
 	^ capitalization
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> capitalization: anObject [
 	capitalization := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> headerSize [
 	^ headerSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> headerSize: anObject [
 	headerSize := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ChrysalCompositeDomain >> initialize [
 
 	super initialize. 
@@ -57,43 +59,43 @@ ChrysalCompositeDomain >> initialize [
 	headerSize := 25
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> level [
 	^ level
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> level: anObject [
 	level := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> numbering [
 	^ numbering
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> numbering: anObject [
 	numbering := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> renderAs [
 	^ renderAs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> renderAs: anObject [
 	renderAs := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> size [
 
 	^ self headerSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalCompositeDomain >> size: anInteger [
 
 	self headerSize: anInteger

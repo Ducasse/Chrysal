@@ -7,12 +7,14 @@ To describe folder items.
 		default: 'build').
 "
 Class {
-	#name : #FolderConfigurationItem,
-	#superclass : #ChrysalItem,
-	#category : #'Chrysal-Model'
+	#name : 'FolderConfigurationItem',
+	#superclass : 'ChrysalItem',
+	#category : 'Chrysal-Model',
+	#package : 'Chrysal',
+	#tag : 'Model'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 FolderConfigurationItem class >> example [
 	<sampleInstance>
 
@@ -21,20 +23,20 @@ FolderConfigurationItem class >> example [
 		default: 'build'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FolderConfigurationItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
 
 	^ '(FileSystem workingDirectory / ''{1}'')' format: {self default}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FolderConfigurationItem >> defaultValue [
 	"in the context of the configuration writer!"
 	^ 'build'
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 FolderConfigurationItem >> domainValueConversionString [
 	"Returns a string converting a string as written by in the configuration file to a pharo object. 
 	Note that this method is like the body of a macro that will be expanded in the configuration class: here aValue is the name of the parameter of the generated method.
@@ -44,7 +46,7 @@ FolderConfigurationItem >> domainValueConversionString [
 	^ '^ (FileSystem workingDirectory / aValue)' 
 ]
 
-{ #category : #unused }
+{ #category : 'unused' }
 FolderConfigurationItem >> possibleValuesString [
 	"to be filled up with default value at compilation time."
 

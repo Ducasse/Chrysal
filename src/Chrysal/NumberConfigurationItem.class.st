@@ -8,19 +8,21 @@ Literal in STON.
 		yourself)
 "
 Class {
-	#name : #NumberConfigurationItem,
-	#superclass : #ChrysalItem,
-	#category : #'Chrysal-Model'
+	#name : 'NumberConfigurationItem',
+	#superclass : 'ChrysalItem',
+	#category : 'Chrysal-Model',
+	#package : 'Chrysal',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NumberConfigurationItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
 
 	^ self default asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NumberConfigurationItem >> domainValueConversionString [
 	"Returns a string representing the conversion of a value from the configuration writer world to Pharo. aValue is the parameter representing the object to be converted"
 

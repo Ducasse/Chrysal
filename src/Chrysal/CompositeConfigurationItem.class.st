@@ -19,15 +19,17 @@ Right now, the value of such fields are not converted using Chrysal. We just get
 
 "
 Class {
-	#name : #CompositeConfigurationItem,
-	#superclass : #ChrysalItem,
+	#name : 'CompositeConfigurationItem',
+	#superclass : 'ChrysalItem',
 	#instVars : [
 		'fields'
 	],
-	#category : #'Chrysal-Model'
+	#category : 'Chrysal-Model',
+	#package : 'Chrysal',
+	#tag : 'Model'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 CompositeConfigurationItem class >> example [ 
 	<sampleInstance>
 	
@@ -38,14 +40,14 @@ CompositeConfigurationItem class >> example [
 		yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CompositeConfigurationItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
 
 	^ ' {1} new ' format: {self default asString}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CompositeConfigurationItem >> domainValueConversionString [
 	"Returns a string converting a string as written in the configuration file to a pharo object. 
 	Note that this method is like the body of a macro that will be expanded in the configuration class: here aValue is the name of the parameter of the generated method.
@@ -76,12 +78,12 @@ CompositeConfigurationItem >> domainValueConversionString [
 	^ composite' format: {self default asString . fields}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CompositeConfigurationItem >> fields: aCollection [ 
 	fields := aCollection
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CompositeConfigurationItem >> initialize [
 	super initialize.
 	fields := #()
