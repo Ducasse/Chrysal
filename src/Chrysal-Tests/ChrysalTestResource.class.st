@@ -1,10 +1,12 @@
 Class {
-	#name : #ChrysalTestResource,
-	#superclass : #TestResource,
-	#category : #'Chrysal-Tests-Tests'
+	#name : 'ChrysalTestResource',
+	#superclass : 'TestResource',
+	#category : 'Chrysal-Tests-Tests',
+	#package : 'Chrysal-Tests',
+	#tag : 'Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 ChrysalTestResource >> setUp [
 	Transcript show: 'Resources SetUp'.
 	Smalltalk globals at: #ConfigurationForXX ifAbsent: [  
@@ -15,7 +17,7 @@ ChrysalTestResource >> setUp [
 	^ Smalltalk globals at: #ConfigurationForXX
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 ChrysalTestResource >> tearDown [
 
 	| forXXClass |

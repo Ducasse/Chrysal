@@ -1,10 +1,12 @@
 Class {
-	#name : #ConfigurationItemTest,
-	#superclass : #TestCase,
-	#category : #'Chrysal-Tests-Tests'
+	#name : 'ConfigurationItemTest',
+	#superclass : 'TestCase',
+	#category : 'Chrysal-Tests-Tests',
+	#package : 'Chrysal-Tests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testDefaultBoolean [
 	| item |
 	item := BooleanConfigurationItem new
@@ -13,7 +15,7 @@ ConfigurationItemTest >> testDefaultBoolean [
 	self assert: item default equals: item defaultValue
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testDefaultBooleanIsAReallyBoolean [
 	| item |
 	item := BooleanConfigurationItem new
@@ -27,7 +29,7 @@ ConfigurationItemTest >> testDefaultBooleanIsAReallyBoolean [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testDefaultFile [
 	| item |
 	item := FileConfigurationItem new
@@ -36,7 +38,7 @@ ConfigurationItemTest >> testDefaultFile [
 	self assert: item default equals: item defaultValue
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testDefaultString [
 	| item |
 	item := StringConfigurationItem new propertyName: #title ; yourself.
@@ -44,7 +46,7 @@ ConfigurationItemTest >> testDefaultString [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testDefaultString2 [
 	| item |
 	item :=	(StringConfigurationItem new
@@ -55,7 +57,7 @@ ConfigurationItemTest >> testDefaultString2 [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testDefaultSymbol [
 	| item |
 	item := SymbolConfigurationItem new
@@ -65,7 +67,7 @@ ConfigurationItemTest >> testDefaultSymbol [
 	self assert: item defaultDomainValueString equals: '#latex:sbabook'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testNewLineConversion [
 	| item |
 	item := NewLineConfigurationItem new
@@ -74,7 +76,7 @@ ConfigurationItemTest >> testNewLineConversion [
 	self assert: item default equals: #platform
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testNumber [
 	| item |
 	item := NumberConfigurationItem new
@@ -84,7 +86,7 @@ ConfigurationItemTest >> testNumber [
 	self assert: item default equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testSettingDefaultAbsolutePath [
 	| item |
 	item := PathConfigurationItem new
@@ -94,7 +96,7 @@ ConfigurationItemTest >> testSettingDefaultAbsolutePath [
 	self assert: item default equals: '/build'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testSettingDefaultBoolean [
 	| item |
 	item := BooleanConfigurationItem new
@@ -104,7 +106,7 @@ ConfigurationItemTest >> testSettingDefaultBoolean [
 	self assert: item default equals: 'false'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testSettingDefaultComplexPath [
 	| item |
 	item := PathConfigurationItem new
@@ -114,7 +116,7 @@ ConfigurationItemTest >> testSettingDefaultComplexPath [
 	self assert: item default equals: 'path/to/build'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testSettingDefaultFile [
 	| item |
 	item := FileConfigurationItem new
@@ -124,7 +126,7 @@ ConfigurationItemTest >> testSettingDefaultFile [
 	self assert: item default equals: 'myfile.pillar'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testSettingDefaultPath [
 	| item |
 	item := PathConfigurationItem new
@@ -134,7 +136,7 @@ ConfigurationItemTest >> testSettingDefaultPath [
 	self assert: item default equals: 'build'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationItemTest >> testSettingDefaultString [
 	| item |
 	item := StringConfigurationItem new

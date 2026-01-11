@@ -6,12 +6,14 @@ ChrysalConfigurationBuilder new
 	withDescriptionItems: ChrysalConfigurationBuilder itemDescriptionForXX
 "
 Class {
-	#name : #ConfigurationRootForXX,
-	#superclass : #ChrysalConfiguration,
-	#category : #'Chrysal-Tests-Tests'
+	#name : 'ConfigurationRootForXX',
+	#superclass : 'ChrysalConfiguration',
+	#category : 'Chrysal-Tests-Tests',
+	#package : 'Chrysal-Tests',
+	#tag : 'Tests'
 }
 
-{ #category : #'post hooks' }
+{ #category : 'post hooks' }
 ConfigurationRootForXX >> postTreat [
 
 	self propertyAt: #newLevels put: self levels

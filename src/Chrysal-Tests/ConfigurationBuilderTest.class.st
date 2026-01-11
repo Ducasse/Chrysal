@@ -1,10 +1,12 @@
 Class {
-	#name : #ConfigurationBuilderTest,
-	#superclass : #TestCase,
-	#category : #'Chrysal-Tests-Tests'
+	#name : 'ConfigurationBuilderTest',
+	#superclass : 'TestCase',
+	#category : 'Chrysal-Tests-Tests',
+	#package : 'Chrysal-Tests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationBuilderTest class >> ensureConfigurationForXXExist [
 	"Smalltalk globals at: #ConfigurationForXX ifAbsent: [  
 		ChrysalConfigurationBuilder new
@@ -14,20 +16,20 @@ ConfigurationBuilderTest class >> ensureConfigurationForXXExist [
 	^ Smalltalk globals at: #ConfigurationForXX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ConfigurationBuilderTest class >> resources [
    "Associate the resource with this class of test cases"
    ^ { ChrysalTestResource }
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationBuilderTest >> ensureConfigurationForXXExist [
 
 	^ self class ensureConfigurationForXXExist
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationBuilderTest >> testBuilder [
 	"this should be probably turned into a resources"
 
@@ -48,7 +50,7 @@ ConfigurationBuilderTest >> testBuilder [
 	^ self propertyAt: #latexWriter ifAbsent: [#latex:sbabook]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ConfigurationBuilderTest >> testDescriptionBuilder [
 	
 	| builder string items |
@@ -60,6 +62,6 @@ ConfigurationBuilderTest >> testDescriptionBuilder [
 										addDescriptionBodyIn: s 
 										forItems:  items ].
 	self 
-		assert: (STON fromString: (self class evaluate: string)) size 
+		assert: (STON fromString: (self class compiler evaluate: string)) size 
 		equals: items size
 ]
