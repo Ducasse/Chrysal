@@ -102,40 +102,42 @@ STON toStringPretty: ConfigurationDescriptionForXX new items
 ]'
 "
 Class {
-	#name : #ChrysalItem,
-	#superclass : #Object,
+	#name : 'ChrysalItem',
+	#superclass : 'Object',
 	#instVars : [
 		'propertyName',
 		'default',
 		'explanation'
 	],
-	#category : #'Chrysal-Model'
+	#category : 'Chrysal-Model',
+	#package : 'Chrysal',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalItem >> default [
 	^ default ifNil: [ default := self defaultValue ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalItem >> default: aString [ 
 	default := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalItem >> defaultDomainValueString [
 	"Returns a string representing the default value but as an object once imported in Pharo and not a string used by the writer of a configuration."
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalItem >> defaultValue [
 	"Default value is the default value of an item in the domain of the configuration writer and not in the Pharo world."
 	^ 'defaultValue'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalItem >> domainValueConversionString [
 	"Returns a string converting a string as written in the configuration file to a pharo object. 
 	Note that this method is like the body of a macro that will be expanded in the configuration class: here aValue is the name of the parameter of the generated method.
@@ -151,24 +153,24 @@ ChrysalItem >> domainValueConversionString [
 	^ '^ aValue'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalItem >> explanation [
 
 	^ explanation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalItem >> explanation: aString [
 
 	explanation := aString
 ]
 
-{ #category : #unused }
+{ #category : 'unused' }
 ChrysalItem >> possibleValuesString [
 	^ ''
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 ChrysalItem >> printOn: aStream [
 	super printOn: aStream.
 	aStream
@@ -176,12 +178,12 @@ ChrysalItem >> printOn: aStream [
 		nextPutAll: ' ' , self default printString , ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalItem >> propertyName [
 	^ propertyName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChrysalItem >> propertyName: aSymbol [
 	"property name"
 
