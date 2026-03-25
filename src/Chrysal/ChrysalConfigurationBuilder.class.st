@@ -14,9 +14,9 @@ convert them since they get converted by STON reader for us:  number, true, fals
 The generated Chrysal configuration classes still needs to be subclass of `ChrysalConfiguration` class to reuse some of the behavior to create instances.
 
 ### API
-There are two ways of specify the configuration class: either using ==configurationClass:== or ==defineConfigurationClassNamed:packagedIn:==
+There are two ways of specify the configuration class: either using `configurationClass:` or `defineConfigurationClassNamed:packagedIn:`
 	
-The main public API is the method ==withDescriptionItems:==
+The main public API is the method `withDescriptionItems:`
 
 Here are some typical usecases. 
 
@@ -104,6 +104,8 @@ ChrysalConfigurationBuilder >> addDeclaredItemsMethodFrom: descriptionItems [
 
 { #category : 'add description' }
 ChrysalConfigurationBuilder >> addDescription: descriptionItems [
+	"I create a description so that the user can understand how the actual class methodes were generated. 
+	This way I also archived the spec and the resulting methods."
 	self configurationClass class 
 		compile: (self descriptionMethodFrom: descriptionItems) 
 		classified: 'description'
@@ -142,9 +144,8 @@ ChrysalConfigurationBuilder >> conversionGenerationForItem: anItem [
 
 	^ String
 		streamContents: [ :str | 
-			str nextPutAll: 'convert', (anItem propertyName) capitalized, ': aValue'.
-			"pay attention aValue is a special argument that domainValueString can use to manipulate the parameter 
-			during conversion"
+			str nextPutAll: 'convert', anItem propertyName capitalized, ': aValue'.
+			"pay attention aValue is a special argument that domainValueString can use to manipulate the parameter during conversion"
 			str cr; tab.
 			str nextPutAll: '"generated code"'.
 			str cr; tab.
@@ -218,7 +219,15 @@ ChrysalConfigurationBuilder >> descriptionMethodFrom: descriptionItems [
 	^ String
 		streamContents: [ :s | 
 			s nextPutAll: 'chrysalDescriptions'; cr.
-			s tab; nextPutAll: '"I''m a generated method. I''m just here to help remembering how the class was generated. I should only be executed in presence of the configurationBuilder contained in the Chrysal package. Indeed the item objects only exist at compile-time and STON will recreate them."'.
+			s tab; nextPutAll: '"I''m a generated method. I''m just here to help remembering how the class was generated. I should only be executed in presence of the configurationBuilder contained in the Chrysal package. Indeed the item objects only exist at compile-time and STON will recreate them.
+		Here is a sketch how the methods of the class can be regenerated.
+
+```			
+ChrysalConfigurationBuilder new 
+	configurationClass: ConfigurationForPillar2;
+	withDescriptionItems: ConfigurationForPillar chrysalDescriptions 
+```			
+"'.
 			s cr.
 			s tab; nextPutAll: ' ^ STON fromString: '.
 			self addDescriptionBodyIn: s forItems: descriptionItems ]

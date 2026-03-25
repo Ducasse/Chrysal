@@ -7,6 +7,15 @@ I''m needed because I define some behavior for the creation of instances of such
 
 Here is a typical configuration file and its description.
 
+A configuration methods and logic are automatically generated and the descriptions used to generate the information is added to the class. So do not edit it because it will be automatically generated and you can lose your current edit. Better use a separated method such as ForMicrodownChrysalDescriptions.
+
+```
+ChrysalConfigurationBuilder new 
+	configurationClass: ConfigurationForPillar2;
+	withDescriptionItems: ConfigurationForPillar2 ForMicrodownChrysalDescriptions
+```
+
+
 ### End user configuration files
 Here is an example of a typical configuration file of Pillar
 
@@ -164,12 +173,14 @@ ConfigurationForPillar class >> chrysalDescriptions [
 
 "
 Class {
-	#name : #ChrysalConfiguration,
-	#superclass : #CTEnvironment,
-	#category : #'Chrysal-Runtime'
+	#name : 'ChrysalConfiguration',
+	#superclass : 'CTEnvironment',
+	#category : 'Chrysal-Runtime-Core',
+	#package : 'Chrysal-Runtime',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation others' }
+{ #category : 'instance creation others' }
 ChrysalConfiguration class >> newFromConvertedDictionary: aDictionary [
 	"Assuming that aDictionary contains values which are already objects (i.e., false and not 'false') create a configuration based on this dictionary"
 	
@@ -179,14 +190,14 @@ ChrysalConfiguration class >> newFromConvertedDictionary: aDictionary [
 	^ conf
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ChrysalConfiguration class >> newFromDictionary: stonDictionary [
 	"It seems that pillar cocoon configuration semantics is to consider the argument as a ston dictionary, i.e., with strings and not objects as values."
 	
 	^ self newFromSTONDictionary: stonDictionary
 ]
 
-{ #category : #'compatible with pillar' }
+{ #category : 'compatible with pillar' }
 ChrysalConfiguration class >> newFromDictionary: aSTONDictionary extendedWith: anotherDictionary [
 
 	| configuration |
@@ -195,18 +206,18 @@ ChrysalConfiguration class >> newFromDictionary: aSTONDictionary extendedWith: a
 	^ configuration
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ChrysalConfiguration class >> newFromFile: aFile [
 	
 	^ aFile readStreamDo: [ :input | self newFromStream: input ]
 ]
 
-{ #category : #'compatible with pillar' }
+{ #category : 'compatible with pillar' }
 ChrysalConfiguration class >> newFromFile: aFile extendedWith: anotherDictionary [
 	^ aFile readStreamDo: [ :input | self newFromStream: input extendedWith: anotherDictionary ]
 ]
 
-{ #category : #'instance creation others' }
+{ #category : 'instance creation others' }
 ChrysalConfiguration class >> newFromSTONDictionary: stonDictionary [
 	"Create a configuration based on a dictionary with the objects as defined in STON. 'string' for files and not files. Now pay attention since some literal objects such as true, numbers are not represented as string in STON."
 	
@@ -217,42 +228,42 @@ ChrysalConfiguration class >> newFromSTONDictionary: stonDictionary [
 	^ conf
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ChrysalConfiguration class >> newFromStream: aStream [
 	"Create a new configuration from the stream, values are converted accordingly to the properties.
 	i.e., a string 'false' will be turned into a false object in the resulting configuration."
 	^ self newFromDictionary: (STON fromStream: aStream)
 ]
 
-{ #category : #'compatible with pillar' }
+{ #category : 'compatible with pillar' }
 ChrysalConfiguration class >> newFromStream: aStream extendedWith: anotherDictionary [
 	^ self newFromDictionary: (STON fromStream: aStream) extendedWith: anotherDictionary 
 			
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ChrysalConfiguration class >> newFromString: aString [
 
 	^ self newFromStream: aString readStream
 ]
 
-{ #category : #'compatible with pillar' }
+{ #category : 'compatible with pillar' }
 ChrysalConfiguration class >> newFromString: aString extendedWith: anotherDictionary [
 	^ self newFromStream: aString readStream extendedWith: anotherDictionary
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ChrysalConfiguration >> declaredItems [
 
 	^ #()
 ]
 
-{ #category : #'post hooks' }
+{ #category : 'post hooks' }
 ChrysalConfiguration >> postTreat [
 	"I'm a hook so that my subclasses can perform some actions once a configuration is created."
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ChrysalConfiguration >> setConvertedValueOf: aBinding [
 	"Set the converted value of aBinding value in the correct property of the receiver. aBinding should be property and a raw value as written in the configuration"
 
@@ -264,7 +275,7 @@ ChrysalConfiguration >> setConvertedValueOf: aBinding [
 	
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 ChrysalConfiguration >> setConvertedValueOfDeclaredProperty: aBinding [
 	"Set the converted value of aBinding value in the correct property of the receiver. 
 	aBinding should be property and a raw value as written in the configuration"

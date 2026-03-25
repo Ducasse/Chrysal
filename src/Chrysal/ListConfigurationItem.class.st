@@ -1,19 +1,19 @@
 "
 I represent an item holding a list of other elements. 
+The element will be converted by calling a method convertXXX:. In the following it will be convertPrinterComposite:.
 
-
+```
 (ListConfigurationItem new
 		propertyName: 'levels';
 		default: #OrderedCollection;
 		element: #printerComposite;
 		yourself)
-		
+```		
 	
 I handle the following 
 
-
+```
 {
-
 ''levels'' : [
 		[    ''level'' : 1,
 			''renderAs'' : ''letter'',
@@ -28,8 +28,9 @@ I handle the following
 			''size'' : 3
 		]
 	]
-
 }
+
+```
 "
 Class {
 	#name : 'ListConfigurationItem',
